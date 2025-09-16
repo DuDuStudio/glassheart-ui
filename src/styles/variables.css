@@ -1,0 +1,111 @@
+:root {
+  /* Glass Effect Variables */
+  --gh-glass-opacity: 0.1;
+  --gh-glass-blur: 20px;
+  --gh-glass-saturate: 180%;
+  --gh-glass-brightness: 1.2;
+  --gh-glass-contrast: 1.1;
+  
+  /* Animation Variables */
+  --gh-animation-duration: 0.3s;
+  --gh-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --gh-animation-delay: 0s;
+  
+  /* Color Variables */
+  --gh-primary: 59 130 246; /* blue-500 */
+  --gh-primary-foreground: 255 255 255;
+  --gh-secondary: 148 163 184; /* slate-400 */
+  --gh-secondary-foreground: 15 23 42; /* slate-900 */
+  --gh-accent: 139 92 246; /* violet-500 */
+  --gh-accent-foreground: 255 255 255;
+  --gh-muted: 241 245 249; /* slate-100 */
+  --gh-muted-foreground: 100 116 139; /* slate-500 */
+  --gh-destructive: 239 68 68; /* red-500 */
+  --gh-destructive-foreground: 255 255 255;
+  --gh-border: 226 232 240; /* slate-200 */
+  --gh-input: 226 232 240; /* slate-200 */
+  --gh-ring: 59 130 246; /* blue-500 */
+  --gh-background: 255 255 255;
+  --gh-foreground: 15 23 42; /* slate-900 */
+  --gh-card: 255 255 255;
+  --gh-card-foreground: 15 23 42; /* slate-900 */
+  --gh-popover: 255 255 255;
+  --gh-popover-foreground: 15 23 42; /* slate-900 */
+  
+  /* Glass Intensity Levels */
+  --gh-glass-light-opacity: 0.05;
+  --gh-glass-light-blur: 10px;
+  --gh-glass-medium-opacity: 0.1;
+  --gh-glass-medium-blur: 20px;
+  --gh-glass-heavy-opacity: 0.2;
+  --gh-glass-heavy-blur: 30px;
+  
+  /* Size Variables */
+  --gh-radius: 0.5rem;
+  --gh-radius-sm: 0.25rem;
+  --gh-radius-md: 0.5rem;
+  --gh-radius-lg: 0.75rem;
+  --gh-radius-xl: 1rem;
+  
+  /* Spacing Variables */
+  --gh-spacing-xs: 0.25rem;
+  --gh-spacing-sm: 0.5rem;
+  --gh-spacing-md: 1rem;
+  --gh-spacing-lg: 1.5rem;
+  --gh-spacing-xl: 2rem;
+  --gh-spacing-2xl: 3rem;
+  
+  /* Shadow Variables */
+  --gh-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --gh-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --gh-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --gh-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Z-Index Variables */
+  --gh-z-dropdown: 1000;
+  --gh-z-sticky: 1020;
+  --gh-z-fixed: 1030;
+  --gh-z-modal-backdrop: 1040;
+  --gh-z-modal: 1050;
+  --gh-z-popover: 1060;
+  --gh-z-tooltip: 1070;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --gh-primary: 96 165 250; /* blue-400 */
+  --gh-primary-foreground: 15 23 42; /* slate-900 */
+  --gh-secondary: 71 85 105; /* slate-600 */
+  --gh-secondary-foreground: 248 250 252; /* slate-50 */
+  --gh-accent: 167 139 250; /* violet-400 */
+  --gh-accent-foreground: 15 23 42; /* slate-900 */
+  --gh-muted: 30 41 59; /* slate-800 */
+  --gh-muted-foreground: 148 163 184; /* slate-400 */
+  --gh-destructive: 248 113 113; /* red-400 */
+  --gh-destructive-foreground: 15 23 42; /* slate-900 */
+  --gh-border: 51 65 85; /* slate-700 */
+  --gh-input: 51 65 85; /* slate-700 */
+  --gh-ring: 96 165 250; /* blue-400 */
+  --gh-background: 2 6 23; /* slate-950 */
+  --gh-foreground: 248 250 252; /* slate-50 */
+  --gh-card: 15 23 42; /* slate-900 */
+  --gh-card-foreground: 248 250 252; /* slate-50 */
+  --gh-popover: 15 23 42; /* slate-900 */
+  --gh-popover-foreground: 248 250 252; /* slate-50 */
+  
+  /* Dark theme glass effects are more pronounced */
+  --gh-glass-light-opacity: 0.1;
+  --gh-glass-light-blur: 15px;
+  --gh-glass-medium-opacity: 0.15;
+  --gh-glass-medium-blur: 25px;
+  --gh-glass-heavy-opacity: 0.25;
+  --gh-glass-heavy-blur: 35px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --gh-animation-duration: 0.01ms;
+    --gh-animation-timing: linear;
+  }
+}

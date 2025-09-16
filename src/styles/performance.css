@@ -1,0 +1,187 @@
+/* Performance optimizations for GlassHeartUI */
+
+/* GPU acceleration for animations */
+.gh-glass,
+.gh-btn,
+.gh-input,
+.gh-card {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Optimize backdrop-filter for better performance */
+.gh-glass {
+  contain: layout style paint;
+}
+
+/* Reduce repaints during animations */
+.gh-liquid-flow::before,
+.gh-btn-liquid::before,
+.gh-input-liquid::before {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Optimize hover effects */
+.gh-glass:hover,
+.gh-btn:hover,
+.gh-input:focus {
+  transform: translateZ(0) translateY(-2px);
+}
+
+/* Reduce motion for better performance on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .gh-glass,
+  .gh-btn,
+  .gh-input,
+  .gh-card {
+    will-change: auto;
+    transform: none;
+  }
+  
+  .gh-glass:hover,
+  .gh-btn:hover,
+  .gh-input:focus {
+    transform: none;
+  }
+  
+  .gh-liquid-flow::before,
+  .gh-btn-liquid::before,
+  .gh-input-liquid::before {
+    animation: none;
+  }
+}
+
+/* Optimize for mobile devices */
+@media (max-width: 768px) {
+  .gh-glass {
+    --gh-glass-blur: calc(var(--gh-glass-blur) * 0.8);
+  }
+  
+  .gh-card-interactive:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Optimize for high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .gh-glass {
+    -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+    backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  }
+}
+
+/* Optimize for Safari */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .gh-glass {
+    -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  }
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(1px)) {
+  .gh-glass {
+    background: rgba(255, 255, 255, calc(var(--gh-glass-opacity) * 2));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  [data-theme="dark"] .gh-glass {
+    background: rgba(0, 0, 0, calc(var(--gh-glass-opacity) * 2));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Optimize animation performance */
+.gh-animate-in,
+.gh-animate-out,
+.gh-animate-slide-up,
+.gh-animate-slide-down,
+.gh-animate-scale {
+  animation-fill-mode: both;
+  animation-timing-function: var(--gh-animation-timing);
+}
+
+/* Optimize liquid flow animation */
+@keyframes gh-liquid-flow {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg) translateZ(0);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg) translateZ(0);
+  }
+}
+
+/* Optimize shimmer animation */
+@keyframes gh-shimmer {
+  0% {
+    transform: translateX(-100%) translateZ(0);
+  }
+  100% {
+    transform: translateX(100%) translateZ(0);
+  }
+}
+
+/* Optimize spin animation */
+@keyframes gh-spin {
+  to {
+    transform: rotate(360deg) translateZ(0);
+  }
+}
+
+/* Optimize fade animations */
+@keyframes gh-fade-in {
+  from {
+    opacity: 0;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes gh-fade-out {
+  from {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateZ(0);
+  }
+}
+
+/* Optimize slide animations */
+@keyframes gh-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes gh-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+/* Optimize scale animation */
+@keyframes gh-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}

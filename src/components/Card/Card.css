@@ -1,0 +1,166 @@
+.gh-card {
+  position: relative;
+  background: rgba(255, 255, 255, var(--gh-glass-opacity));
+  backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--gh-radius);
+  box-shadow: var(--gh-shadow-md);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gh-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-spacing-sm);
+  padding: var(--gh-spacing-lg);
+  padding-bottom: var(--gh-spacing-sm);
+}
+
+.gh-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgb(var(--gh-card-foreground));
+  margin: 0;
+}
+
+.gh-card-description {
+  font-size: 0.875rem;
+  color: rgb(var(--gh-muted-foreground));
+  margin: 0;
+}
+
+.gh-card-content {
+  padding: 0 var(--gh-spacing-lg) var(--gh-spacing-lg);
+  flex: 1;
+}
+
+.gh-card-footer {
+  display: flex;
+  align-items: center;
+  padding: var(--gh-spacing-sm) var(--gh-spacing-lg) var(--gh-spacing-lg);
+  gap: var(--gh-spacing-sm);
+}
+
+/* Card Sizes */
+.gh-card-sm {
+  max-width: 20rem;
+}
+
+.gh-card-md {
+  max-width: 28rem;
+}
+
+.gh-card-lg {
+  max-width: 36rem;
+}
+
+.gh-card-xl {
+  max-width: 44rem;
+}
+
+/* Card Variants */
+.gh-card-outline {
+  background: transparent;
+  border: 1px solid rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-card-outline:hover {
+  background: rgba(255, 255, 255, var(--gh-glass-light-opacity));
+  backdrop-filter: blur(var(--gh-glass-light-blur));
+  -webkit-backdrop-filter: blur(var(--gh-glass-light-blur));
+}
+
+.gh-card-solid {
+  background: rgb(var(--gh-card));
+  border: 1px solid rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-card-solid:hover {
+  background: rgb(var(--gh-muted));
+}
+
+/* Interactive Card */
+.gh-card-interactive {
+  cursor: pointer;
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--gh-shadow-xl);
+}
+
+.gh-card-interactive:active {
+  transform: translateY(-2px);
+  box-shadow: var(--gh-shadow-lg);
+}
+
+/* Card with Liquid Flow */
+.gh-card-liquid {
+  position: relative;
+  overflow: hidden;
+}
+
+.gh-card-liquid::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: gh-liquid-flow 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gh-card-liquid > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Card Loading State */
+.gh-card-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.gh-card-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: gh-shimmer 1.5s infinite;
+  z-index: 3;
+}
+
+@keyframes gh-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "glassheart-ui",
+  "version": "1.0.0",
+  "description": "A modern UI component library with Apple Liquid Glass effects",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "clean": "npm run clean --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "publish:core": "cd packages/core && npm publish",
+    "publish:react": "cd packages/react && npm publish",
+    "publish:vue": "cd packages/vue && npm publish",
+    "publish:svelte": "cd packages/svelte && npm publish",
+    "publish:js": "cd packages/js && npm publish",
+    "publish:all": "npm run publish:core && npm run publish:react && npm run publish:vue && npm run publish:svelte && npm run publish:js",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "liquid-glass",
+    "glassmorphism",
+    "react",
+    "vue",
+    "svelte",
+    "css",
+    "tailwind"
+  ],
+  "author": "GlassHeart Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.3",
+    "@storybook/addon-interactions": "^7.6.3",
+    "@storybook/addon-links": "^7.6.3",
+    "@storybook/blocks": "^7.6.3",
+    "@storybook/react": "^7.6.3",
+    "@storybook/react-vite": "^7.6.3",
+    "@storybook/testing-library": "^0.2.2",
+    "storybook": "^7.6.3",
+    "vite": "^5.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glassheart/ui.git"
+  }
+}

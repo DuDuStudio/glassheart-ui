@@ -1,0 +1,249 @@
+@import './variables.css';
+@import './performance.css';
+
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgb(var(--gh-background));
+  color: rgb(var(--gh-foreground));
+  transition: background-color var(--gh-animation-duration) var(--gh-animation-timing),
+              color var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+/* Glass Effect Base Class */
+.gh-glass {
+  position: relative;
+  background: rgba(255, 255, 255, var(--gh-glass-opacity));
+  backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--gh-radius);
+  box-shadow: var(--gh-shadow-md);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Glass Intensity Variants */
+.gh-glass-light {
+  --gh-glass-opacity: var(--gh-glass-light-opacity);
+  --gh-glass-blur: var(--gh-glass-light-blur);
+}
+
+.gh-glass-medium {
+  --gh-glass-opacity: var(--gh-glass-medium-opacity);
+  --gh-glass-blur: var(--gh-glass-medium-blur);
+}
+
+.gh-glass-heavy {
+  --gh-glass-opacity: var(--gh-glass-heavy-opacity);
+  --gh-glass-blur: var(--gh-glass-heavy-blur);
+}
+
+/* Hover Effects */
+.gh-glass:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--gh-shadow-lg);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.gh-glass:active {
+  transform: translateY(0);
+  box-shadow: var(--gh-shadow-md);
+}
+
+/* Focus States */
+.gh-glass:focus-visible {
+  outline: 2px solid rgb(var(--gh-ring));
+  outline-offset: 2px;
+}
+
+/* Animation Classes */
+.gh-animate-in {
+  animation: gh-fade-in var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-animate-out {
+  animation: gh-fade-out var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-animate-slide-up {
+  animation: gh-slide-up var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-animate-slide-down {
+  animation: gh-slide-down var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-animate-scale {
+  animation: gh-scale var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+/* Keyframe Animations */
+@keyframes gh-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gh-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes gh-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gh-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gh-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Liquid Flow Animation */
+.gh-liquid-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.gh-liquid-flow::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: gh-liquid-flow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gh-liquid-flow {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Utility Classes */
+.gh-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.gh-pointer-events-none {
+  pointer-events: none;
+}
+
+.gh-pointer-events-auto {
+  pointer-events: auto;
+}
+
+/* Size Utilities */
+.gh-size-xs { width: 1rem; height: 1rem; }
+.gh-size-sm { width: 1.5rem; height: 1.5rem; }
+.gh-size-md { width: 2rem; height: 2rem; }
+.gh-size-lg { width: 2.5rem; height: 2.5rem; }
+.gh-size-xl { width: 3rem; height: 3rem; }
+
+/* Spacing Utilities */
+.gh-p-xs { padding: var(--gh-spacing-xs); }
+.gh-p-sm { padding: var(--gh-spacing-sm); }
+.gh-p-md { padding: var(--gh-spacing-md); }
+.gh-p-lg { padding: var(--gh-spacing-lg); }
+.gh-p-xl { padding: var(--gh-spacing-xl); }
+
+.gh-m-xs { margin: var(--gh-spacing-xs); }
+.gh-m-sm { margin: var(--gh-spacing-sm); }
+.gh-m-md { margin: var(--gh-spacing-md); }
+.gh-m-lg { margin: var(--gh-spacing-lg); }
+.gh-m-xl { margin: var(--gh-spacing-xl); }
+
+/* Border Radius Utilities */
+.gh-rounded-none { border-radius: 0; }
+.gh-rounded-sm { border-radius: var(--gh-radius-sm); }
+.gh-rounded-md { border-radius: var(--gh-radius-md); }
+.gh-rounded-lg { border-radius: var(--gh-radius-lg); }
+.gh-rounded-xl { border-radius: var(--gh-radius-xl); }
+.gh-rounded-full { border-radius: 9999px; }

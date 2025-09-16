@@ -1,0 +1,288 @@
+.gh-input {
+  position: relative;
+  background: rgba(255, 255, 255, var(--gh-glass-opacity));
+  backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--gh-radius);
+  box-shadow: var(--gh-shadow-md);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  display: flex;
+  width: 100%;
+  border: 1px solid rgb(var(--gh-input));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(var(--gh-foreground));
+}
+
+.gh-input::placeholder {
+  color: rgb(var(--gh-muted-foreground));
+}
+
+.gh-input:focus {
+  outline: none;
+  border-color: rgb(var(--gh-ring));
+  box-shadow: 0 0 0 2px rgba(var(--gh-ring), 0.2);
+  background: rgba(255, 255, 255, calc(var(--gh-glass-opacity) + 0.05));
+}
+
+.gh-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background: rgba(var(--gh-muted), 0.3);
+}
+
+.gh-input:invalid {
+  border-color: rgb(var(--gh-destructive));
+}
+
+.gh-input:invalid:focus {
+  box-shadow: 0 0 0 2px rgba(var(--gh-destructive), 0.2);
+}
+
+/* Input Sizes */
+.gh-input-xs {
+  height: 1.5rem;
+  padding: 0 var(--gh-spacing-sm);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.gh-input-sm {
+  height: 2rem;
+  padding: 0 var(--gh-spacing-md);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.gh-input-md {
+  height: 2.5rem;
+  padding: 0 var(--gh-spacing-lg);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.gh-input-lg {
+  height: 3rem;
+  padding: 0 var(--gh-spacing-xl);
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.gh-input-xl {
+  height: 3.5rem;
+  padding: 0 2rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* Input Variants */
+.gh-input-outline {
+  background: transparent;
+  border-color: rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-input-outline:focus {
+  background: rgba(255, 255, 255, var(--gh-glass-light-opacity));
+  backdrop-filter: blur(var(--gh-glass-light-blur));
+  -webkit-backdrop-filter: blur(var(--gh-glass-light-blur));
+}
+
+.gh-input-solid {
+  background: rgb(var(--gh-background));
+  border-color: rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-input-solid:focus {
+  background: rgb(var(--gh-muted));
+}
+
+/* Input with Icon */
+.gh-input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gh-input-with-icon .gh-input {
+  padding-left: 2.5rem;
+}
+
+.gh-input-icon {
+  position: absolute;
+  left: var(--gh-spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: rgb(var(--gh-muted-foreground));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gh-input-icon-right {
+  left: auto;
+  right: var(--gh-spacing-md);
+}
+
+.gh-input-with-icon .gh-input-icon-right + .gh-input {
+  padding-left: var(--gh-spacing-lg);
+  padding-right: 2.5rem;
+}
+
+/* Input with Button */
+.gh-input-with-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gh-input-with-button .gh-input {
+  padding-right: 2.5rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+}
+
+.gh-input-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 0;
+}
+
+/* Textarea */
+.gh-textarea {
+  position: relative;
+  background: rgba(255, 255, 255, var(--gh-glass-opacity));
+  backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--gh-radius);
+  box-shadow: var(--gh-shadow-md);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  display: flex;
+  width: 100%;
+  border: 1px solid rgb(var(--gh-input));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(var(--gh-foreground));
+  min-height: 5rem;
+  resize: vertical;
+  padding: var(--gh-spacing-md) var(--gh-spacing-lg);
+}
+
+.gh-textarea.gh-input-xs {
+  min-height: 3rem;
+  padding: var(--gh-spacing-sm) var(--gh-spacing-md);
+}
+
+.gh-textarea.gh-input-sm {
+  min-height: 4rem;
+  padding: var(--gh-spacing-sm) var(--gh-spacing-md);
+}
+
+.gh-textarea.gh-input-lg {
+  min-height: 6rem;
+  padding: var(--gh-spacing-lg) var(--gh-spacing-xl);
+}
+
+.gh-textarea.gh-input-xl {
+  min-height: 8rem;
+  padding: var(--gh-spacing-xl) 2rem;
+}
+
+/* Input Group */
+.gh-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-spacing-xs);
+}
+
+.gh-input-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(var(--gh-foreground));
+  margin-bottom: var(--gh-spacing-xs);
+}
+
+.gh-input-error {
+  font-size: 0.75rem;
+  color: rgb(var(--gh-destructive));
+  margin-top: var(--gh-spacing-xs);
+}
+
+.gh-input-help {
+  font-size: 0.75rem;
+  color: rgb(var(--gh-muted-foreground));
+  margin-top: var(--gh-spacing-xs);
+}
+
+/* Floating Label */
+.gh-input-floating {
+  position: relative;
+}
+
+.gh-input-floating .gh-input {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.gh-input-floating .gh-input-label {
+  position: absolute;
+  top: 50%;
+  left: var(--gh-spacing-lg);
+  transform: translateY(-50%);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  pointer-events: none;
+  z-index: 1;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.gh-input-floating .gh-input:focus + .gh-input-label,
+.gh-input-floating .gh-input:not(:placeholder-shown) + .gh-input-label {
+  top: 0.5rem;
+  left: var(--gh-spacing-md);
+  font-size: 0.75rem;
+  color: rgb(var(--gh-ring));
+  background: rgb(var(--gh-background));
+  padding: 0 var(--gh-spacing-xs);
+}
+
+/* Liquid Flow Effect for Inputs */
+.gh-input-liquid {
+  position: relative;
+  overflow: hidden;
+}
+
+.gh-input-liquid::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: gh-liquid-flow 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gh-input-liquid > * {
+  position: relative;
+  z-index: 2;
+}
