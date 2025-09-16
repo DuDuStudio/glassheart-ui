@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import vue from 'rollup-plugin-vue';
 import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
@@ -27,12 +28,17 @@ export default [
         browser: true,
       }),
       commonjs(),
+      postcss({
+        extract: false,
+        modules: false,
+        autoModules: false,
+      }),
       vue(),
       typescript({
         tsconfig: './tsconfig.json',
       }),
     ],
-    external: ['vue', '@glassheart/ui-core'],
+    external: ['vue', 'glassheart-ui-core'],
   },
   {
     input: 'dist/index.d.ts',

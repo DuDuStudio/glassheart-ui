@@ -1,6 +1,6 @@
 # GlassHeartUI
 
-一個現代化的 UI 元件庫，專注於實現 Apple Liquid Glass 效果，提供類似 Tailwind CSS 的 class 形式使用方式。
+一個現代化的 UI 元件庫，專注於實現 Apple Liquid Glass 效果。
 
 ## ✨ 特色
 
@@ -18,30 +18,30 @@ GlassHeartUI 提供多個框架的獨立套件：
 
 | 套件 | 描述 | 安裝 |
 |------|------|------|
-| `@glassheart/ui-core` | 核心 CSS 樣式 | `npm install @glassheart/ui-core` |
-| `@glassheart/ui-react` | React 元件 | `npm install @glassheart/ui-react` |
-| `@glassheart/ui-vue` | Vue 元件 | `npm install @glassheart/ui-vue` |
-| `@glassheart/ui-svelte` | Svelte 元件 | `npm install @glassheart/ui-svelte` |
-| `@glassheart/ui` | 原生 JavaScript | `npm install @glassheart/ui` |
+| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` |
+| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` |
+| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` |
+| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` |
+| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` |
 
 ## 🚀 快速開始
 
 ### React 使用
 
 ```jsx
-import { Card, Button, Input } from '@glassheart/ui-react';
+import { GlassCard, GlassButton, GlassInput } from 'glassheart-ui-react';
 
 function App() {
   return (
-    <Card liquid interactive>
-      <CardHeader>
-        <CardTitle>Hello GlassHeartUI</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Input placeholder="Enter your name" />
-        <Button variant="primary" liquid>Submit</Button>
-      </CardContent>
-    </Card>
+    <GlassCard liquid interactive>
+      <GlassCardHeader>
+        <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+      </GlassCardHeader>
+      <GlassCardContent>
+        <GlassInput placeholder="Enter your name" />
+        <GlassButton variant="primary" liquid>Submit</GlassButton>
+      </GlassCardContent>
+    </GlassCard>
   );
 }
 ```
@@ -50,19 +50,19 @@ function App() {
 
 ```vue
 <template>
-  <Card liquid interactive>
-    <CardHeader>
-      <CardTitle>Hello GlassHeartUI</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <Input placeholder="Enter your name" />
-      <Button variant="primary" liquid>Submit</Button>
-    </CardContent>
-  </Card>
+  <GlassCard liquid interactive>
+    <GlassCardHeader>
+      <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+    </GlassCardHeader>
+    <GlassCardContent>
+      <GlassInput placeholder="Enter your name" />
+      <GlassButton variant="primary" liquid>Submit</GlassButton>
+    </GlassCardContent>
+  </GlassCard>
 </template>
 
 <script setup>
-import { Card, CardHeader, CardTitle, CardContent, Input, Button } from '@glassheart/ui-vue';
+import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton } from 'glassheart-ui-vue';
 </script>
 ```
 
@@ -70,30 +70,30 @@ import { Card, CardHeader, CardTitle, CardContent, Input, Button } from '@glassh
 
 ```svelte
 <script>
-  import { Card, CardHeader, CardTitle, CardContent, Input, Button } from '@glassheart/ui-svelte';
+  import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton } from 'glassheart-ui-svelte';
 </script>
 
-<Card liquid interactive>
-  <CardHeader>
-    <CardTitle>Hello GlassHeartUI</CardTitle>
-  </CardHeader>
-  <CardContent>
-    <Input placeholder="Enter your name" />
-    <Button variant="primary" liquid>Submit</Button>
-  </CardContent>
-</Card>
+<GlassCard liquid interactive>
+  <GlassCardHeader>
+    <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+  </GlassCardHeader>
+  <GlassCardContent>
+    <GlassInput placeholder="Enter your name" />
+    <GlassButton variant="primary" liquid>Submit</GlassButton>
+  </GlassCardContent>
+</GlassCard>
 ```
 
 ### 原生 JavaScript 使用
 
 ```javascript
-import { Card, Button, Input, initTheme } from '@glassheart/ui';
+import { GlassCard, GlassButton, GlassInput, initTheme } from 'glassheart-ui';
 
 // 初始化主題
 initTheme();
 
 // 創建元件
-const card = new Card({
+const card = new GlassCard({
   size: 'lg',
   variant: 'default',
   liquid: true,
@@ -104,11 +104,11 @@ const card = new Card({
 ### CDN 使用
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@glassheart/ui/dist/index.css">
-<script src="https://unpkg.com/@glassheart/ui/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/glassheart-ui/dist/index.css">
+<script src="https://unpkg.com/glassheart-ui/dist/index.js"></script>
 
 <script>
-  const { Card, Button, Input, initTheme } = window.GlassHeartUI;
+  const { GlassCard, GlassButton, GlassInput, initTheme } = window.GlassHeartUI;
   initTheme();
 </script>
 ```

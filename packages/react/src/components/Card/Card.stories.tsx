@@ -231,7 +231,7 @@ export const GlassEffectShowcase: Story = {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">輕度玻璃效果</h3>
-          <Card glass="light" size="lg">
+          <Card liquid size="lg">
             <CardHeader>
               <CardTitle>Light Glass</CardTitle>
               <CardDescription>Subtle transparency and blur</CardDescription>
@@ -244,7 +244,7 @@ export const GlassEffectShowcase: Story = {
         
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">中度玻璃效果</h3>
-          <Card glass="medium" size="lg">
+          <Card liquid size="lg">
             <CardHeader>
               <CardTitle>Medium Glass</CardTitle>
               <CardDescription>Balanced transparency and blur</CardDescription>
@@ -257,7 +257,7 @@ export const GlassEffectShowcase: Story = {
         
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">重度玻璃效果</h3>
-          <Card glass="heavy" size="lg">
+          <Card liquid size="lg">
             <CardHeader>
               <CardTitle>Heavy Glass</CardTitle>
               <CardDescription>Strong transparency and blur</CardDescription>

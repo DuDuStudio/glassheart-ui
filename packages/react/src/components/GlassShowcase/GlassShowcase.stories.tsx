@@ -108,7 +108,7 @@ export const FullShowcase: Story = {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">輕度玻璃</h3>
-                <Card glass="light" size="md">
+                <Card liquid size="md">
                   <CardContent>
                     <p className="text-sm">適合需要保持內容清晰度的場景</p>
                   </CardContent>
@@ -119,7 +119,7 @@ export const FullShowcase: Story = {
               
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">中度玻璃</h3>
-                <Card glass="medium" size="md">
+                <Card liquid size="md">
                   <CardContent>
                     <p className="text-sm">平衡的透明度和模糊效果</p>
                   </CardContent>
@@ -130,7 +130,7 @@ export const FullShowcase: Story = {
               
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">重度玻璃</h3>
-                <Card glass="heavy" size="md">
+                <Card liquid size="md">
                   <CardContent>
                     <p className="text-sm">強烈的視覺衝擊效果</p>
                   </CardContent>

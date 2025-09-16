@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import svelte from 'rollup-plugin-svelte';
 import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
@@ -27,6 +28,11 @@ export default [
         browser: true,
       }),
       commonjs(),
+      postcss({
+        extract: false,
+        modules: false,
+        autoModules: false,
+      }),
       svelte({
         compilerOptions: {
           generate: 'ssr',
@@ -36,7 +42,7 @@ export default [
         tsconfig: './tsconfig.json',
       }),
     ],
-    external: ['svelte', '@glassheart/ui-core'],
+    external: ['svelte', 'glassheart-ui-core'],
   },
   {
     input: 'dist/index.d.ts',

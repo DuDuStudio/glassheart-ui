@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-export interface CardProps {
+export interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -14,32 +14,32 @@ export interface CardProps {
   onMouseLeave?: () => void;
 }
 
-export interface CardHeaderProps {
+export interface GlassCardHeaderProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface CardTitleProps {
+export interface GlassCardTitleProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface CardDescriptionProps {
+export interface GlassCardDescriptionProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface CardContentProps {
+export interface GlassCardContentProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export interface CardFooterProps {
+export interface GlassCardFooterProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
+const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
   (
     {
       children,
@@ -90,9 +90,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
   }
 );
 
-Card.displayName = 'Card';
+GlassCard.displayName = 'GlassCard';
 
-const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
+const GlassCardHeader = React.forwardRef<HTMLDivElement, GlassCardHeaderProps>(
   ({ children, className = '', ...props }, ref) => {
     return (
       <div
@@ -106,9 +106,9 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   }
 );
 
-CardHeader.displayName = 'CardHeader';
+GlassCardHeader.displayName = 'GlassCardHeader';
 
-const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
+const GlassCardTitle = React.forwardRef<HTMLHeadingElement, GlassCardTitleProps>(
   ({ children, className = '', ...props }, ref) => {
     return (
       <h3
@@ -122,9 +122,9 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   }
 );
 
-CardTitle.displayName = 'CardTitle';
+GlassCardTitle.displayName = 'GlassCardTitle';
 
-const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+const GlassCardDescription = React.forwardRef<HTMLParagraphElement, GlassCardDescriptionProps>(
   ({ children, className = '', ...props }, ref) => {
     return (
       <p
@@ -138,9 +138,9 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionPr
   }
 );
 
-CardDescription.displayName = 'CardDescription';
+GlassCardDescription.displayName = 'GlassCardDescription';
 
-const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
+const GlassCardContent = React.forwardRef<HTMLDivElement, GlassCardContentProps>(
   ({ children, className = '', ...props }, ref) => {
     return (
       <div
@@ -154,9 +154,9 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   }
 );
 
-CardContent.displayName = 'CardContent';
+GlassCardContent.displayName = 'GlassCardContent';
 
-const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
+const GlassCardFooter = React.forwardRef<HTMLDivElement, GlassCardFooterProps>(
   ({ children, className = '', ...props }, ref) => {
     return (
       <div
@@ -170,13 +170,20 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
   }
 );
 
-CardFooter.displayName = 'CardFooter';
+GlassCardFooter.displayName = 'GlassCardFooter';
 
 export {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
+  GlassCard,
+  GlassCardHeader,
+  GlassCardTitle,
+  GlassCardDescription,
+  GlassCardContent,
+  GlassCardFooter,
+  // Legacy exports for backward compatibility
+  GlassCard as Card,
+  GlassCardHeader as CardHeader,
+  GlassCardTitle as CardTitle,
+  GlassCardDescription as CardDescription,
+  GlassCardContent as CardContent,
+  GlassCardFooter as CardFooter,
 };

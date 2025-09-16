@@ -2,6 +2,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
@@ -26,11 +27,16 @@ export default [
         browser: true,
       }),
       commonjs(),
+      postcss({
+        extract: false,
+        modules: false,
+        autoModules: false,
+      }),
       typescript({
         tsconfig: './tsconfig.json',
       }),
     ],
-    external: ['@glassheart/ui-core'],
+    external: ['glassheart-ui-core'],
   },
   {
     input: 'dist/index.d.ts',
