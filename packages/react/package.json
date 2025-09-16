@@ -1,6 +1,6 @@
 {
   "name": "glassheart-ui-react",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "React components for GlassHeartUI",
   "type": "module",
   "main": "dist/index.js",
@@ -41,9 +41,10 @@
     "rollup-plugin-dts": "^6.1.0",
     "typescript": "^5.3.2"
   },
+  "homepage": "https://github.com/DuDuStudio/glassheart-ui",
   "repository": {
     "type": "git",
-    "url": "https://github.com/glassheart/ui.git",
+    "url": "https://github.com/DuDuStudio/glassheart-ui.git",
     "directory": "packages/react"
   },
   "publishConfig": {
