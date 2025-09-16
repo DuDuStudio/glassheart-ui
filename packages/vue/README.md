@@ -1,11 +1,11 @@
-# @glassheart/ui-vue
+# glassheart/ui-vue
 
 Vue 版本的 GlassHeartUI 元件庫。
 
 ## 安裝
 
 ```bash
-npm install @glassheart/ui-vue
+npm install glassheart/ui-vue
 ```
 
 ## 使用
@@ -24,7 +24,7 @@ npm install @glassheart/ui-vue
 </template>
 
 <script setup>
-import { Card, CardHeader, CardTitle, CardContent, Input, Button } from '@glassheart/ui-vue';
+import { Card, CardHeader, CardTitle, CardContent, Input, Button } from 'glassheart/ui-vue';
 </script>
 ```
 

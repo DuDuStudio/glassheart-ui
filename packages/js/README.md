@@ -1,11 +1,11 @@
-# @glassheart/ui
+# glassheart/ui
 
 原生 JavaScript 版本的 GlassHeartUI 元件庫。
 
 ## 安裝
 
 ```bash
-npm install @glassheart/ui
+npm install glassheart/ui
 ```
 
 ## 使用
@@ -13,7 +13,7 @@ npm install @glassheart/ui
 ### ES 模組
 
 ```javascript
-import { Card, Button, Input, initTheme } from '@glassheart/ui';
+import { Card, Button, Input, initTheme } from 'glassheart/ui';
 
 // 初始化主題
 initTheme();
@@ -36,8 +36,8 @@ const button = new Button({
 ### CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@glassheart/ui/dist/index.css">
-<script src="https://unpkg.com/@glassheart/ui/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/glassheart/ui/dist/index.css">
+<script src="https://unpkg.com/glassheart/ui/dist/index.js"></script>
 
 <script>
   // 使用全域變數

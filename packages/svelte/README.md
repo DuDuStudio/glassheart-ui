@@ -1,18 +1,18 @@
-# @glassheart/ui-svelte
+# glassheart/ui-svelte
 
 Svelte 版本的 GlassHeartUI 元件庫。
 
 ## 安裝
 
 ```bash
-npm install @glassheart/ui-svelte
+npm install glassheart/ui-svelte
 ```
 
 ## 使用
 
 ```svelte
 <script>
-  import { Card, CardHeader, CardTitle, CardContent, Input, Button } from '@glassheart/ui-svelte';
+  import { Card, CardHeader, CardTitle, CardContent, Input, Button } from 'glassheart/ui-svelte';
 </script>
 
 <Card liquid interactive>

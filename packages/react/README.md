@@ -1,17 +1,17 @@
-# @glassheart/ui-react
+# glassheart/ui-react
 
 React 版本的 GlassHeartUI 元件庫。
 
 ## 安裝
 
 ```bash
-npm install @glassheart/ui-react
+npm install glassheart/ui-react
 ```
 
 ## 使用
 
 ```jsx
-import { Card, Button, Input } from '@glassheart/ui-react';
+import { Card, Button, Input } from 'glassheart/ui-react';
 
 function App() {
   return (
