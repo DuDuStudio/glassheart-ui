@@ -362,7 +362,7 @@ applyTheme('dark');
 
 ## 📚 文檔
 
-完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui-storybook.dudustudio.monster)
+完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui-storybook.dudustudio.monster/?path=/story/components-glassbutton--default)
 
 ## 🤝 貢獻
 
