@@ -49,13 +49,13 @@ npm install glassheart-ui-svelte
 
 ### GlassButton 系列
 - `GlassButton` - 按鈕元件
-- `ButtonGroup` - 按鈕群組
+- `GlassButtonGroup` - 按鈕群組
 
 ### GlassInput 系列
 - `GlassInput` - 輸入框
-- `Textarea` - 文字區域
-- `InputGroup` - 輸入框群組
-- `FloatingLabel` - 浮動標籤
+- `GlassTextarea` - 文字區域
+- `GlassInputGroup` - 輸入框群組
+- `GlassFloatingLabel` - 浮動標籤
 
 ## 向後兼容性
 
