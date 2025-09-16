@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonGroup } from './Button';
-import './Button.css';
+import { GlassButton, GlassButtonGroup } from './GlassButton';
+import './GlassButton.css';
 
-const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
-  component: Button,
+const meta: Meta<typeof GlassButton> = {
+  title: 'Components/GlassButton',
+  component: GlassButton,
   parameters: {
     layout: 'centered',
   },
@@ -46,14 +46,14 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button variant="default">Default</Button>
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="accent">Accent</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button>
+      <GlassButton variant="default">Default</GlassButton>
+      <GlassButton variant="primary">Primary</GlassButton>
+      <GlassButton variant="secondary">Secondary</GlassButton>
+      <GlassButton variant="accent">Accent</GlassButton>
+      <GlassButton variant="destructive">Destructive</GlassButton>
+      <GlassButton variant="outline">Outline</GlassButton>
+      <GlassButton variant="ghost">Ghost</GlassButton>
+      <GlassButton variant="link">Link</GlassButton>
     </div>
   ),
 };
@@ -61,11 +61,11 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex gap-4 items-center flex-wrap">
-      <Button size="xs">Extra Small</Button>
-      <Button size="sm">Small</Button>
-      <Button size="md">Medium</Button>
-      <Button size="lg">Large</Button>
-      <Button size="xl">Extra Large</Button>
+      <GlassButton size="xs">Extra Small</GlassButton>
+      <GlassButton size="sm">Small</GlassButton>
+      <GlassButton size="md">Medium</GlassButton>
+      <GlassButton size="lg">Large</GlassButton>
+      <GlassButton size="xl">Extra Large</GlassButton>
     </div>
   ),
 };
@@ -73,9 +73,9 @@ export const Sizes: Story = {
 export const GlassIntensities: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button glass="light">Light Glass</Button>
-      <Button glass="medium">Medium Glass</Button>
-      <Button glass="heavy">Heavy Glass</Button>
+      <GlassButton glass="light">Light Glass</GlassButton>
+      <GlassButton glass="medium">Medium Glass</GlassButton>
+      <GlassButton glass="heavy">Heavy Glass</GlassButton>
     </div>
   ),
 };
@@ -83,9 +83,9 @@ export const GlassIntensities: Story = {
 export const LiquidEffect: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button liquid>Liquid Button</Button>
-      <Button variant="primary" liquid>Primary Liquid</Button>
-      <Button variant="accent" liquid>Accent Liquid</Button>
+      <GlassButton liquid>Liquid Button</GlassButton>
+      <GlassButton variant="primary" liquid>Primary Liquid</GlassButton>
+      <GlassButton variant="accent" liquid>Accent Liquid</GlassButton>
     </div>
   ),
 };
@@ -93,9 +93,9 @@ export const LiquidEffect: Story = {
 export const States: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button>Normal</Button>
-      <Button loading>Loading</Button>
-      <Button disabled>Disabled</Button>
+      <GlassButton>Normal</GlassButton>
+      <GlassButton loading>Loading</GlassButton>
+      <GlassButton disabled>Disabled</GlassButton>
     </div>
   ),
 };
@@ -103,17 +103,17 @@ export const States: Story = {
 export const ButtonGroupStory: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
-      <ButtonGroup>
-        <Button variant="outline">First</Button>
-        <Button variant="outline">Middle</Button>
-        <Button variant="outline">Last</Button>
-      </ButtonGroup>
+      <GlassButtonGroup>
+        <GlassButton variant="outline">First</GlassButton>
+        <GlassButton variant="outline">Middle</GlassButton>
+        <GlassButton variant="outline">Last</GlassButton>
+      </GlassButtonGroup>
       
-      <ButtonGroup vertical>
-        <Button variant="outline">Top</Button>
-        <Button variant="outline">Middle</Button>
-        <Button variant="outline">Bottom</Button>
-      </ButtonGroup>
+      <GlassButtonGroup vertical>
+        <GlassButton variant="outline">Top</GlassButton>
+        <GlassButton variant="outline">Middle</GlassButton>
+        <GlassButton variant="outline">Bottom</GlassButton>
+      </GlassButtonGroup>
     </div>
   ),
 };
@@ -121,24 +121,24 @@ export const ButtonGroupStory: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button>
+      <GlassButton>
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
         </svg>
         Add Item
-      </Button>
-      <Button variant="primary">
+      </GlassButton>
+      <GlassButton variant="primary">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
         Save Changes
-      </Button>
-      <Button variant="destructive">
+      </GlassButton>
+      <GlassButton variant="destructive">
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
         </svg>
         Delete
-      </Button>
+      </GlassButton>
     </div>
   ),
 };
@@ -147,27 +147,27 @@ export const ComplexExample: Story = {
   render: () => (
     <div className="space-y-6">
       <div className="flex gap-4 flex-wrap">
-        <Button variant="primary" liquid size="lg">
+        <GlassButton variant="primary" liquid size="lg">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
           Get Started
-        </Button>
-        <Button variant="outline" size="lg">
+        </GlassButton>
+        <GlassButton variant="outline" size="lg">
           Learn More
-        </Button>
+        </GlassButton>
       </div>
       
       <div className="flex gap-2">
-        <Button variant="outline" size="sm">Cancel</Button>
-        <Button variant="primary" size="sm">Save Draft</Button>
-        <Button variant="accent" size="sm">Publish</Button>
+        <GlassButton variant="outline" size="sm">Cancel</GlassButton>
+        <GlassButton variant="primary" size="sm">Save Draft</GlassButton>
+        <GlassButton variant="accent" size="sm">Publish</GlassButton>
       </div>
       
-      <ButtonGroup>
-        <Button variant="outline" size="sm">Previous</Button>
-        <Button variant="outline" size="sm">Next</Button>
-      </ButtonGroup>
+      <GlassButtonGroup>
+        <GlassButton variant="outline" size="sm">Previous</GlassButton>
+        <GlassButton variant="outline" size="sm">Next</GlassButton>
+      </GlassButtonGroup>
     </div>
   ),
 };
@@ -184,32 +184,32 @@ export const GlassEffectShowcase: Story = {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">玻璃強度對比</h3>
           <div className="flex gap-4 flex-wrap">
-            <Button glass="light" size="lg">Light Glass</Button>
-            <Button glass="medium" size="lg">Medium Glass</Button>
-            <Button glass="heavy" size="lg">Heavy Glass</Button>
+            <GlassButton glass="light" size="lg">Light Glass</GlassButton>
+            <GlassButton glass="medium" size="lg">Medium Glass</GlassButton>
+            <GlassButton glass="heavy" size="lg">Heavy Glass</GlassButton>
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">液態流動效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <Button variant="primary" liquid size="lg">Primary Liquid</Button>
-            <Button variant="accent" liquid size="lg">Accent Liquid</Button>
-            <Button variant="secondary" liquid size="lg">Secondary Liquid</Button>
+            <GlassButton variant="primary" liquid size="lg">Primary Liquid</GlassButton>
+            <GlassButton variant="accent" liquid size="lg">Accent Liquid</GlassButton>
+            <GlassButton variant="secondary" liquid size="lg">Secondary Liquid</GlassButton>
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">不同變體效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <Button variant="default" liquid>Default</Button>
-            <Button variant="primary" liquid>Primary</Button>
-            <Button variant="secondary" liquid>Secondary</Button>
-            <Button variant="accent" liquid>Accent</Button>
-            <Button variant="destructive" liquid>Destructive</Button>
-            <Button variant="outline" liquid>Outline</Button>
-            <Button variant="ghost" liquid>Ghost</Button>
-            <Button variant="link" liquid>Link</Button>
+            <GlassButton variant="default" liquid>Default</GlassButton>
+            <GlassButton variant="primary" liquid>Primary</GlassButton>
+            <GlassButton variant="secondary" liquid>Secondary</GlassButton>
+            <GlassButton variant="accent" liquid>Accent</GlassButton>
+            <GlassButton variant="destructive" liquid>Destructive</GlassButton>
+            <GlassButton variant="outline" liquid>Outline</GlassButton>
+            <GlassButton variant="ghost" liquid>Ghost</GlassButton>
+            <GlassButton variant="link" liquid>Link</GlassButton>
           </div>
         </div>
       </div>

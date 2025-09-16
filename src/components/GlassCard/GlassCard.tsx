@@ -1,11 +1,12 @@
 import React from 'react';
-import './Card.css';
+import './GlassCard.css';
 
 export interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'default' | 'outline' | 'solid';
+  glass?: 'light' | 'medium' | 'heavy';
   interactive?: boolean;
   liquid?: boolean;
   loading?: boolean;
@@ -46,6 +47,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
       className = '',
       size = 'md',
       variant = 'default',
+      glass = 'medium',
       interactive = false,
       liquid = false,
       loading = false,
@@ -59,6 +61,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
     const baseClasses = 'gh-card';
     const sizeClasses = `gh-card-${size}`;
     const variantClasses = variant !== 'default' ? `gh-card-${variant}` : '';
+    const glassClasses = `gh-glass-${glass}`;
     const interactiveClasses = interactive ? 'gh-card-interactive' : '';
     const liquidClasses = liquid ? 'gh-card-liquid' : '';
     const loadingClasses = loading ? 'gh-card-loading' : '';
@@ -67,6 +70,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
       baseClasses,
       sizeClasses,
       variantClasses,
+      glassClasses,
       interactiveClasses,
       liquidClasses,
       loadingClasses,
@@ -179,11 +183,4 @@ export {
   GlassCardDescription,
   GlassCardContent,
   GlassCardFooter,
-  // Legacy exports for backward compatibility
-  GlassCard as Card,
-  GlassCardHeader as CardHeader,
-  GlassCardTitle as CardTitle,
-  GlassCardDescription as CardDescription,
-  GlassCardContent as CardContent,
-  GlassCardFooter as CardFooter,
 };

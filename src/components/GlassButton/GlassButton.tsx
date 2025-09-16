@@ -1,7 +1,7 @@
 import React from 'react';
-import './Button.css';
+import './GlassButton.css';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface GlassButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: 'default' | 'primary' | 'secondary' | 'accent' | 'destructive' | 'outline' | 'ghost' | 'link';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -13,7 +13,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
   (
     {
       children,
@@ -63,15 +63,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-Button.displayName = 'Button';
+GlassButton.displayName = 'GlassButton';
 
-export interface ButtonGroupProps {
+export interface GlassButtonGroupProps {
   children: React.ReactNode;
   className?: string;
   vertical?: boolean;
 }
 
-const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
+const GlassButtonGroup = React.forwardRef<HTMLDivElement, GlassButtonGroupProps>(
   ({ children, className = '', vertical = false, ...props }, ref) => {
     const baseClasses = 'gh-btn-group';
     const verticalClasses = vertical ? 'flex-col' : '';
@@ -92,6 +92,6 @@ const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   }
 );
 
-ButtonGroup.displayName = 'ButtonGroup';
+GlassButtonGroup.displayName = 'GlassButtonGroup';
 
-export { Button, ButtonGroup };
+export { GlassButton, GlassButtonGroup };

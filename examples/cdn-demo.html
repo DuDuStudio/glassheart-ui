@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlassHeartUI CDN Demo</title>
+    <!-- 引入核心樣式 -->
+    <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css">
+    <!-- 引入 JavaScript 組件 -->
+    <script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .demo-title {
+            color: white;
+            margin: 0 0 16px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .demo-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .input-group input {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 12px;
+            color: #e6e6e6;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- 基本卡片範例 -->
+        <div class="demo-section">
+            <h2 class="demo-title">基本卡片</h2>
+            <p class="demo-description">使用 GlassCard 創建基本的玻璃效果卡片</p>
+            <div id="basic-card"></div>
+        </div>
+        
+        <!-- 互動式卡片範例 -->
+        <div class="demo-section">
+            <h2 class="demo-title">互動式卡片</h2>
+            <p class="demo-description">具有液體流動效果的互動式卡片</p>
+            <div id="interactive-card"></div>
+        </div>
+        
+        <!-- 按鈕範例 -->
+        <div class="demo-section">
+            <h2 class="demo-title">按鈕組件</h2>
+            <p class="demo-description">不同樣式的玻璃效果按鈕</p>
+            <div class="button-group" id="button-demo"></div>
+        </div>
+        
+        <!-- 輸入框範例 -->
+        <div class="demo-section">
+            <h2 class="demo-title">輸入框組件</h2>
+            <p class="demo-description">玻璃效果的輸入框組件</p>
+            <div class="input-group" id="input-demo"></div>
+        </div>
+        
+        <!-- 代碼範例 -->
+        <div class="demo-section">
+            <h2 class="demo-title">使用代碼</h2>
+            <p class="demo-description">如何在您的專案中使用 GlassHeartUI</p>
+            <div class="code-block">
+&lt;!-- 引入樣式 --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css"&gt;
+
+&lt;!-- 引入 JavaScript --&gt;
+&lt;script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  const { GlassCard, GlassButton, GlassInput } = window.GlassHeartUI;
+  
+  // 創建卡片
+  const card = new GlassCard({
+    size: 'lg',
+    liquid: true,
+    interactive: true,
+    content: '&lt;h3&gt;Hello World!&lt;/h3&gt;'
+  });
+  
+  // 渲染到頁面
+  card.render('#app');
+&lt;/script&gt;
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { GlassCard, GlassButton, GlassInput, initTheme } = window.GlassHeartUI;
+        
+        // 初始化主題
+        initTheme();
+        
+        // 基本卡片
+        const basicCard = new GlassCard({
+            size: 'md',
+            variant: 'default',
+            content: `
+                <div style="padding: 20px;">
+                    <h3 style="margin: 0 0 12px 0; color: white;">基本卡片</h3>
+                    <p style="margin: 0; color: rgba(255,255,255,0.8);">這是一個基本的玻璃效果卡片，具有透明背景和模糊效果。</p>
+                </div>
+            `
+        });
+        basicCard.render('#basic-card');
+        
+        // 互動式卡片
+        const interactiveCard = new GlassCard({
+            size: 'md',
+            liquid: true,
+            interactive: true,
+            content: `
+                <div style="padding: 20px;">
+                    <h3 style="margin: 0 0 12px 0; color: white;">互動式卡片</h3>
+                    <p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.8);">這個卡片具有液體流動效果和互動功能。</p>
+                    <button class="gh-btn gh-btn-primary gh-liquid-flow" style="padding: 8px 16px; border: none; border-radius: 6px; background: rgba(255,255,255,0.2); color: white; cursor: pointer;">點擊我</button>
+                </div>
+            `
+        });
+        interactiveCard.render('#interactive-card');
+        
+        // 按鈕範例
+        const buttonContainer = document.getElementById('button-demo');
+        
+        const primaryButton = new GlassButton({
+            variant: 'primary',
+            size: 'md',
+            liquid: true,
+            text: '主要按鈕'
+        });
+        
+        const secondaryButton = new GlassButton({
+            variant: 'secondary',
+            size: 'md',
+            liquid: true,
+            text: '次要按鈕'
+        });
+        
+        const ghostButton = new GlassButton({
+            variant: 'ghost',
+            size: 'md',
+            liquid: true,
+            text: '幽靈按鈕'
+        });
+        
+        primaryButton.render(buttonContainer);
+        secondaryButton.render(buttonContainer);
+        ghostButton.render(buttonContainer);
+        
+        // 輸入框範例
+        const inputContainer = document.getElementById('input-demo');
+        
+        const nameInput = new GlassInput({
+            type: 'text',
+            placeholder: '請輸入您的姓名',
+            liquid: true
+        });
+        
+        const emailInput = new GlassInput({
+            type: 'email',
+            placeholder: '請輸入您的電子郵件',
+            liquid: true
+        });
+        
+        const passwordInput = new GlassInput({
+            type: 'password',
+            placeholder: '請輸入密碼',
+            liquid: true
+        });
+        
+        nameInput.render(inputContainer);
+        emailInput.render(inputContainer);
+        passwordInput.render(inputContainer);
+        
+        // 添加一些互動效果
+        document.querySelectorAll('.gh-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+        
+        // 添加主題切換功能
+        const themeToggle = document.createElement('button');
+        themeToggle.textContent = '🌙 切換主題';
+        themeToggle.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+        `;
+        
+        themeToggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            this.textContent = document.documentElement.classList.contains('dark') ? '☀️ 淺色主題' : '🌙 深色主題';
+        });
+        
+        document.body.appendChild(themeToggle);
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "name": "glassheart-ui",
   "version": "1.0.0",
-  "description": "A modern UI component library with Apple Liquid Glass effects",
+  "description": "A modern UI component library with Apple Liquid Glass effects. Available on npm and CDN with support for React, Vue, Svelte, and vanilla JavaScript.",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -29,14 +29,25 @@
     "vue",
     "svelte",
     "css",
-    "tailwind"
+    "tailwind",
+    "cdn",
+    "unpkg",
+    "glassheart",
+    "apple",
+    "modern",
+    "typescript",
+    "javascript"
   ],
   "author": "GlassHeart Team",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.3",
-    "@storybook/addon-interactions": "^7.6.3",
+    "@chromatic-com/storybook": "^4.1.1",
+    "@storybook/addon-a11y": "^9.1.6",
+    "@storybook/addon-docs": "^9.1.6",
+    "@storybook/addon-essentials": "^7.6.20",
+    "@storybook/addon-interactions": "^7.6.20",
     "@storybook/addon-links": "^7.6.3",
+    "@storybook/addon-onboarding": "^9.1.6",
     "@storybook/blocks": "^7.6.3",
     "@storybook/react": "^7.6.3",
     "@storybook/react-vite": "^7.6.3",
@@ -48,5 +59,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/DuDuStudio/glassheart-ui.git"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   }
 }

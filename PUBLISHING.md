@@ -6,12 +6,22 @@
 
 ```
 packages/
-├── core/          # @glassheart/ui-core - 核心 CSS
-├── react/         # @glassheart/ui-react - React 元件
-├── vue/           # @glassheart/ui-vue - Vue 元件
-├── svelte/        # @glassheart/ui-svelte - Svelte 元件
-└── js/            # @glassheart/ui - 原生 JavaScript
+├── core/          # glassheart-ui-core - 核心 CSS
+├── react/         # glassheart-ui-react - React 元件
+├── vue/           # glassheart-ui-vue - Vue 元件
+├── svelte/        # glassheart-ui-svelte - Svelte 元件
+└── js/            # glassheart-ui - 原生 JavaScript
 ```
+
+## 🌐 CDN 發布
+
+所有套件發布到 npm 後，會自動在 unpkg CDN 上可用：
+
+- **核心樣式**: `https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css`
+- **JavaScript**: `https://unpkg.com/glassheart-ui@1.1.0/dist/index.js`
+- **React**: `https://unpkg.com/glassheart-ui-react@1.1.0/dist/index.js`
+- **Vue**: `https://unpkg.com/glassheart-ui-vue@1.1.0/dist/index.js`
+- **Svelte**: `https://unpkg.com/glassheart-ui-svelte@1.1.0/dist/index.js`
 
 ## 🚀 發布流程
 

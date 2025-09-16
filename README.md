@@ -16,15 +16,52 @@
 
 GlassHeartUI 提供多個框架的獨立套件：
 
-| 套件 | 描述 | 安裝 |
-|------|------|------|
-| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` |
-| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` |
-| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` |
-| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` |
-| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` |
+| 套件 | 描述 | 安裝 | CDN |
+|------|------|------|------|
+| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` | `https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css` |
+| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` | `https://unpkg.com/glassheart-ui-react@1.1.0/dist/index.js` |
+| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` | `https://unpkg.com/glassheart-ui-vue@1.1.0/dist/index.js` |
+| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` | `https://unpkg.com/glassheart-ui-svelte@1.1.0/dist/index.js` |
+| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` | `https://unpkg.com/glassheart-ui@1.1.0/dist/index.js` |
 
 ## 🚀 快速開始
+
+### CDN 使用（推薦）
+
+最簡單的方式是通過 CDN 直接引入：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- 引入核心樣式 -->
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css">
+  <!-- 引入 JavaScript 組件 -->
+  <script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    const { GlassCard, GlassButton, GlassInput } = window.GlassHeartUI;
+    
+    // 創建組件
+    const card = new GlassCard({
+      size: 'lg',
+      liquid: true,
+      interactive: true,
+      content: '<h3>Hello GlassHeartUI!</h3><p>Beautiful glass effects</p>'
+    });
+    
+    // 渲染到頁面
+    card.render('#app');
+  </script>
+</body>
+</html>
+```
+
+> 📖 **詳細 CDN 使用指南**：查看 [CDN_GUIDE.md](./CDN_GUIDE.md) 獲取完整的 CDN 使用說明和範例。
+> 
+> 🎮 **範例**：查看 [examples/cdn-demo.html](./examples/cdn-demo.html) 體驗完整的 CDN 使用範例。
 
 ### React 使用
 
@@ -104,8 +141,8 @@ const card = new GlassCard({
 ### CDN 使用
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/glassheart-ui/dist/index.css">
-<script src="https://unpkg.com/glassheart-ui/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css">
+<script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"></script>
 
 <script>
   const { GlassCard, GlassButton, GlassInput, initTheme } = window.GlassHeartUI;
@@ -129,21 +166,23 @@ const card = new GlassCard({
 
 ## 🎨 元件
 
-### Card 卡片
+> **💡 向後兼容性**：為了確保現有代碼不會中斷，所有套件都保留了舊的組件名稱作為別名。您可以使用 `Card` 或 `GlassCard`，兩者完全相同。
+
+### GlassCard 卡片
 
 ```jsx
-<Card size="lg" variant="default" liquid interactive>
-  <CardHeader>
-    <CardTitle>Card Title</CardTitle>
-    <CardDescription>Card description</CardDescription>
-  </CardHeader>
-  <CardContent>
+<GlassCard size="lg" variant="default" liquid interactive>
+  <GlassCardHeader>
+    <GlassCardTitle>Card Title</GlassCardTitle>
+    <GlassCardDescription>Card description</GlassCardDescription>
+  </GlassCardHeader>
+  <GlassCardContent>
     <p>Card content goes here</p>
-  </CardContent>
-  <CardFooter>
-    <Button variant="primary">Action</Button>
-  </CardFooter>
-</Card>
+  </GlassCardContent>
+  <GlassCardFooter>
+    <GlassButton variant="primary">Action</GlassButton>
+  </GlassCardFooter>
+</GlassCard>
 ```
 
 **Props:**
@@ -153,10 +192,10 @@ const card = new GlassCard({
 - `liquid`: boolean
 - `loading`: boolean
 
-### Button 按鈕
+### GlassButton 按鈕
 
 ```jsx
-<Button 
+<GlassButton 
   variant="primary" 
   size="md" 
   glass="medium" 
@@ -164,7 +203,7 @@ const card = new GlassCard({
   loading={false}
 >
   Click me
-</Button>
+</GlassButton>
 ```
 
 **Props:**
@@ -174,10 +213,10 @@ const card = new GlassCard({
 - `liquid`: boolean
 - `loading`: boolean
 
-### Input 輸入框
+### GlassInput 輸入框
 
 ```jsx
-<Input 
+<GlassInput 
   size="md" 
   variant="default" 
   glass="medium" 
@@ -200,7 +239,7 @@ const card = new GlassCard({
 ### 切換主題
 
 ```javascript
-import { applyTheme, toggleTheme, initTheme } from '@glassheart/ui';
+import { applyTheme, toggleTheme, initTheme } from 'glassheart-ui';
 
 // 初始化主題系統
 initTheme({
@@ -323,7 +362,7 @@ applyTheme('dark');
 
 ## 📚 文檔
 
-完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui.storybook.app)
+完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui-storybook.dudustudio.monster)
 
 ## 🤝 貢獻
 

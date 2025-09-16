@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Input, Textarea, InputGroup, FloatingLabel } from './Input';
-import { Button } from '../Button/Button';
-import './Input.css';
-import '../Button/Button.css';
+import { GlassInput, GlassTextarea, GlassInputGroup, GlassFloatingLabel } from './GlassInput';
+import { GlassButton } from '../GlassButton/GlassButton';
+import './GlassInput.css';
+import '../GlassButton/GlassButton.css';
 
-const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
-  component: Input,
+const meta: Meta<typeof GlassInput> = {
+  title: 'Components/GlassInput',
+  component: GlassInput,
   parameters: {
     layout: 'centered',
   },
@@ -45,11 +45,11 @@ export const Default: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input size="xs" placeholder="Extra Small" />
-      <Input size="sm" placeholder="Small" />
-      <Input size="md" placeholder="Medium" />
-      <Input size="lg" placeholder="Large" />
-      <Input size="xl" placeholder="Extra Large" />
+      <GlassInput size="xs" placeholder="Extra Small" />
+      <GlassInput size="sm" placeholder="Small" />
+      <GlassInput size="md" placeholder="Medium" />
+      <GlassInput size="lg" placeholder="Large" />
+      <GlassInput size="xl" placeholder="Extra Large" />
     </div>
   ),
 };
@@ -57,9 +57,9 @@ export const Sizes: Story = {
 export const Variants: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input variant="default" placeholder="Default variant" />
-      <Input variant="outline" placeholder="Outline variant" />
-      <Input variant="solid" placeholder="Solid variant" />
+      <GlassInput variant="default" placeholder="Default variant" />
+      <GlassInput variant="outline" placeholder="Outline variant" />
+      <GlassInput variant="solid" placeholder="Solid variant" />
     </div>
   ),
 };
@@ -67,9 +67,9 @@ export const Variants: Story = {
 export const GlassIntensities: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input glass="light" placeholder="Light glass" />
-      <Input glass="medium" placeholder="Medium glass" />
-      <Input glass="heavy" placeholder="Heavy glass" />
+      <GlassInput glass="light" placeholder="Light glass" />
+      <GlassInput glass="medium" placeholder="Medium glass" />
+      <GlassInput glass="heavy" placeholder="Heavy glass" />
     </div>
   ),
 };
@@ -77,7 +77,7 @@ export const GlassIntensities: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input
+      <GlassInput
         placeholder="Search..."
         icon={
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,7 +85,7 @@ export const WithIcons: Story = {
           </svg>
         }
       />
-      <Input
+      <GlassInput
         placeholder="Email address"
         icon={
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export const WithIcons: Story = {
           </svg>
         }
       />
-      <Input
+      <GlassInput
         placeholder="Password"
         type="password"
         icon={
@@ -107,68 +107,68 @@ export const WithIcons: Story = {
   ),
 };
 
-export const WithButtons: Story = {
+export const WithGlassButtons: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input
+      <GlassInput
         placeholder="Enter email"
-        button={<Button size="sm">Subscribe</Button>}
+        button={<GlassButton size="sm">Subscribe</GlassButton>}
       />
-      <Input
+      <GlassInput
         placeholder="Search products"
         button={
-          <Button size="sm" variant="outline">
+          <GlassButton size="sm" variant="outline">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-          </Button>
+          </GlassButton>
         }
       />
     </div>
   ),
 };
 
-export const TextareaStory: Story = {
+export const GlassTextareaStory: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Textarea placeholder="Enter your message..." />
-      <Textarea size="lg" placeholder="Large textarea" />
+      <GlassTextarea placeholder="Enter your message..." />
+      <GlassTextarea size="lg" placeholder="Large textarea" />
     </div>
   ),
 };
 
-export const InputGroups: Story = {
+export const GlassInputGroups: Story = {
   render: () => (
     <div className="flex flex-col gap-6 w-80">
-      <InputGroup label="Username" help="Choose a unique username">
-        <Input placeholder="Enter username" />
-      </InputGroup>
+      <GlassInputGroup label="Username" help="Choose a unique username">
+        <GlassInput placeholder="Enter username" />
+      </GlassInputGroup>
       
-      <InputGroup label="Email" error="Please enter a valid email address">
-        <Input type="email" placeholder="Enter email" error />
-      </InputGroup>
+      <GlassInputGroup label="Email" error="Please enter a valid email address">
+        <GlassInput type="email" placeholder="Enter email" error />
+      </GlassInputGroup>
       
-      <InputGroup label="Password" required>
-        <Input type="password" placeholder="Enter password" />
-      </InputGroup>
+      <GlassInputGroup label="Password" required>
+        <GlassInput type="password" placeholder="Enter password" />
+      </GlassInputGroup>
     </div>
   ),
 };
 
-export const FloatingLabels: Story = {
+export const GlassFloatingLabels: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <FloatingLabel label="Email Address">
-        <Input type="email" placeholder=" " />
-      </FloatingLabel>
+      <GlassFloatingLabel label="Email Address">
+        <GlassInput type="email" placeholder=" " />
+      </GlassFloatingLabel>
       
-      <FloatingLabel label="Full Name" required>
-        <Input placeholder=" " />
-      </FloatingLabel>
+      <GlassFloatingLabel label="Full Name" required>
+        <GlassInput placeholder=" " />
+      </GlassFloatingLabel>
       
-      <FloatingLabel label="Message" help="Tell us about your project">
-        <Textarea placeholder=" " />
-      </FloatingLabel>
+      <GlassFloatingLabel label="Message" help="Tell us about your project">
+        <GlassTextarea placeholder=" " />
+      </GlassFloatingLabel>
     </div>
   ),
 };
@@ -176,8 +176,8 @@ export const FloatingLabels: Story = {
 export const LiquidEffect: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input liquid placeholder="Liquid glass input" />
-      <Textarea liquid placeholder="Liquid glass textarea" />
+      <GlassInput liquid placeholder="Liquid glass input" />
+      <GlassTextarea liquid placeholder="Liquid glass textarea" />
     </div>
   ),
 };
@@ -185,10 +185,10 @@ export const LiquidEffect: Story = {
 export const States: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <Input placeholder="Normal state" />
-      <Input placeholder="Disabled state" disabled />
-      <Input placeholder="Error state" error />
-      <Input placeholder="Focused state" autoFocus />
+      <GlassInput placeholder="Normal state" />
+      <GlassInput placeholder="Disabled state" disabled />
+      <GlassInput placeholder="Error state" error />
+      <GlassInput placeholder="Focused state" autoFocus />
     </div>
   ),
 };
@@ -203,30 +203,30 @@ export const ComplexForm: Story = {
       
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
-          <FloatingLabel label="First Name" required>
-            <Input placeholder=" " />
-          </FloatingLabel>
-          <FloatingLabel label="Last Name" required>
-            <Input placeholder=" " />
-          </FloatingLabel>
+          <GlassFloatingLabel label="First Name" required>
+            <GlassInput placeholder=" " />
+          </GlassFloatingLabel>
+          <GlassFloatingLabel label="Last Name" required>
+            <GlassInput placeholder=" " />
+          </GlassFloatingLabel>
         </div>
         
-        <FloatingLabel label="Email Address" required>
-          <Input type="email" placeholder=" " />
-        </FloatingLabel>
+        <GlassFloatingLabel label="Email Address" required>
+          <GlassInput type="email" placeholder=" " />
+        </GlassFloatingLabel>
         
-        <FloatingLabel label="Company">
-          <Input placeholder=" " />
-        </FloatingLabel>
+        <GlassFloatingLabel label="Company">
+          <GlassInput placeholder=" " />
+        </GlassFloatingLabel>
         
-        <FloatingLabel label="Message" required>
-          <Textarea placeholder=" " rows={4} />
-        </FloatingLabel>
+        <GlassFloatingLabel label="Message" required>
+          <GlassTextarea placeholder=" " rows={4} />
+        </GlassFloatingLabel>
       </div>
       
       <div className="flex gap-3">
-        <Button variant="outline" className="flex-1">Cancel</Button>
-        <Button variant="primary" className="flex-1">Send Message</Button>
+        <GlassButton variant="outline" className="flex-1">Cancel</GlassButton>
+        <GlassButton variant="primary" className="flex-1">Send Message</GlassButton>
       </div>
     </div>
   ),
@@ -236,7 +236,7 @@ export const GlassEffectShowcase: Story = {
   render: () => (
     <div className="space-y-8">
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-white mb-4">Input Glass Effects</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">GlassInput Glass Effects</h2>
         <p className="text-white/80 text-lg">不同玻璃強度的輸入框效果展示</p>
       </div>
       
@@ -244,33 +244,33 @@ export const GlassEffectShowcase: Story = {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">玻璃強度對比</h3>
           <div className="space-y-4 w-80">
-            <Input glass="light" placeholder="Light glass input" />
-            <Input glass="medium" placeholder="Medium glass input" />
-            <Input glass="heavy" placeholder="Heavy glass input" />
+            <GlassInput glass="light" placeholder="Light glass input" />
+            <GlassInput glass="medium" placeholder="Medium glass input" />
+            <GlassInput glass="heavy" placeholder="Heavy glass input" />
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">液態流動效果</h3>
           <div className="space-y-4 w-80">
-            <Input liquid placeholder="Liquid glass input" />
-            <Textarea liquid placeholder="Liquid glass textarea" />
+            <GlassInput liquid placeholder="Liquid glass input" />
+            <GlassTextarea liquid placeholder="Liquid glass textarea" />
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">不同變體效果</h3>
           <div className="space-y-4 w-80">
-            <Input variant="default" placeholder="Default variant" />
-            <Input variant="outline" placeholder="Outline variant" />
-            <Input variant="solid" placeholder="Solid variant" />
+            <GlassInput variant="default" placeholder="Default variant" />
+            <GlassInput variant="outline" placeholder="Outline variant" />
+            <GlassInput variant="solid" placeholder="Solid variant" />
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">帶圖標的輸入框</h3>
           <div className="space-y-4 w-80">
-            <Input
+            <GlassInput
               placeholder="Search..."
               icon={
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@ export const GlassEffectShowcase: Story = {
                 </svg>
               }
             />
-            <Input
+            <GlassInput
               placeholder="Email address"
               icon={
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

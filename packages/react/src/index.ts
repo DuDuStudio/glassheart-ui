@@ -1,7 +1,7 @@
 // Export all components
-export * from './components/Card/Card';
-export * from './components/Button/Button';
-export * from './components/Input/Input';
+export * from './components/GlassCard/GlassCard';
+export * from './components/GlassButton/GlassButton';
+export * from './components/GlassInput/GlassInput';
 
 // Export utilities
 export * from './utils/theme';

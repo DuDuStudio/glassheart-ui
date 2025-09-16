@@ -1,7 +1,7 @@
 import React from 'react';
-import './Input.css';
+import './GlassInput.css';
 
-export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface GlassInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'default' | 'outline' | 'solid';
   glass?: 'light' | 'medium' | 'heavy';
@@ -13,7 +13,7 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
   button?: React.ReactNode;
 }
 
-export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface GlassTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'default' | 'outline' | 'solid';
   glass?: 'light' | 'medium' | 'heavy';
@@ -22,7 +22,7 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   className?: string;
 }
 
-export interface InputGroupProps {
+export interface GlassInputGroupProps {
   children: React.ReactNode;
   className?: string;
   label?: string;
@@ -31,7 +31,7 @@ export interface InputGroupProps {
   required?: boolean;
 }
 
-export interface FloatingLabelProps {
+export interface GlassFloatingLabelProps {
   children: React.ReactNode;
   label: string;
   className?: string;
@@ -40,7 +40,7 @@ export interface FloatingLabelProps {
   required?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
   (
     {
       size = 'md',
@@ -115,9 +115,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = 'Input';
+GlassInput.displayName = 'GlassInput';
 
-const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+const GlassTextarea = React.forwardRef<HTMLTextAreaElement, GlassTextareaProps>(
   (
     {
       size = 'md',
@@ -159,9 +159,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   }
 );
 
-Textarea.displayName = 'Textarea';
+GlassTextarea.displayName = 'GlassTextarea';
 
-const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
+const GlassInputGroup = React.forwardRef<HTMLDivElement, GlassInputGroupProps>(
   ({ children, className = '', label, error, help, required, ...props }, ref) => {
     const classes = ['gh-input-group', className].filter(Boolean).join(' ');
 
@@ -181,9 +181,9 @@ const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
   }
 );
 
-InputGroup.displayName = 'InputGroup';
+GlassInputGroup.displayName = 'GlassInputGroup';
 
-const FloatingLabel = React.forwardRef<HTMLDivElement, FloatingLabelProps>(
+const GlassFloatingLabel = React.forwardRef<HTMLDivElement, GlassFloatingLabelProps>(
   ({ children, label, className = '', error, help, required, ...props }, ref) => {
     const classes = ['gh-input-floating', className].filter(Boolean).join(' ');
 
@@ -201,6 +201,6 @@ const FloatingLabel = React.forwardRef<HTMLDivElement, FloatingLabelProps>(
   }
 );
 
-FloatingLabel.displayName = 'FloatingLabel';
+GlassFloatingLabel.displayName = 'GlassFloatingLabel';
 
-export { Input, Textarea, InputGroup, FloatingLabel };
+export { GlassInput, GlassTextarea, GlassInputGroup, GlassFloatingLabel };
