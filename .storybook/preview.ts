@@ -4,7 +4,16 @@ import '../src/styles/global.css';
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    actions: { 
+      argTypesRegex: '^on[A-Z].*',
+      handles: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave']
+    },
+    interactions: {
+      // 啟用 interactions addon
+      enable: true,
+      // 配置 interactions 的選項
+      include: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave'],
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

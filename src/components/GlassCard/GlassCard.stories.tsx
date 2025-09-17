@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardDescription, GlassCardContent, GlassCardFooter } from './GlassCard';
 import { GlassButton } from '../GlassButton/GlassButton';
 import './GlassCard.css';
@@ -9,6 +10,10 @@ const meta: Meta<typeof GlassCard> = {
   component: GlassCard,
   parameters: {
     layout: 'centered',
+    interactions: {
+      enable: true,
+      include: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave'],
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -32,6 +37,15 @@ const meta: Meta<typeof GlassCard> = {
     },
     loading: {
       control: { type: 'boolean' },
+    },
+    onClick: {
+      action: 'clicked',
+    },
+    onMouseEnter: {
+      action: 'mouse-enter',
+    },
+    onMouseLeave: {
+      action: 'mouse-leave',
     },
   },
 };
@@ -131,6 +145,9 @@ export const Variants: Story = {
 export const Interactive: Story = {
   args: {
     interactive: true,
+    onClick: action('card-clicked'),
+    onMouseEnter: action('card-mouse-enter'),
+    onMouseLeave: action('card-mouse-leave'),
     children: (
       <>
         <GlassCardHeader>

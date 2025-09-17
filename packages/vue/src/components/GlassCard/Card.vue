@@ -16,6 +16,11 @@ const props = defineProps({
     type: String,
     default: 'default'
   },
+  glass: {
+    type: String,
+    default: 'medium',
+    validator: (value) => ['light', 'medium', 'heavy'].includes(value)
+  },
   liquid: {
     type: Boolean,
     default: false
@@ -35,6 +40,10 @@ const cardClasses = computed(() => {
   
   if (props.variant) {
     classes.push(`gh-card-${props.variant}`);
+  }
+  
+  if (props.glass) {
+    classes.push(`gh-glass-${props.glass}`);
   }
   
   if (props.liquid) {

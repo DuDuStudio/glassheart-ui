@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { GlassInput, GlassTextarea, GlassInputGroup, GlassFloatingLabel } from './GlassInput';
 import { GlassButton } from '../GlassButton/GlassButton';
 import './GlassInput.css';
@@ -9,6 +10,10 @@ const meta: Meta<typeof GlassInput> = {
   component: GlassInput,
   parameters: {
     layout: 'centered',
+    interactions: {
+      enable: true,
+      include: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave'],
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -30,6 +35,15 @@ const meta: Meta<typeof GlassInput> = {
     error: {
       control: { type: 'boolean' },
     },
+    onChange: {
+      action: 'changed',
+    },
+    onFocus: {
+      action: 'focused',
+    },
+    onBlur: {
+      action: 'blurred',
+    },
   },
 };
 
@@ -39,6 +53,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: 'Enter text...',
+    onChange: action('input-changed'),
+    onFocus: action('input-focused'),
+    onBlur: action('input-blurred'),
   },
 };
 

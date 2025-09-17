@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import { GlassButton, GlassButtonGroup } from './GlassButton';
 import './GlassButton.css';
 
@@ -7,6 +8,10 @@ const meta: Meta<typeof GlassButton> = {
   component: GlassButton,
   parameters: {
     layout: 'centered',
+    interactions: {
+      enable: true,
+      include: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave'],
+    },
   },
   tags: ['autodocs'],
   argTypes: {
@@ -31,6 +36,9 @@ const meta: Meta<typeof GlassButton> = {
     disabled: {
       control: { type: 'boolean' },
     },
+    onClick: {
+      action: 'clicked',
+    },
   },
 };
 
@@ -40,6 +48,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: 'Button',
+    onClick: action('clicked'),
   },
 };
 
@@ -213,6 +222,116 @@ export const GlassEffectShowcase: Story = {
           </div>
         </div>
       </div>
+    </div>
+  ),
+};
+
+export const WithInteractions: Story = {
+  render: () => (
+    <div className="space-y-4">
+      <h3 className="text-xl font-semibold text-white mb-4">Interactive Buttons</h3>
+      <div className="flex gap-4 flex-wrap">
+        <GlassButton 
+          variant="primary" 
+          liquid 
+          onClick={action('primary-clicked')}
+        >
+          Click Me
+        </GlassButton>
+        <GlassButton 
+          variant="secondary" 
+          liquid 
+          onClick={action('secondary-clicked')}
+        >
+          Also Clickable
+        </GlassButton>
+        <GlassButton 
+          variant="accent" 
+          liquid 
+          onClick={action('accent-clicked')}
+        >
+          Interactive
+        </GlassButton>
+      </div>
+    </div>
+  ),
+};
+
+export const InteractionsDemo: Story = {
+  parameters: {
+    interactions: {
+      enable: true,
+    },
+  },
+  render: () => (
+    <div className="space-y-4">
+      <h3 className="text-xl font-semibold text-white mb-4">Interactions Demo</h3>
+      <div className="flex gap-4 flex-wrap">
+        <GlassButton 
+          variant="primary" 
+          liquid 
+          onClick={action('primary-interaction')}
+        >
+          Primary Interaction
+        </GlassButton>
+        <GlassButton 
+          variant="secondary" 
+          liquid 
+          onClick={action('secondary-interaction')}
+        >
+          Secondary Interaction
+        </GlassButton>
+        <GlassButton 
+          variant="accent" 
+          liquid 
+          onClick={action('accent-interaction')}
+        >
+          Accent Interaction
+        </GlassButton>
+      </div>
+      <p className="text-white/80 text-sm">
+        Click the buttons above to see interactions in the Actions panel.
+      </p>
+    </div>
+  ),
+};
+
+export const InteractionsTest: Story = {
+  parameters: {
+    interactions: {
+      enable: true,
+      include: ['click', 'change', 'focus', 'blur', 'mouseenter', 'mouseleave'],
+    },
+  },
+  render: () => (
+    <div className="space-y-4">
+      <h3 className="text-xl font-semibold text-white mb-4">Interactions Test</h3>
+      <div className="flex gap-4 flex-wrap">
+        <GlassButton 
+          variant="primary" 
+          liquid 
+          onClick={action('primary-interaction')}
+        >
+          Primary Interaction
+        </GlassButton>
+        <GlassButton 
+          variant="secondary" 
+          liquid 
+          onClick={action('secondary-interaction')}
+        >
+          Secondary Interaction
+        </GlassButton>
+        <GlassButton 
+          variant="accent" 
+          liquid 
+          onClick={action('accent-interaction')}
+        >
+          Accent Interaction
+        </GlassButton>
+      </div>
+      <p className="text-white/80 text-sm">
+        Click the buttons above to see interactions in the Interactions panel.
+      </p>
     </div>
   ),
 };

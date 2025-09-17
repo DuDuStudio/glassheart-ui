@@ -41,6 +41,7 @@
   "author": "GlassHeart Team",
   "license": "MIT",
   "devDependencies": {
+    "@storybook/addon-actions": "^7.6.20",
     "@storybook/addon-essentials": "^7.6.20",
     "@storybook/addon-interactions": "^7.6.20",
     "@storybook/addon-links": "^7.6.3",
