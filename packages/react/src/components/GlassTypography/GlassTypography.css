@@ -1,0 +1,384 @@
+/* GlassTypography 基礎樣式 */
+.gh-typography {
+  position: relative;
+  display: inline-block;
+  overflow: visible; /* 改為 visible 以防止裁切 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 1.2em; /* 確保最小高度 */
+  padding: 0.2em 0; /* 添加上下內邊距 */
+}
+
+.gh-typography-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  /* 確保 Canvas 有足夠空間 */
+  min-height: 100%;
+  object-fit: contain;
+}
+
+.gh-typography-fallback {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  /* 確保 fallback 文字有足夠空間 */
+  min-height: 1.2em;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* 變體樣式 */
+.gh-typography-h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+}
+
+.gh-typography-h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 0.875rem 0;
+}
+
+.gh-typography-h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 0.75rem 0;
+}
+
+.gh-typography-h4 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 0.625rem 0;
+}
+
+.gh-typography-h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+}
+
+.gh-typography-h6 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 0.5rem 0;
+}
+
+.gh-typography-p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.gh-typography-span {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+.gh-typography-div {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+
+/* 尺寸樣式 */
+.gh-typography-xs {
+  font-size: 0.75rem;
+}
+
+.gh-typography-sm {
+  font-size: 0.875rem;
+}
+
+.gh-typography-md {
+  font-size: 1rem;
+}
+
+.gh-typography-lg {
+  font-size: 1.125rem;
+}
+
+.gh-typography-xl {
+  font-size: 1.25rem;
+}
+
+.gh-typography-2xl {
+  font-size: 1.5rem;
+}
+
+.gh-typography-3xl {
+  font-size: 1.875rem;
+}
+
+.gh-typography-4xl {
+  font-size: 2.25rem;
+}
+
+.gh-typography-5xl {
+  font-size: 3rem;
+}
+
+.gh-typography-6xl {
+  font-size: 3.75rem;
+}
+
+/* 字重樣式 */
+.gh-typography-light {
+  font-weight: 300;
+}
+
+.gh-typography-normal {
+  font-weight: 400;
+}
+
+.gh-typography-medium {
+  font-weight: 500;
+}
+
+.gh-typography-semibold {
+  font-weight: 600;
+}
+
+.gh-typography-bold {
+  font-weight: 700;
+}
+
+.gh-typography-extrabold {
+  font-weight: 800;
+}
+
+.gh-typography-black {
+  font-weight: 900;
+}
+
+/* 玻璃效果 */
+.gh-glass-light {
+  --gh-glass-opacity: 0.15;
+  --gh-glass-blur: 15px;
+  --gh-glass-saturate: 150%;
+  --gh-glass-brightness: 1.3;
+  --gh-glass-contrast: 1.2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.gh-glass-medium {
+  --gh-glass-opacity: 0.25;
+  --gh-glass-blur: 25px;
+  --gh-glass-saturate: 200%;
+  --gh-glass-brightness: 1.4;
+  --gh-glass-contrast: 1.3;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+.gh-glass-heavy {
+  --gh-glass-opacity: 0.35;
+  --gh-glass-blur: 35px;
+  --gh-glass-saturate: 250%;
+  --gh-glass-brightness: 1.5;
+  --gh-glass-contrast: 1.4;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+}
+
+/* 液體流動效果 */
+.gh-liquid-flow {
+  animation: liquidFlow 3s ease-in-out infinite;
+}
+
+@keyframes liquidFlow {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  25% {
+    transform: scale(1.02) rotate(0.5deg);
+    filter: hue-rotate(90deg) saturate(1.2);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+    filter: hue-rotate(180deg) saturate(1.4);
+  }
+  75% {
+    transform: scale(1.02) rotate(-0.5deg);
+    filter: hue-rotate(270deg) saturate(1.2);
+  }
+}
+
+/* 漸變效果 */
+.gh-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 動畫效果 */
+.gh-animated {
+  animation: glassPulse 2s ease-in-out infinite;
+}
+
+@keyframes glassPulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* 發光效果 */
+.gh-glow {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.4));
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+  }
+  100% {
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 60px rgba(255, 255, 255, 0.6));
+  }
+}
+
+/* 載入狀態 */
+.gh-loaded .gh-typography-canvas {
+  opacity: 1;
+}
+
+.gh-loaded .gh-typography-fallback {
+  opacity: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .gh-typography-h1 {
+    font-size: 2rem;
+  }
+  
+  .gh-typography-h2 {
+    font-size: 1.75rem;
+  }
+  
+  .gh-typography-h3 {
+    font-size: 1.5rem;
+  }
+  
+  .gh-typography-h4 {
+    font-size: 1.25rem;
+  }
+  
+  .gh-typography-h5 {
+    font-size: 1.125rem;
+  }
+  
+  .gh-typography-h6 {
+    font-size: 1rem;
+  }
+  
+  .gh-typography-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .gh-typography-6xl {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gh-typography-h1 {
+    font-size: 1.75rem;
+  }
+  
+  .gh-typography-h2 {
+    font-size: 1.5rem;
+  }
+  
+  .gh-typography-h3 {
+    font-size: 1.25rem;
+  }
+  
+  .gh-typography-h4 {
+    font-size: 1.125rem;
+  }
+  
+  .gh-typography-h5 {
+    font-size: 1rem;
+  }
+  
+  .gh-typography-h6 {
+    font-size: 0.875rem;
+  }
+  
+  .gh-typography-4xl {
+    font-size: 1.875rem;
+  }
+  
+  .gh-typography-5xl {
+    font-size: 2.25rem;
+  }
+  
+  .gh-typography-6xl {
+    font-size: 2.5rem;
+  }
+}
+
+/* 高對比度模式 */
+@media (prefers-contrast: high) {
+  .gh-typography {
+    filter: contrast(1.2) brightness(1.1);
+  }
+}
+
+/* 減少動畫模式 */
+@media (prefers-reduced-motion: reduce) {
+  .gh-liquid-flow,
+  .gh-animated,
+  .gh-glow {
+    animation: none;
+  }
+  
+  .gh-typography {
+    transition: none;
+  }
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  .gh-typography {
+    filter: brightness(1.1) contrast(1.05);
+  }
+  
+  .gh-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.7) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

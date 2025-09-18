@@ -288,6 +288,11 @@ applyTheme('dark');
 ### 元件類別
 
 ```html
+<!-- 毛玻璃文字 -->
+<div class="gh-typography gh-typography-h1 gh-typography-2xl gh-glass-medium gh-glow">
+  Glass Typography
+</div>
+
 <!-- 卡片 -->
 <div class="gh-card gh-card-lg gh-glass-medium gh-liquid-flow">
   <div class="gh-card-header">

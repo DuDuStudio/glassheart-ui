@@ -2,6 +2,7 @@
 export * from './components/GlassCard/GlassCard';
 export * from './components/GlassButton/GlassButton';
 export * from './components/GlassInput/GlassInput';
+export * from './components/GlassTypography/GlassTypography';
 
 // Export utilities
 export * from './utils/theme';

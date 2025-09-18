@@ -7,6 +7,7 @@ Vue 版本的 GlassHeartUI 元件庫，提供美觀的玻璃擬態設計組件�
 - [安裝](#安裝)
 - [快速開始](#快速開始)
 - [組件文檔](#組件文檔)
+  - [GlassTypography](#glasstypography)
   - [GlassButton](#glassbutton)
   - [GlassCard](#glasscard)
   - [GlassInput](#glassinput)
@@ -51,6 +52,44 @@ import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInpu
 ```
 
 ## 組件文檔
+
+### GlassTypography
+使用 Canvas 渲染的毛玻璃文字效果組件。
+
+#### 基本用法
+```vue
+<template>
+  <GlassTypography
+    variant="h1"
+    size="2xl"
+    weight="bold"
+    glass="medium"
+    glow
+    gradient
+  >
+    Hello GlassHeartUI
+  </GlassTypography>
+</template>
+
+<script setup>
+import { GlassTypography } from 'glassheart-ui-vue';
+</script>
+```
+
+#### 屬性
+| 屬性 | 類型 | 預設值 | 描述 |
+|------|------|--------|------|
+| `children` | `string` | - | 要顯示的文字內容 |
+| `variant` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' \| 'p' \| 'span' \| 'div'` | `'p'` | 文字變體 |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl' \| '6xl'` | `'md'` | 文字尺寸 |
+| `weight` | `'light' \| 'normal' \| 'medium' \| 'semibold' \| 'bold' \| 'extrabold' \| 'black'` | `'normal'` | 字重 |
+| `glass` | `'light' \| 'medium' \| 'heavy'` | `'medium'` | 玻璃效果強度 |
+| `liquid` | `boolean` | `false` | 是否啟用液體流動效果 |
+| `gradient` | `boolean` | `false` | 是否啟用漸變效果 |
+| `animated` | `boolean` | `false` | 是否啟用動畫效果 |
+| `glow` | `boolean` | `false` | 是否啟用發光效果 |
+| `glowColor` | `string` | `'#ffffff'` | 發光顏色 |
+| `glowIntensity` | `number` | `0.8` | 發光強度 (0-2) |
 
 ### GlassButton
 
