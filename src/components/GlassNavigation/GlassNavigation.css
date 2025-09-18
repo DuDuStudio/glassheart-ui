@@ -1,0 +1,461 @@
+/* Glass Navigation Base Styles - Based on Figma Design */
+.gh-navigation {
+  position: relative;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 48px;
+  box-shadow: 1px 6px 7.8px 0px rgba(0, 0, 0, 0.2);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  z-index: var(--gh-z-sticky);
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+}
+
+.gh-navigation-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Navigation Variants - Based on Figma Design */
+.gh-navigation-default {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.gh-navigation-transparent {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.gh-navigation-solid {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-navigation-floating {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  margin: var(--gh-spacing-md);
+}
+
+/* Navigation Positions */
+.gh-navigation-top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.gh-navigation-bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.gh-navigation-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: auto;
+  height: 100vh;
+}
+
+.gh-navigation-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: 100vh;
+}
+
+/* Navigation Sizes */
+.gh-navigation-sm {
+  min-height: 3rem;
+}
+
+.gh-navigation-md {
+  min-height: 4rem;
+}
+
+.gh-navigation-lg {
+  min-height: 5rem;
+}
+
+/* Sticky and Fixed Navigation */
+.gh-navigation-sticky {
+  position: sticky;
+}
+
+.gh-navigation-fixed {
+  position: fixed;
+}
+
+.gh-navigation-scrolled {
+  background: rgba(255, 255, 255, calc(var(--gh-glass-opacity) * 1.5));
+  box-shadow: var(--gh-shadow-md);
+}
+
+/* Navigation with Liquid Flow */
+.gh-navigation-liquid {
+  position: relative;
+  overflow: hidden;
+}
+
+.gh-navigation-liquid::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: gh-liquid-flow 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gh-navigation-liquid .gh-navigation-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated Navigation */
+.gh-navigation-animated {
+  animation: gh-navigation-float 3s ease-in-out infinite;
+}
+
+@keyframes gh-navigation-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Navigation Brand - Based on Figma Design */
+.gh-navigation-brand {
+  display: flex;
+  align-items: center;
+  font-family: 'Figma Hand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: color var(--gh-animation-duration) var(--gh-animation-timing);
+  padding: 0 16px;
+}
+
+.gh-navigation-brand:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Navigation Menu - Based on Figma Design */
+.gh-navigation-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gh-navigation-menu-open {
+  display: flex;
+}
+
+/* Mobile Navigation Menu - Based on Figma Design */
+@media (max-width: 768px) {
+  .gh-navigation {
+    height: auto;
+    min-height: 48px;
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+
+  .gh-navigation-menu {
+    position: absolute;
+    top: 100%;
+    left: 8px;
+    right: 8px;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 24px;
+    box-shadow: 1px 6px 7.8px 0px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    gap: 4px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+    margin-top: 8px;
+  }
+
+  .gh-navigation-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .gh-navigation-item {
+    width: 100%;
+    min-width: 120px;
+  }
+}
+
+/* Navigation Item - Based on Figma Design */
+.gh-navigation-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  color: #FFFFFF;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+  font-family: 'Figma Hand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.379;
+  text-align: center;
+  position: relative;
+}
+
+.gh-navigation-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.gh-navigation-item-active {
+  background: rgba(0, 0, 0, 0);
+  color: #FFFFFF;
+  box-shadow: inset 4px 13px 18.9px -9px rgba(24, 17, 17, 0.25);
+}
+
+.gh-navigation-item-active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 30px;
+  box-shadow: inset 4px 13px 18.9px -9px rgba(24, 17, 17, 0.25);
+  pointer-events: none;
+}
+
+.gh-navigation-item-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.gh-navigation-item-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.gh-navigation-item-text {
+  flex: 1;
+}
+
+.gh-navigation-item-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgb(var(--gh-primary));
+  color: rgb(var(--gh-primary-foreground));
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+/* Navigation Toggle - Based on Figma Design */
+.gh-navigation-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 0;
+  gap: 4px;
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-navigation-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .gh-navigation-toggle {
+    display: flex;
+  }
+}
+
+.gh-navigation-toggle-line {
+  width: 20px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 1px;
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-navigation-toggle-open .gh-navigation-toggle-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.gh-navigation-toggle-open .gh-navigation-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.gh-navigation-toggle-open .gh-navigation-toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Side Navigation Specific Styles */
+.gh-navigation-left .gh-navigation-container,
+.gh-navigation-right .gh-navigation-container {
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  padding: var(--gh-spacing-lg) 0;
+}
+
+.gh-navigation-left .gh-navigation-menu,
+.gh-navigation-right .gh-navigation-menu {
+  flex-direction: column;
+  width: 100%;
+  gap: var(--gh-spacing-xs);
+}
+
+.gh-navigation-left .gh-navigation-item,
+.gh-navigation-right .gh-navigation-item {
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 0;
+  padding: var(--gh-spacing-md) var(--gh-spacing-lg);
+}
+
+.gh-navigation-left .gh-navigation-item-active::before,
+.gh-navigation-right .gh-navigation-item-active::before {
+  top: 50%;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+}
+
+.gh-navigation-left .gh-navigation-item-active::before {
+  left: 0;
+}
+
+.gh-navigation-right .gh-navigation-item-active::before {
+  right: 0;
+  left: auto;
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .gh-navigation {
+  background: rgba(15, 23, 42, var(--gh-glass-opacity));
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .gh-navigation::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+[data-theme="dark"] .gh-navigation-scrolled {
+  background: rgba(15, 23, 42, calc(var(--gh-glass-opacity) * 1.5));
+}
+
+[data-theme="dark"] .gh-navigation-solid {
+  background: rgb(var(--gh-card));
+  border-color: rgb(var(--gh-border));
+}
+
+[data-theme="dark"] .gh-navigation-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .gh-navigation-item-active {
+  background: rgba(var(--gh-primary), 0.15);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .gh-navigation-animated {
+    animation: none;
+  }
+  
+  .gh-navigation-liquid::after {
+    animation: none;
+  }
+  
+  .gh-navigation-item:hover {
+    transform: none;
+  }
+}
+
+/* Focus States */
+.gh-navigation-item:focus-visible,
+.gh-navigation-toggle:focus-visible,
+.gh-navigation-brand:focus-visible {
+  outline: 2px solid rgb(var(--gh-ring));
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .gh-navigation {
+    border: 2px solid rgb(var(--gh-foreground));
+  }
+  
+  .gh-navigation-item {
+    border: 1px solid transparent;
+  }
+  
+  .gh-navigation-item:hover,
+  .gh-navigation-item-active {
+    border-color: rgb(var(--gh-foreground));
+  }
+}

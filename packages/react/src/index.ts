@@ -4,6 +4,7 @@ export * from './components/GlassButton/GlassButton';
 export * from './components/GlassInput/GlassInput';
 export * from './components/GlassTypography/GlassTypography';
 export * from './components/GlassContainer/GlassContainer';
+export * from './components/GlassNavigation/GlassNavigation';
 
 // Export utilities
 export * from './utils/theme';

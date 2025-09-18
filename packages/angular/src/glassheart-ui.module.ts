@@ -7,6 +7,7 @@ import { GlassCardComponent } from './components/glass-card/glass-card.component
 import { GlassInputComponent } from './components/glass-input/glass-input.component';
 import { GlassTypographyComponent } from './components/glass-typography/glass-typography.component';
 import { GlassContainerComponent } from './components/glass-container/glass-container.component';
+import { GlassNavigationComponent } from './components/glass-navigation/glass-navigation.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GlassContainerComponent } from './components/glass-container/glass-cont
     GlassCardComponent,
     GlassInputComponent,
     GlassTypographyComponent,
-    GlassContainerComponent
+    GlassContainerComponent,
+    GlassNavigationComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { GlassContainerComponent } from './components/glass-container/glass-cont
     GlassCardComponent,
     GlassInputComponent,
     GlassTypographyComponent,
-    GlassContainerComponent
+    GlassContainerComponent,
+    GlassNavigationComponent
   ]
 })
 export class GlassHeartUIModule { }

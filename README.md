@@ -77,11 +77,34 @@ GlassHeartUI 提供多個框架的獨立套件：
 ### React 使用
 
 ```jsx
-import { GlassCard, GlassButton, GlassInput, GlassTypography } from 'glassheart-ui-react';
+import { 
+  GlassCard, 
+  GlassButton, 
+  GlassInput, 
+  GlassTypography,
+  GlassContainer,
+  GlassNavigation,
+  GlassNavigationBrand,
+  GlassNavigationMenu,
+  GlassNavigationItem,
+  GlassNavigationToggle
+} from 'glassheart-ui-react';
 
 function App() {
   return (
     <div>
+      <GlassNavigation variant="default" glass="medium" sticky>
+        <GlassNavigationBrand href="#">
+          GlassHeartUI
+        </GlassNavigationBrand>
+        <GlassNavigationMenu>
+          <GlassNavigationItem href="#" active>首頁</GlassNavigationItem>
+          <GlassNavigationItem href="#">產品</GlassNavigationItem>
+          <GlassNavigationItem href="#">服務</GlassNavigationItem>
+        </GlassNavigationMenu>
+        <GlassNavigationToggle />
+      </GlassNavigation>
+      
       <GlassTypography 
         variant="h1" 
         size="3xl" 
@@ -114,6 +137,18 @@ function App() {
 ```vue
 <template>
   <div>
+    <GlassNavigation variant="default" glass="medium" sticky>
+      <GlassNavigationBrand href="#">
+        GlassHeartUI
+      </GlassNavigationBrand>
+      <GlassNavigationMenu>
+        <GlassNavigationItem href="#" active>首頁</GlassNavigationItem>
+        <GlassNavigationItem href="#">產品</GlassNavigationItem>
+        <GlassNavigationItem href="#">服務</GlassNavigationItem>
+      </GlassNavigationMenu>
+      <GlassNavigationToggle />
+    </GlassNavigation>
+    
     <GlassTypography 
       variant="h1" 
       size="3xl" 
@@ -140,7 +175,21 @@ function App() {
 </template>
 
 <script setup>
-import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography, GlassContainer } from 'glassheart-ui-vue';
+import { 
+  GlassCard, 
+  GlassCardHeader, 
+  GlassCardTitle, 
+  GlassCardContent, 
+  GlassInput, 
+  GlassButton, 
+  GlassTypography, 
+  GlassContainer,
+  GlassNavigation,
+  GlassNavigationBrand,
+  GlassNavigationMenu,
+  GlassNavigationItem,
+  GlassNavigationToggle
+} from 'glassheart-ui-vue';
 </script>
 ```
 
@@ -148,10 +197,36 @@ import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInpu
 
 ```svelte
 <script>
-  import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography } from 'glassheart-ui-svelte';
+  import { 
+    GlassCard, 
+    GlassCardHeader, 
+    GlassCardTitle, 
+    GlassCardContent, 
+    GlassInput, 
+    GlassButton, 
+    GlassTypography,
+    GlassContainer,
+    GlassNavigation,
+    GlassNavigationBrand,
+    GlassNavigationMenu,
+    GlassNavigationItem,
+    GlassNavigationToggle
+  } from 'glassheart-ui-svelte';
 </script>
 
 <div>
+  <GlassNavigation variant="default" glass="medium" sticky>
+    <GlassNavigationBrand href="#">
+      GlassHeartUI
+    </GlassNavigationBrand>
+    <GlassNavigationMenu>
+      <GlassNavigationItem href="#" active>首頁</GlassNavigationItem>
+      <GlassNavigationItem href="#">產品</GlassNavigationItem>
+      <GlassNavigationItem href="#">服務</GlassNavigationItem>
+    </GlassNavigationMenu>
+    <GlassNavigationToggle />
+  </GlassNavigation>
+  
   <GlassTypography 
     variant="h1" 
     size="3xl" 
@@ -180,10 +255,50 @@ import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInpu
 ### 原生 JavaScript 使用
 
 ```javascript
-import { GlassCard, GlassButton, GlassInput, GlassTypography, GlassContainer, initTheme } from 'glassheart-ui';
+import { 
+  GlassCard, 
+  GlassButton, 
+  GlassInput, 
+  GlassTypography, 
+  GlassContainer,
+  GlassNavigation,
+  GlassNavigationItem,
+  initTheme 
+} from 'glassheart-ui';
 
 // 初始化主題
 initTheme();
+
+// 創建導航
+const navigation = new GlassNavigation({
+  variant: 'default',
+  glass: 'medium',
+  position: 'top',
+  sticky: true
+});
+
+// 添加品牌
+navigation.addBrand('GlassHeartUI', '#');
+
+// 添加導航項目
+navigation.addItem({
+  text: '首頁',
+  href: '#',
+  active: true
+});
+
+navigation.addItem({
+  text: '產品',
+  href: '#'
+});
+
+navigation.addItem({
+  text: '服務',
+  href: '#'
+});
+
+// 添加切換按鈕
+navigation.addToggle();
 
 // 創建毛玻璃文字
 const typography = new GlassTypography({
@@ -203,6 +318,11 @@ const card = new GlassCard({
   liquid: true,
   interactive: true
 });
+
+// 渲染到頁面
+navigation.render('body');
+document.body.appendChild(typography.getElement());
+card.render('#app');
 ```
 
 ### CDN 使用
@@ -212,8 +332,32 @@ const card = new GlassCard({
 <script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
 
 <script>
-  const { GlassCard, GlassButton, GlassInput, GlassTypography, GlassContainer, initTheme } = window.GlassHeartUI;
+  const { 
+    GlassCard, 
+    GlassButton, 
+    GlassInput, 
+    GlassTypography, 
+    GlassContainer,
+    GlassNavigation,
+    GlassNavigationItem,
+    initTheme 
+  } = window.GlassHeartUI;
+  
   initTheme();
+  
+  // 創建導航
+  const navigation = new GlassNavigation({
+    variant: 'default',
+    glass: 'medium',
+    position: 'top',
+    sticky: true
+  });
+  
+  navigation.addBrand('GlassHeartUI', '#');
+  navigation.addItem({ text: '首頁', href: '#', active: true });
+  navigation.addItem({ text: '產品', href: '#' });
+  navigation.addItem({ text: '服務', href: '#' });
+  navigation.addToggle();
   
   // 創建毛玻璃文字
   const typography = new GlassTypography({
@@ -225,12 +369,40 @@ const card = new GlassCard({
     glow: true,
     gradient: true
   });
+  
+  // 渲染到頁面
+  navigation.render('body');
+  document.body.appendChild(typography.getElement());
 </script>
 ```
 
 ### 原生 HTML 使用
 
 ```html
+<!-- 導航 -->
+<nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-navigation-sticky">
+  <div class="gh-navigation-container">
+    <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+    <div class="gh-navigation-menu">
+      <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+      <a href="#" class="gh-navigation-item">產品</a>
+      <a href="#" class="gh-navigation-item">服務</a>
+    </div>
+    <button class="gh-navigation-toggle" aria-label="Toggle navigation menu">
+      <span class="gh-navigation-toggle-line"></span>
+      <span class="gh-navigation-toggle-line"></span>
+      <span class="gh-navigation-toggle-line"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- 容器 -->
+<div class="gh-container gh-container-lg gh-glass-medium gh-liquid-flow gh-p-lg gh-rounded-lg gh-shadow-lg">
+  <h3>容器標題</h3>
+  <p>這是一個具有玻璃效果的容器</p>
+</div>
+
+<!-- 卡片 -->
 <div class="gh-card gh-card-lg gh-glass-medium gh-liquid-flow">
   <div class="gh-card-header">
     <h3 class="gh-card-title">Liquid Glass Card</h3>
@@ -344,6 +516,57 @@ const card = new GlassCard({
 - `shadow`: 'none' | 'sm' | 'md' | 'lg' | 'xl'
 - `overflow`: 'visible' | 'hidden' | 'scroll' | 'auto'
 - `position`: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'
+- `zIndex`: number
+
+### GlassNavigation 導航
+
+```jsx
+<GlassNavigation 
+  variant="default" 
+  glass="medium" 
+  position="top" 
+  size="md" 
+  sticky 
+  liquid 
+  animated
+>
+  <GlassNavigationBrand href="#">
+    Dudu
+  </GlassNavigationBrand>
+  <GlassNavigationMenu>
+    <GlassNavigationItem href="#" active>
+      Home
+    </GlassNavigationItem>
+    <GlassNavigationItem href="#">
+      Works
+    </GlassNavigationItem>
+    <GlassNavigationItem href="#">
+      Labs
+    </GlassNavigationItem>
+    <GlassNavigationItem href="#">
+      Study
+    </GlassNavigationItem>
+    <GlassNavigationItem href="#">
+      About
+    </GlassNavigationItem>
+  </GlassNavigationMenu>
+  <GlassNavigationToggle />
+</GlassNavigation>
+```
+
+**Props:**
+- `variant`: 'default' | 'transparent' | 'solid' | 'floating'
+- `glass`: 'light' | 'medium' | 'heavy'
+- `position`: 'top' | 'bottom' | 'left' | 'right'
+- `size`: 'sm' | 'md' | 'lg'
+- `sticky`: boolean
+- `fixed`: boolean
+- `liquid`: boolean
+- `animated`: boolean
+- `blur`: boolean
+- `shadow`: 'none' | 'sm' | 'md' | 'lg' | 'xl'
+- `padding`: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+- `rounded`: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
 - `zIndex`: number
 
 ## 🎛️ 主題系統
