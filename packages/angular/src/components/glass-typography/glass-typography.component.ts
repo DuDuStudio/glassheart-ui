@@ -213,16 +213,27 @@ export class GlassTypographyComponent implements OnInit, OnDestroy {
 
       // 繪製多層陰影（深度效果）
       if (layer === 0) {
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-        ctx.shadowBlur = 12;
-        ctx.shadowOffsetX = 4;
-        ctx.shadowOffsetY = 4;
+        if (this.glow) {
+          // 發光效果
+          ctx.shadowColor = this.glowColor;
+          ctx.shadowBlur = this.glowIntensity * 40;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 0;
+        } else {
+          // 外層深陰影
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+          ctx.shadowBlur = 12;
+          ctx.shadowOffsetX = 4;
+          ctx.shadowOffsetY = 4;
+        }
       } else if (layer === 1) {
+        // 中層陰影
         ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
         ctx.shadowBlur = 6;
         ctx.shadowOffsetX = 2;
         ctx.shadowOffsetY = 2;
       } else if (layer === 2) {
+        // 內層陰影
         ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
         ctx.shadowBlur = 3;
         ctx.shadowOffsetX = 1;
@@ -230,14 +241,6 @@ export class GlassTypographyComponent implements OnInit, OnDestroy {
       } else {
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-      }
-
-      // 繪製發光效果
-      if (this.glow && layer === 0) {
-        ctx.shadowColor = this.glowColor;
-        ctx.shadowBlur = this.glowIntensity * 40;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
       }

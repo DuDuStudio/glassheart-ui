@@ -175,6 +175,32 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
     // 清除畫布
     ctx.clearRect(0, 0, width, minHeight);
 
+    // 如果啟用發光效果，先繪製多層發光
+    if (glow) {
+      const glowLayers = 5;
+      for (let i = 0; i < glowLayers; i++) {
+        ctx.save();
+        ctx.font = font;
+        ctx.textAlign = textAlign as CanvasTextAlign;
+        ctx.textBaseline = 'middle';
+        ctx.letterSpacing = `${letterSpacing}px`;
+        
+        // 設置發光效果
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = glowIntensity * 20 * (glowLayers - i);
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+        
+        // 設置發光顏色
+        const glowAlpha = 0.3 * (glowLayers - i) / glowLayers;
+        ctx.fillStyle = `rgba(255, 255, 255, ${glowAlpha})`;
+        
+        // 繪製發光文字
+        ctx.fillText(children, x, y);
+        ctx.restore();
+      }
+    }
+
     // 創建多層毛玻璃效果
     const layers = 4;
     for (let layer = 0; layer < layers; layer++) {
@@ -214,11 +240,13 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
 
       // 繪製多層陰影（深度效果）
       if (layer === 0) {
-        // 外層深陰影
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-        ctx.shadowBlur = 12;
-        ctx.shadowOffsetX = 4;
-        ctx.shadowOffsetY = 4;
+        if (!glow) {
+          // 外層深陰影（只有在沒有發光時才繪製）
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+          ctx.shadowBlur = 12;
+          ctx.shadowOffsetX = 4;
+          ctx.shadowOffsetY = 4;
+        }
       } else if (layer === 1) {
         // 中層陰影
         ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
@@ -234,14 +262,6 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
       } else {
         ctx.shadowColor = 'transparent';
         ctx.shadowBlur = 0;
-        ctx.shadowOffsetX = 0;
-        ctx.shadowOffsetY = 0;
-      }
-
-      // 繪製發光效果
-      if (glow && layer === 0) {
-        ctx.shadowColor = glowColor;
-        ctx.shadowBlur = glowIntensity * 40;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
       }

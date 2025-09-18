@@ -10,7 +10,17 @@
 - **🌙 主題系統** - 完整的淺色/深色主題支援
 - **📱 響應式設計** - 適配各種螢幕尺寸
 - **♿ 無障礙支援** - 支援 reduced-motion 和鍵盤導航
-- **🔧 多框架支援** - 原生 JS、React、Vue、Svelte
+- **🔧 多框架支援** - 原生 JS、React、Vue、Svelte、Angular
+- **📝 毛玻璃文字** - 使用 Canvas 渲染的高級文字效果
+
+## 🆕 最新更新 (v1.1.4)
+
+- ✨ **新增 GlassTypography 組件** - 使用 HTML5 Canvas 渲染的高級毛玻璃文字效果
+- 🎨 **增強毛玻璃效果** - 多層渲染、複雜漸變、高級圖像處理
+- 🎬 **動畫效果** - 液體流動、發光脈衝等動畫效果
+- 📱 **響應式設計** - 自動適配各種螢幕尺寸
+- 🔧 **多框架支援** - 所有框架都包含完整的 GlassTypography 組件
+- 📦 **npm 發布** - 所有包已發布到 npm，版本 v1.1.4
 
 ## 📦 套件
 
@@ -18,11 +28,12 @@ GlassHeartUI 提供多個框架的獨立套件：
 
 | 套件 | 描述 | 安裝 | CDN |
 |------|------|------|------|
-| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` | `https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css` |
-| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` | `https://unpkg.com/glassheart-ui-react@1.1.0/dist/index.js` |
-| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` | `https://unpkg.com/glassheart-ui-vue@1.1.0/dist/index.js` |
-| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` | `https://unpkg.com/glassheart-ui-svelte@1.1.0/dist/index.js` |
-| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` | `https://unpkg.com/glassheart-ui@1.1.0/dist/index.js` |
+| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` | `https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css` |
+| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` | `https://unpkg.com/glassheart-ui-react@1.1.4/dist/index.js` |
+| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` | `https://unpkg.com/glassheart-ui-vue@1.1.4/dist/index.js` |
+| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` | `https://unpkg.com/glassheart-ui-svelte@1.1.4/dist/index.js` |
+| `glassheart-ui-angular` | Angular 元件 | `npm install glassheart-ui-angular` | - |
+| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` | `https://unpkg.com/glassheart-ui@1.1.3/dist/index.js` |
 
 ## 🚀 快速開始
 
@@ -35,14 +46,14 @@ GlassHeartUI 提供多個框架的獨立套件：
 <html>
 <head>
   <!-- 引入核心樣式 -->
-  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
   <!-- 引入 JavaScript 組件 -->
-  <script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"></script>
+  <script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
 </head>
 <body>
   <div id="app"></div>
   <script>
-    const { GlassCard, GlassButton, GlassInput } = window.GlassHeartUI;
+    const { GlassCard, GlassButton, GlassInput, GlassTypography } = window.GlassHeartUI;
     
     // 創建組件
     const card = new GlassCard({
@@ -66,10 +77,52 @@ GlassHeartUI 提供多個框架的獨立套件：
 ### React 使用
 
 ```jsx
-import { GlassCard, GlassButton, GlassInput } from 'glassheart-ui-react';
+import { GlassCard, GlassButton, GlassInput, GlassTypography } from 'glassheart-ui-react';
 
 function App() {
   return (
+    <div>
+      <GlassTypography 
+        variant="h1" 
+        size="3xl" 
+        weight="bold" 
+        glass="heavy" 
+        glow 
+        gradient
+      >
+        Welcome to GlassHeartUI
+      </GlassTypography>
+      
+      <GlassCard liquid interactive>
+        <GlassCardHeader>
+          <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+        </GlassCardHeader>
+        <GlassCardContent>
+          <GlassInput placeholder="Enter your name" />
+          <GlassButton variant="primary" liquid>Submit</GlassButton>
+        </GlassCardContent>
+      </GlassCard>
+    </div>
+  );
+}
+```
+
+### Vue 使用
+
+```vue
+<template>
+  <div>
+    <GlassTypography 
+      variant="h1" 
+      size="3xl" 
+      weight="bold" 
+      glass="heavy" 
+      glow 
+      gradient
+    >
+      Welcome to GlassHeartUI
+    </GlassTypography>
+    
     <GlassCard liquid interactive>
       <GlassCardHeader>
         <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
@@ -79,14 +132,33 @@ function App() {
         <GlassButton variant="primary" liquid>Submit</GlassButton>
       </GlassCardContent>
     </GlassCard>
-  );
-}
+  </div>
+</template>
+
+<script setup>
+import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography } from 'glassheart-ui-vue';
+</script>
 ```
 
-### Vue 使用
+### Svelte 使用
 
-```vue
-<template>
+```svelte
+<script>
+  import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography } from 'glassheart-ui-svelte';
+</script>
+
+<div>
+  <GlassTypography 
+    variant="h1" 
+    size="3xl" 
+    weight="bold" 
+    glass="heavy" 
+    glow 
+    gradient
+  >
+    Welcome to GlassHeartUI
+  </GlassTypography>
+  
   <GlassCard liquid interactive>
     <GlassCardHeader>
       <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
@@ -96,38 +168,27 @@ function App() {
       <GlassButton variant="primary" liquid>Submit</GlassButton>
     </GlassCardContent>
   </GlassCard>
-</template>
-
-<script setup>
-import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton } from 'glassheart-ui-vue';
-</script>
-```
-
-### Svelte 使用
-
-```svelte
-<script>
-  import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton } from 'glassheart-ui-svelte';
-</script>
-
-<GlassCard liquid interactive>
-  <GlassCardHeader>
-    <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
-  </GlassCardHeader>
-  <GlassCardContent>
-    <GlassInput placeholder="Enter your name" />
-    <GlassButton variant="primary" liquid>Submit</GlassButton>
-  </GlassCardContent>
-</GlassCard>
+</div>
 ```
 
 ### 原生 JavaScript 使用
 
 ```javascript
-import { GlassCard, GlassButton, GlassInput, initTheme } from 'glassheart-ui';
+import { GlassCard, GlassButton, GlassInput, GlassTypography, initTheme } from 'glassheart-ui';
 
 // 初始化主題
 initTheme();
+
+// 創建毛玻璃文字
+const typography = new GlassTypography({
+  children: 'Welcome to GlassHeartUI',
+  variant: 'h1',
+  size: '3xl',
+  weight: 'bold',
+  glass: 'heavy',
+  glow: true,
+  gradient: true
+});
 
 // 創建元件
 const card = new GlassCard({
@@ -141,12 +202,23 @@ const card = new GlassCard({
 ### CDN 使用
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.0/dist/index.css">
-<script src="https://unpkg.com/glassheart-ui@1.1.0/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
+<script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
 
 <script>
-  const { GlassCard, GlassButton, GlassInput, initTheme } = window.GlassHeartUI;
+  const { GlassCard, GlassButton, GlassInput, GlassTypography, initTheme } = window.GlassHeartUI;
   initTheme();
+  
+  // 創建毛玻璃文字
+  const typography = new GlassTypography({
+    children: 'Welcome to GlassHeartUI',
+    variant: 'h1',
+    size: '3xl',
+    weight: 'bold',
+    glass: 'heavy',
+    glow: true,
+    gradient: true
+  });
 </script>
 ```
 
@@ -293,6 +365,11 @@ applyTheme('dark');
   Glass Typography
 </div>
 
+<!-- 毛玻璃文字 - 完整示例 -->
+<div class="gh-typography gh-typography-h1 gh-typography-3xl gh-typography-bold gh-glass-heavy gh-glow gh-gradient">
+  Welcome to GlassHeartUI
+</div>
+
 <!-- 卡片 -->
 <div class="gh-card gh-card-lg gh-glass-medium gh-liquid-flow">
   <div class="gh-card-header">
@@ -367,7 +444,126 @@ applyTheme('dark');
 
 ## 📚 文檔
 
-完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui-storybook.dudustudio.monster/?path=/story/components-glassbutton--default)
+完整的元件文檔和範例請查看 [Storybook](http://localhost:8080)
+
+### 本地運行 Storybook
+
+```bash
+# 克隆項目
+git clone https://github.com/your-username/glassheart-ui.git
+cd glassheart-ui
+
+# 安裝依賴
+npm install
+
+# 啟動 Storybook
+npm run storybook
+```
+
+### 構建靜態 Storybook
+
+```bash
+# 構建靜態文件
+npm run build-storybook
+
+# 靜態文件將生成在 storybook-static/ 目錄
+```
+
+## 📝 GlassTypography 組件
+
+GlassTypography 是我們最新的組件，使用 HTML5 Canvas 渲染高級毛玻璃文字效果。
+
+### 特色功能
+
+- **🎨 多層毛玻璃渲染** - 4 層渲染創造深度效果
+- **🌈 複雜漸變效果** - 6 個漸變停止點模擬真實玻璃
+- **✨ 多層陰影深度** - 創造立體感和浮起效果
+- **🔧 高級圖像處理** - 亮度、對比度、飽和度調整
+- **🎬 動畫支持** - 液體流動、發光脈衝效果
+- **📱 響應式設計** - 自動適配各種螢幕尺寸
+
+### 基本用法
+
+```jsx
+// React
+<GlassTypography
+  variant="h1"
+  size="3xl"
+  weight="bold"
+  glass="heavy"
+  glow
+  gradient
+  liquid
+  animated
+>
+  Beautiful Glass Text
+</GlassTypography>
+```
+
+```vue
+<!-- Vue -->
+<GlassTypography
+  variant="h1"
+  size="3xl"
+  weight="bold"
+  glass="heavy"
+  glow
+  gradient
+>
+  Beautiful Glass Text
+</GlassTypography>
+```
+
+### 屬性說明
+
+| 屬性 | 類型 | 預設值 | 描述 |
+|------|------|--------|------|
+| `children` | `string` | - | 要顯示的文字內容 |
+| `variant` | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'h5' \| 'h6' \| 'p' \| 'span' \| 'div'` | `'p'` | 文字變體 |
+| `size` | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| '3xl' \| '4xl' \| '5xl' \| '6xl'` | `'md'` | 文字尺寸 |
+| `weight` | `'light' \| 'normal' \| 'medium' \| 'semibold' \| 'bold' \| 'extrabold' \| 'black'` | `'normal'` | 字重 |
+| `glass` | `'light' \| 'medium' \| 'heavy'` | `'medium'` | 玻璃效果強度 |
+| `liquid` | `boolean` | `false` | 是否啟用液體流動效果 |
+| `gradient` | `boolean` | `false` | 是否啟用漸變效果 |
+| `animated` | `boolean` | `false` | 是否啟用動畫效果 |
+| `glow` | `boolean` | `false` | 是否啟用發光效果 |
+| `glowColor` | `string` | `'#ffffff'` | 發光顏色 |
+| `glowIntensity` | `number` | `0.8` | 發光強度 (0-2) |
+
+### 特效範例
+
+```jsx
+// 發光效果
+<GlassTypography glow glowColor="#00ff88" glowIntensity={1.2}>
+  Glowing Text
+</GlassTypography>
+
+// 液體流動效果
+<GlassTypography liquid animated>
+  Liquid Flow Text
+</GlassTypography>
+
+// 漸變效果
+<GlassTypography gradient glass="heavy">
+  Gradient Glass Text
+</GlassTypography>
+
+// 組合效果
+<GlassTypography
+  variant="h1"
+  size="4xl"
+  weight="bold"
+  glass="heavy"
+  glow
+  gradient
+  liquid
+  animated
+  glowColor="#ff6b6b"
+  glowIntensity={1.5}
+>
+  Ultimate Glass Text
+</GlassTypography>
+```
 
 ## 🤝 貢獻
 

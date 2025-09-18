@@ -1,6 +1,6 @@
 {
   "name": "glassheart-ui-angular",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "GlassHeart UI - Angular components",
   "main": "dist/index.js",
   "module": "dist/index.js",

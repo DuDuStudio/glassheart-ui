@@ -1,6 +1,6 @@
 {
   "name": "glassheart-ui",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Vanilla JavaScript components for GlassHeartUI",
   "type": "module",
   "main": "dist/index.js",
