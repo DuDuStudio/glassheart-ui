@@ -3,6 +3,7 @@ export * from './components/GlassCard/GlassCard';
 export * from './components/GlassButton/GlassButton';
 export * from './components/GlassInput/GlassInput';
 export * from './components/GlassTypography/GlassTypography';
+export * from './components/GlassContainer/GlassContainer';
 
 // Export styles
 import './styles/global.css';

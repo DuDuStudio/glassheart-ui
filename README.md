@@ -93,15 +93,17 @@ function App() {
         Welcome to GlassHeartUI
       </GlassTypography>
       
-      <GlassCard liquid interactive>
-        <GlassCardHeader>
-          <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
-        </GlassCardHeader>
-        <GlassCardContent>
-          <GlassInput placeholder="Enter your name" />
-          <GlassButton variant="primary" liquid>Submit</GlassButton>
-        </GlassCardContent>
-      </GlassCard>
+      <GlassContainer size="lg" glass="medium" liquid interactive>
+        <GlassCard liquid interactive>
+          <GlassCardHeader>
+            <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+          </GlassCardHeader>
+          <GlassCardContent>
+            <GlassInput placeholder="Enter your name" />
+            <GlassButton variant="primary" liquid>Submit</GlassButton>
+          </GlassCardContent>
+        </GlassCard>
+      </GlassContainer>
     </div>
   );
 }
@@ -123,20 +125,22 @@ function App() {
       Welcome to GlassHeartUI
     </GlassTypography>
     
-    <GlassCard liquid interactive>
-      <GlassCardHeader>
-        <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
-      </GlassCardHeader>
-      <GlassCardContent>
-        <GlassInput placeholder="Enter your name" />
-        <GlassButton variant="primary" liquid>Submit</GlassButton>
-      </GlassCardContent>
-    </GlassCard>
+    <GlassContainer size="lg" glass="medium" liquid interactive>
+      <GlassCard liquid interactive>
+        <GlassCardHeader>
+          <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+        </GlassCardHeader>
+        <GlassCardContent>
+          <GlassInput placeholder="Enter your name" />
+          <GlassButton variant="primary" liquid>Submit</GlassButton>
+        </GlassCardContent>
+      </GlassCard>
+    </GlassContainer>
   </div>
 </template>
 
 <script setup>
-import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography } from 'glassheart-ui-vue';
+import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInput, GlassButton, GlassTypography, GlassContainer } from 'glassheart-ui-vue';
 </script>
 ```
 
@@ -159,22 +163,24 @@ import { GlassCard, GlassCardHeader, GlassCardTitle, GlassCardContent, GlassInpu
     Welcome to GlassHeartUI
   </GlassTypography>
   
-  <GlassCard liquid interactive>
-    <GlassCardHeader>
-      <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
-    </GlassCardHeader>
-    <GlassCardContent>
-      <GlassInput placeholder="Enter your name" />
-      <GlassButton variant="primary" liquid>Submit</GlassButton>
-    </GlassCardContent>
-  </GlassCard>
+  <GlassContainer size="lg" glass="medium" liquid interactive>
+    <GlassCard liquid interactive>
+      <GlassCardHeader>
+        <GlassCardTitle>Hello GlassHeartUI</GlassCardTitle>
+      </GlassCardHeader>
+      <GlassCardContent>
+        <GlassInput placeholder="Enter your name" />
+        <GlassButton variant="primary" liquid>Submit</GlassButton>
+      </GlassCardContent>
+    </GlassCard>
+  </GlassContainer>
 </div>
 ```
 
 ### 原生 JavaScript 使用
 
 ```javascript
-import { GlassCard, GlassButton, GlassInput, GlassTypography, initTheme } from 'glassheart-ui';
+import { GlassCard, GlassButton, GlassInput, GlassTypography, GlassContainer, initTheme } from 'glassheart-ui';
 
 // 初始化主題
 initTheme();
@@ -206,7 +212,7 @@ const card = new GlassCard({
 <script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
 
 <script>
-  const { GlassCard, GlassButton, GlassInput, GlassTypography, initTheme } = window.GlassHeartUI;
+  const { GlassCard, GlassButton, GlassInput, GlassTypography, GlassContainer, initTheme } = window.GlassHeartUI;
   initTheme();
   
   // 創建毛玻璃文字
@@ -306,6 +312,40 @@ const card = new GlassCard({
 - `icon`: ReactNode
 - `iconPosition`: 'left' | 'right'
 
+### GlassContainer 容器
+
+```jsx
+<GlassContainer 
+  size="lg" 
+  variant="default" 
+  glass="medium" 
+  interactive 
+  liquid 
+  animated
+  padding="lg"
+  rounded="lg"
+  shadow="lg"
+>
+  <h3>容器內容</h3>
+  <p>這是一個具有玻璃效果的容器組件</p>
+</GlassContainer>
+```
+
+**Props:**
+- `size`: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full'
+- `variant`: 'default' | 'outline' | 'solid' | 'transparent'
+- `glass`: 'light' | 'medium' | 'heavy'
+- `interactive`: boolean
+- `liquid`: boolean
+- `animated`: boolean
+- `padding`: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+- `margin`: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+- `rounded`: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full'
+- `shadow`: 'none' | 'sm' | 'md' | 'lg' | 'xl'
+- `overflow`: 'visible' | 'hidden' | 'scroll' | 'auto'
+- `position`: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'
+- `zIndex`: number
+
 ## 🎛️ 主題系統
 
 ### 切換主題
@@ -368,6 +408,12 @@ applyTheme('dark');
 <!-- 毛玻璃文字 - 完整示例 -->
 <div class="gh-typography gh-typography-h1 gh-typography-3xl gh-typography-bold gh-glass-heavy gh-glow gh-gradient">
   Welcome to GlassHeartUI
+</div>
+
+<!-- 容器 -->
+<div class="gh-container gh-container-lg gh-glass-medium gh-liquid-flow gh-p-lg gh-rounded-lg gh-shadow-lg">
+  <h3>容器標題</h3>
+  <p>這是一個具有玻璃效果的容器</p>
 </div>
 
 <!-- 卡片 -->

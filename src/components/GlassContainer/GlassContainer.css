@@ -1,0 +1,290 @@
+/* Glass Container Base Styles */
+.gh-container {
+  position: relative;
+  background: rgba(255, 255, 255, var(--gh-glass-opacity));
+  backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  -webkit-backdrop-filter: blur(var(--gh-glass-blur)) saturate(var(--gh-glass-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--gh-radius);
+  box-shadow: var(--gh-shadow-md);
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+  display: block;
+  overflow: visible;
+}
+
+.gh-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Container Sizes */
+.gh-container-xs {
+  width: 12rem;
+  min-height: 3rem;
+}
+
+.gh-container-sm {
+  width: 16rem;
+  min-height: 4rem;
+}
+
+.gh-container-md {
+  width: 20rem;
+  min-height: 5rem;
+}
+
+.gh-container-lg {
+  width: 24rem;
+  min-height: 6rem;
+}
+
+.gh-container-xl {
+  width: 28rem;
+  min-height: 7rem;
+}
+
+.gh-container-2xl {
+  width: 32rem;
+  min-height: 8rem;
+}
+
+.gh-container-3xl {
+  width: 36rem;
+  min-height: 9rem;
+}
+
+.gh-container-full {
+  width: 100%;
+  min-height: 4rem;
+}
+
+/* Container Variants */
+.gh-container-outline {
+  background: transparent;
+  border: 1px solid rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.gh-container-outline:hover {
+  background: rgba(255, 255, 255, var(--gh-glass-light-opacity));
+  backdrop-filter: blur(var(--gh-glass-light-blur));
+  -webkit-backdrop-filter: blur(var(--gh-glass-light-blur));
+  box-shadow: var(--gh-shadow-sm);
+}
+
+.gh-container-solid {
+  background: rgb(var(--gh-card));
+  border: 1px solid rgb(var(--gh-border));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gh-container-solid:hover {
+  background: rgb(var(--gh-muted));
+}
+
+.gh-container-transparent {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.gh-container-transparent:hover {
+  background: rgba(255, 255, 255, var(--gh-glass-light-opacity));
+  backdrop-filter: blur(var(--gh-glass-light-blur));
+  -webkit-backdrop-filter: blur(var(--gh-glass-light-blur));
+}
+
+/* Interactive Container */
+.gh-container-interactive {
+  cursor: pointer;
+  transition: all var(--gh-animation-duration) var(--gh-animation-timing);
+}
+
+.gh-container-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--gh-shadow-lg);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.gh-container-interactive:active {
+  transform: translateY(0);
+  box-shadow: var(--gh-shadow-md);
+}
+
+/* Container with Liquid Flow */
+.gh-container-liquid {
+  position: relative;
+  overflow: hidden;
+}
+
+.gh-container-liquid::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
+  animation: gh-liquid-flow 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gh-container-liquid > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated Container */
+.gh-container-animated {
+  animation: gh-container-float 3s ease-in-out infinite;
+}
+
+@keyframes gh-container-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Overflow Utilities */
+.gh-overflow-hidden {
+  overflow: hidden;
+}
+
+.gh-overflow-scroll {
+  overflow: scroll;
+}
+
+.gh-overflow-auto {
+  overflow: auto;
+}
+
+/* Position Utilities */
+.gh-position-relative {
+  position: relative;
+}
+
+.gh-position-absolute {
+  position: absolute;
+}
+
+.gh-position-fixed {
+  position: fixed;
+}
+
+.gh-position-sticky {
+  position: sticky;
+}
+
+/* Responsive Container Sizes */
+@media (max-width: 640px) {
+  .gh-container-xs,
+  .gh-container-sm,
+  .gh-container-md,
+  .gh-container-lg,
+  .gh-container-xl,
+  .gh-container-2xl,
+  .gh-container-3xl {
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .gh-container-3xl {
+    width: 28rem;
+  }
+  
+  .gh-container-2xl {
+    width: 24rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gh-container-3xl {
+    width: 32rem;
+  }
+}
+
+/* Focus States */
+.gh-container:focus-visible {
+  outline: 2px solid rgb(var(--gh-ring));
+  outline-offset: 2px;
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .gh-container {
+  background: rgba(15, 23, 42, var(--gh-glass-opacity));
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .gh-container::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+[data-theme="dark"] .gh-container-outline {
+  border-color: rgb(var(--gh-border));
+}
+
+[data-theme="dark"] .gh-container-outline:hover {
+  background: rgba(15, 23, 42, var(--gh-glass-light-opacity));
+}
+
+[data-theme="dark"] .gh-container-solid {
+  background: rgb(var(--gh-card));
+  border-color: rgb(var(--gh-border));
+}
+
+[data-theme="dark"] .gh-container-solid:hover {
+  background: rgb(var(--gh-muted));
+}
+
+[data-theme="dark"] .gh-container-transparent:hover {
+  background: rgba(15, 23, 42, var(--gh-glass-light-opacity));
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .gh-container-animated {
+    animation: none;
+  }
+  
+  .gh-container-liquid::after {
+    animation: none;
+  }
+  
+  .gh-container-interactive:hover {
+    transform: none;
+  }
+}

@@ -3,6 +3,7 @@ export { default as GlassButton } from './components/GlassButton/Button.svelte';
 export { default as GlassCard } from './components/GlassCard/Card.svelte';
 export { default as GlassInput } from './components/GlassInput/Input.svelte';
 export { default as GlassTypography } from './components/GlassTypography/GlassTypography.svelte';
+export { default as GlassContainer } from './components/GlassContainer/Container.svelte';
 
 // Legacy exports for backward compatibility
 export { default as Button } from './components/GlassButton/Button.svelte';

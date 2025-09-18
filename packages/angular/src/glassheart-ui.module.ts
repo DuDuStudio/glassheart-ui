@@ -6,13 +6,15 @@ import { GlassButtonComponent } from './components/glass-button/glass-button.com
 import { GlassCardComponent } from './components/glass-card/glass-card.component';
 import { GlassInputComponent } from './components/glass-input/glass-input.component';
 import { GlassTypographyComponent } from './components/glass-typography/glass-typography.component';
+import { GlassContainerComponent } from './components/glass-container/glass-container.component';
 
 @NgModule({
   declarations: [
     GlassButtonComponent,
     GlassCardComponent,
     GlassInputComponent,
-    GlassTypographyComponent
+    GlassTypographyComponent,
+    GlassContainerComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,8 @@ import { GlassTypographyComponent } from './components/glass-typography/glass-ty
     GlassButtonComponent,
     GlassCardComponent,
     GlassInputComponent,
-    GlassTypographyComponent
+    GlassTypographyComponent,
+    GlassContainerComponent
   ]
 })
 export class GlassHeartUIModule { }

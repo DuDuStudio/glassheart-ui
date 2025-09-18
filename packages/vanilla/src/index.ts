@@ -3,6 +3,7 @@ export { GlassCard } from './components/GlassCard';
 export { GlassButton } from './components/GlassButton';
 export { GlassInput } from './components/GlassInput';
 export { GlassTypography, createGlassTypography } from './components/GlassTypography';
+export { GlassContainer } from './components/GlassContainer';
 
 // Legacy exports for backward compatibility
 export { GlassCard as Card } from './components/GlassCard';
