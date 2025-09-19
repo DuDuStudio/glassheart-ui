@@ -37,6 +37,75 @@ GlassHeartUI 提供多個框架的獨立套件：
 
 ## 🚀 快速開始
 
+### WSL Ubuntu 環境快速啟動
+
+如果您在 WSL Ubuntu 環境中遇到權限問題（如 `EPERM: operation not permitted` 錯誤），請使用我們提供的快速修復腳本：
+
+```bash
+# 快速修復 drizzle-kit 權限問題
+./scripts/fix-drizzle-kit.sh
+
+# 完整的 WSL 環境設置
+./scripts/wsl-setup.sh
+
+# 僅修復權限問題
+./scripts/wsl-setup.sh fix
+
+# 完整清理和重新安裝
+./scripts/wsl-setup.sh clean
+
+# 啟動開發服務器
+./scripts/wsl-setup.sh start
+```
+
+**常見 WSL 問題解決方案：**
+
+1. **權限錯誤 (EPERM)**：
+   ```bash
+   # 使用 npm 腳本快速修復
+   npm run fix:drizzle
+   
+   # 或手動修復
+   sudo chown -R $(whoami) ~/.npm
+   chmod -R 755 ~/.npm
+   chmod -R 755 node_modules
+   chmod +x node_modules/.bin/*
+   ```
+
+2. **drizzle-kit 讀取錯誤**：
+   ```bash
+   # 使用快速修復腳本
+   npm run fix:drizzle
+   
+   # 或手動重新安裝
+   npm uninstall drizzle-kit
+   npm install drizzle-kit --save-dev
+   chmod +x node_modules/.bin/drizzle-kit
+   ```
+
+3. **使用替代包管理器**：
+   ```bash
+   # 使用 yarn
+   yarn install
+   yarn drizzle-kit generate
+   
+   # 或使用 pnpm
+   npm install -g pnpm
+   pnpm install
+   pnpm drizzle-kit generate
+   ```
+
+4. **完整 WSL 環境設置**：
+   ```bash
+   # 使用 npm 腳本
+   npm run wsl:setup    # 完整設置
+   npm run wsl:fix      # 僅修復權限
+   npm run wsl:clean    # 清理重新安裝
+   npm run wsl:start    # 啟動開發服務器
+   ```
+
+> 📖 **詳細故障排除指南**：查看 [WSL_TROUBLESHOOTING.md](./WSL_TROUBLESHOOTING.md) 獲取完整的 WSL 環境問題解決方案。
+
 ### CDN 使用（推薦）
 
 最簡單的方式是通過 CDN 直接引入：
@@ -526,6 +595,8 @@ card.render('#app');
   glass="medium" 
   position="top" 
   size="md" 
+  width="fit-content"
+  align="center"
   sticky 
   liquid 
   animated
@@ -554,6 +625,16 @@ card.render('#app');
 </GlassNavigation>
 ```
 
+**Width 選項:**
+- `full`: 全寬度導航（默認）
+- `auto`: 自動寬度，根據內容調整
+- `fit-content`: 符合內容寬度
+
+**Align 選項:**
+- `center`: 置中對齊（默認）
+- `left`: 左對齊
+- `right`: 右對齊
+
 **Props:**
 - `variant`: 'default' | 'transparent' | 'solid' | 'floating'
 - `glass`: 'light' | 'medium' | 'heavy'
@@ -562,6 +643,8 @@ card.render('#app');
 - `sticky`: boolean
 - `fixed`: boolean
 - `liquid`: boolean
+- `width`: 'auto' | 'full' | 'fit-content'
+- `align`: 'left' | 'center' | 'right'
 - `animated`: boolean
 - `blur`: boolean
 - `shadow`: 'none' | 'sm' | 'md' | 'lg' | 'xl'

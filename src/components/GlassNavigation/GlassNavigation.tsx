@@ -16,6 +16,8 @@ export interface GlassNavigationProps {
   shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   padding?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  width?: 'auto' | 'full' | 'fit-content';
+  align?: 'left' | 'center' | 'right';
   zIndex?: number;
   onToggle?: (isOpen: boolean) => void;
   onItemClick?: (item: string, index: number) => void;
@@ -63,6 +65,8 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
       shadow = 'md',
       padding = 'md',
       rounded = 'none',
+      width = 'full',
+      align = 'center',
       zIndex,
       onToggle,
       onItemClick,
@@ -97,6 +101,8 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
     const shadowClasses = shadow !== 'none' ? `gh-shadow-${shadow}` : '';
     const paddingClasses = padding !== 'none' ? `gh-p-${padding}` : '';
     const roundedClasses = rounded !== 'none' ? `gh-rounded-${rounded}` : '';
+    const widthClasses = `gh-navigation-width-${width}`;
+    const alignClasses = `gh-navigation-align-${align}`;
     const scrolledClasses = isScrolled ? 'gh-navigation-scrolled' : '';
 
     const classes = [
@@ -113,6 +119,8 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
       shadowClasses,
       paddingClasses,
       roundedClasses,
+      widthClasses,
+      alignClasses,
       scrolledClasses,
       className,
     ]

@@ -52,31 +52,45 @@
 
 /* Navigation Positions */
 .gh-navigation-top {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
 }
 
 .gh-navigation-bottom {
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
 }
 
 .gh-navigation-left {
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: auto;
+  width: 200px;
   height: 100vh;
+  flex-direction: column;
+  padding: 8px 0;
+  border-radius: 0 24px 24px 0;
+  display: flex;
 }
 
 .gh-navigation-right {
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  width: auto;
+  width: 200px;
   height: 100vh;
+  flex-direction: column;
+  padding: 8px 0;
+  border-radius: 24px 0 0 24px;
+  display: flex;
 }
 
 /* Navigation Sizes */
@@ -92,12 +106,80 @@
   min-height: 5rem;
 }
 
+/* Navigation Width */
+.gh-navigation-width-auto {
+  width: auto;
+}
+
+.gh-navigation-width-full {
+  width: 100%;
+}
+
+.gh-navigation-width-fit-content {
+  width: fit-content;
+}
+
+/* Navigation Alignment */
+.gh-navigation-align-left {
+  justify-content: flex-start;
+}
+
+.gh-navigation-align-center {
+  justify-content: center;
+}
+
+.gh-navigation-align-right {
+  justify-content: flex-end;
+}
+
+/* Width and Alignment Combinations */
+.gh-navigation-width-auto.gh-navigation-align-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gh-navigation-width-auto.gh-navigation-align-right {
+  right: 0;
+  left: auto;
+}
+
+.gh-navigation-width-fit-content.gh-navigation-align-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gh-navigation-width-fit-content.gh-navigation-align-right {
+  right: 0;
+  left: auto;
+}
+
 /* Sticky and Fixed Navigation */
 .gh-navigation-sticky {
   position: sticky;
 }
 
 .gh-navigation-fixed {
+  position: fixed;
+}
+
+/* Override position when using specific positions */
+.gh-navigation-top.gh-navigation-sticky,
+.gh-navigation-top.gh-navigation-fixed {
+  position: fixed;
+}
+
+.gh-navigation-bottom.gh-navigation-sticky,
+.gh-navigation-bottom.gh-navigation-fixed {
+  position: fixed;
+}
+
+.gh-navigation-left.gh-navigation-sticky,
+.gh-navigation-left.gh-navigation-fixed {
+  position: fixed;
+}
+
+.gh-navigation-right.gh-navigation-sticky,
+.gh-navigation-right.gh-navigation-fixed {
   position: fixed;
 }
 
@@ -352,6 +434,8 @@
   align-items: stretch;
   height: 100%;
   padding: var(--gh-spacing-lg) 0;
+  display: flex;
+  flex: 1;
 }
 
 .gh-navigation-left .gh-navigation-menu,
@@ -359,6 +443,9 @@
   flex-direction: column;
   width: 100%;
   gap: var(--gh-spacing-xs);
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .gh-navigation-left .gh-navigation-item,
@@ -367,6 +454,32 @@
   width: 100%;
   border-radius: 0;
   padding: var(--gh-spacing-md) var(--gh-spacing-lg);
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+/* Side navigation width and alignment overrides */
+.gh-navigation-left.gh-navigation-width-auto,
+.gh-navigation-left.gh-navigation-width-fit-content {
+  width: auto;
+  min-width: 200px;
+}
+
+.gh-navigation-right.gh-navigation-width-auto,
+.gh-navigation-right.gh-navigation-width-fit-content {
+  width: auto;
+  min-width: 200px;
+}
+
+.gh-navigation-left.gh-navigation-align-center .gh-navigation-container,
+.gh-navigation-right.gh-navigation-align-center .gh-navigation-container {
+  align-items: center;
+}
+
+.gh-navigation-left.gh-navigation-align-right .gh-navigation-container,
+.gh-navigation-right.gh-navigation-align-right .gh-navigation-container {
+  align-items: flex-end;
 }
 
 .gh-navigation-left .gh-navigation-item-active::before,

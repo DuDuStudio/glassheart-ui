@@ -18,7 +18,12 @@
     "publish:js": "cd packages/js && npm publish",
     "publish:all": "npm run publish:core && npm run publish:react && npm run publish:vue && npm run publish:svelte && npm run publish:js",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "wsl:setup": "./scripts/wsl-setup.sh",
+    "wsl:fix": "./scripts/wsl-setup.sh fix",
+    "wsl:clean": "./scripts/wsl-setup.sh clean",
+    "wsl:start": "./scripts/wsl-setup.sh start",
+    "fix:drizzle": "./scripts/fix-drizzle-kit.sh"
   },
   "keywords": [
     "ui",
