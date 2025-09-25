@@ -16,21 +16,21 @@
   export let letterSpacing = 0;
   export let lineHeight = 1.2;
   export let textAlign = 'left';
-  export let textShadow = true;
+  export const textShadow = true;
   export let glow = false;
   export let glowColor = '#ffffff';
   export let glowIntensity = 0.8;
-  export let blur = 20;
-  export let opacity = 0.2;
+  export const blur = 20;
+  export const opacity = 0.2;
   export let saturation = 180;
   export let brightness = 1.2;
   export let contrast = 1.1;
 
-  let canvasRef;
-  let containerRef;
+  let canvasRef = null;
+  let containerRef = null;
   let isLoaded = false;
   let dimensions = { width: 0, height: 0 };
-  let animationRef;
+  let animationRef = 0;
 
   // 計算字體大小
   const getFontSize = () => {
@@ -306,7 +306,7 @@
   ].filter(Boolean).join(' ');
 
   // 容器樣式
-  $: containerStyle = {
+  $: containerStyle = Object.entries({
     ...style,
     fontFamily,
     letterSpacing: `${letterSpacing}px`,
@@ -316,10 +316,10 @@
     display: 'inline-block',
     minHeight: Math.max(getFontSize() * lineHeight, getFontSize() + 30),
     padding: '15px 0',
-  };
+  }).map(([key, value]) => `${key}: ${value}`).join('; ');
 
   // Canvas 樣式
-  $: canvasStyle = {
+  $: canvasStyle = Object.entries({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -327,10 +327,10 @@
     height: '100%',
     pointerEvents: 'none',
     zIndex: 1,
-  };
+  }).map(([key, value]) => `${key}: ${value}`).join('; ');
 
   // Fallback 樣式
-  $: fallbackStyle = {
+  $: fallbackStyle = Object.entries({
     opacity: isLoaded ? 0 : 1,
     position: 'relative',
     zIndex: 2,
@@ -341,7 +341,7 @@
     lineHeight,
     textAlign,
     color: 'transparent',
-  };
+  }).map(([key, value]) => `${key}: ${value}`).join('; ');
 
   // 監聽尺寸變化
   $: if (dimensions.width > 0 && dimensions.height > 0) {
@@ -353,6 +353,7 @@
     animate();
   } else if (animationRef) {
     cancelAnimationFrame(animationRef);
+    animationRef = 0;
   }
 
   onMount(() => {
@@ -367,6 +368,7 @@
   onDestroy(() => {
     if (animationRef) {
       cancelAnimationFrame(animationRef);
+      animationRef = 0;
     }
     window.removeEventListener('resize', updateDimensions);
   });

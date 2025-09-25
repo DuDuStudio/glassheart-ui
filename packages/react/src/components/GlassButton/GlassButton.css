@@ -31,12 +31,39 @@
   opacity: 0.5;
 }
 
+/* Button Shapes */
+.gh-btn-circle {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gh-btn-pill {
+  border-radius: 9999px;
+  padding-left: var(--gh-spacing-lg);
+  padding-right: var(--gh-spacing-lg);
+}
+
 /* Button Sizes */
 .gh-btn-xs {
   height: 1.5rem;
   padding: 0 var(--gh-spacing-sm);
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.gh-btn-xs.gh-btn-circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+}
+
+.gh-btn-xs.gh-btn-pill {
+  padding-left: var(--gh-spacing-sm);
+  padding-right: var(--gh-spacing-sm);
 }
 
 .gh-btn-sm {
@@ -46,11 +73,33 @@
   line-height: 1rem;
 }
 
+.gh-btn-sm.gh-btn-circle {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+}
+
+.gh-btn-sm.gh-btn-pill {
+  padding-left: var(--gh-spacing-md);
+  padding-right: var(--gh-spacing-md);
+}
+
 .gh-btn-md {
   height: 2.5rem;
   padding: 0 var(--gh-spacing-lg);
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.gh-btn-md.gh-btn-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+.gh-btn-md.gh-btn-pill {
+  padding-left: var(--gh-spacing-lg);
+  padding-right: var(--gh-spacing-lg);
 }
 
 .gh-btn-lg {
@@ -60,11 +109,33 @@
   line-height: 1.5rem;
 }
 
+.gh-btn-lg.gh-btn-circle {
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+}
+
+.gh-btn-lg.gh-btn-pill {
+  padding-left: var(--gh-spacing-xl);
+  padding-right: var(--gh-spacing-xl);
+}
+
 .gh-btn-xl {
   height: 3.5rem;
   padding: 0 2rem;
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.gh-btn-xl.gh-btn-circle {
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+}
+
+.gh-btn-xl.gh-btn-pill {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 /* Button Variants */

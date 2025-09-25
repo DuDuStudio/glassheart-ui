@@ -199,6 +199,114 @@ body {
   }
 }
 
+/* Liquid Glass Effect Base Classes */
+.gh-btn-liquid-glass,
+.gh-card-liquid-glass,
+.gh-container-liquid-glass,
+.gh-input-liquid-glass,
+.gh-navigation-liquid-glass,
+.gh-typography-liquid-glass {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, backdrop-filter;
+}
+
+.gh-btn-liquid-glass:hover,
+.gh-card-liquid-glass:hover,
+.gh-container-liquid-glass:hover,
+.gh-input-liquid-glass:hover,
+.gh-navigation-liquid-glass:hover,
+.gh-typography-liquid-glass:hover {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.gh-btn-liquid-glass:active,
+.gh-card-liquid-glass:active,
+.gh-container-liquid-glass:active,
+.gh-input-liquid-glass:active,
+.gh-navigation-liquid-glass:active,
+.gh-typography-liquid-glass:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Liquid Glass Interactive States */
+.gh-btn-liquid-glass:focus-visible,
+.gh-card-liquid-glass:focus-visible,
+.gh-container-liquid-glass:focus-visible,
+.gh-input-liquid-glass:focus-visible,
+.gh-navigation-liquid-glass:focus-visible,
+.gh-typography-liquid-glass:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Liquid Glass Performance Optimizations */
+.gh-btn-liquid-glass,
+.gh-card-liquid-glass,
+.gh-container-liquid-glass,
+.gh-input-liquid-glass,
+.gh-navigation-liquid-glass,
+.gh-typography-liquid-glass {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+/* Liquid Glass Displacement Map Debug Mode */
+.gh-liquid-glass-debug {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+/* Liquid Glass Responsive Adjustments */
+@media (max-width: 768px) {
+  .gh-btn-liquid-glass,
+  .gh-card-liquid-glass,
+  .gh-container-liquid-glass,
+  .gh-input-liquid-glass,
+  .gh-navigation-liquid-glass,
+  .gh-typography-liquid-glass {
+    transform: none;
+    will-change: auto;
+  }
+  
+  .gh-btn-liquid-glass:hover,
+  .gh-card-liquid-glass:hover,
+  .gh-container-liquid-glass:hover,
+  .gh-input-liquid-glass:hover,
+  .gh-navigation-liquid-glass:hover,
+  .gh-typography-liquid-glass:hover {
+    transform: none;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .gh-btn-liquid-glass,
+  .gh-card-liquid-glass,
+  .gh-container-liquid-glass,
+  .gh-input-liquid-glass,
+  .gh-navigation-liquid-glass,
+  .gh-typography-liquid-glass {
+    transition: none;
+    animation: none;
+  }
+  
+  .gh-btn-liquid-glass:hover,
+  .gh-card-liquid-glass:hover,
+  .gh-container-liquid-glass:hover,
+  .gh-input-liquid-glass:hover,
+  .gh-navigation-liquid-glass:hover,
+  .gh-typography-liquid-glass:hover {
+    transform: none;
+  }
+}
+
 /* Utility Classes */
 .gh-sr-only {
   position: absolute;

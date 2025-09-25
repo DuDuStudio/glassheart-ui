@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlassHeartUI - iOS 26 滑動導航效果演示</title>
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .demo-container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .demo-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .navigation-demo {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .feature-list li {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: '✨';
+      position: absolute;
+      left: 0;
+    }
+
+    .code-example {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-example pre {
+      color: #e2e8f0;
+      margin: 0;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .highlight {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-section">
+      <h1 class="demo-title">iOS 26 風格滑動導航效果</h1>
+      <p class="demo-description">
+        體驗類似 iOS 26 的滑動 hover 特效，橢圓形背景會平滑地跟隨滑鼠移動到對應的導航項目，並在移動過程中產生動態變形效果
+      </p>
+
+      <div class="navigation-demo">
+        <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-navigation-md gh-navigation-sticky">
+          <div class="gh-navigation-container">
+            <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+            <div class="gh-navigation-menu" id="sliding-menu">
+              <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+              <a href="#" class="gh-navigation-item">產品</a>
+              <a href="#" class="gh-navigation-item">服務</a>
+              <a href="#" class="gh-navigation-item">關於</a>
+              <a href="#" class="gh-navigation-item">聯絡</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="code-example">
+        <pre><code>&lt;nav class="gh-navigation gh-navigation-default gh-glass-medium"&gt;
+  &lt;div class="gh-navigation-container"&gt;
+    &lt;a href="#" class="gh-navigation-brand"&gt;GlassHeartUI&lt;/a&gt;
+    &lt;div class="gh-navigation-menu"&gt;
+      &lt;a href="#" class="gh-navigation-item gh-navigation-item-active"&gt;首頁&lt;/a&gt;
+      &lt;a href="#" class="gh-navigation-item"&gt;產品&lt;/a&gt;
+      &lt;a href="#" class="gh-navigation-item"&gt;服務&lt;/a&gt;
+      &lt;a href="#" class="gh-navigation-item"&gt;關於&lt;/a&gt;
+      &lt;a href="#" class="gh-navigation-item"&gt;聯絡&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2 class="demo-title">特色功能</h2>
+      <ul class="feature-list">
+        <li><span class="highlight">iOS 26 風格滑動效果</span> - 橢圓形背景平滑跟隨滑鼠移動</li>
+        <li><span class="highlight">動態變形動畫</span> - 移動時橢圓形會產生寬度、高度、圓角變形</li>
+        <li><span class="highlight">GPU 加速動畫</span> - 使用 will-change 和 transform3d 優化性能</li>
+        <li><span class="highlight">響應式設計</span> - 自動適配不同螢幕尺寸</li>
+        <li><span class="highlight">無障礙支援</span> - 支援 prefers-reduced-motion 媒體查詢</li>
+        <li><span class="highlight">多框架支援</span> - React、Vue、Svelte、Angular 全支援</li>
+        <li><span class="highlight">主題適配</span> - 完美支援淺色/深色主題</li>
+      </ul>
+    </div>
+
+    <div class="demo-section">
+      <h2 class="demo-title">技術實現</h2>
+      <p class="demo-description">
+        滑動效果使用 CSS ::before 偽元素和 data 屬性來控制位置，配合 JavaScript 事件處理實現平滑的動畫過渡
+      </p>
+
+      <div class="code-example">
+        <pre><code>/* CSS 滑動背景 */
+.gh-navigation-menu::before {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+/* 根據 data-hover-index 屬性定位 */
+.gh-navigation-menu[data-hover-index="0"]::before {
+  transform: translateY(-50%) translateX(0px);
+}
+
+.gh-navigation-menu[data-hover-index="1"]::before {
+  transform: translateY(-50%) translateX(124px);
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 實現滑動效果和變形動畫的 JavaScript 邏輯
+    document.addEventListener('DOMContentLoaded', function() {
+      const menu = document.getElementById('sliding-menu');
+      const items = menu.querySelectorAll('.gh-navigation-item');
+      let hoveredIndex = null;
+      let isDeforming = false;
+
+      // 計算變形參數
+      const calculateDeformParams = (fromIndex, toIndex) => {
+        if (fromIndex === null) return { width: 120, height: 40, radius: 30, opacity: 0.15 };
+        
+        const distance = Math.abs(toIndex - fromIndex);
+        const maxDistance = 5; // Maximum distance for full deformation
+        const intensity = Math.min(distance / maxDistance, 1);
+        
+        return {
+          width: 120 + (intensity * 20), // Expand width by up to 20px
+          height: 40 - (intensity * 5),  // Compress height by up to 5px
+          radius: 30 - (intensity * 5),  // Reduce radius by up to 5px
+          opacity: 0.15 + (intensity * 0.05) // Increase opacity slightly
+        };
+      };
+
+      // 應用變形參數到 CSS 自定義屬性
+      const applyDeformParams = (params) => {
+        menu.style.setProperty('--deform-width', `${params.width}px`);
+        menu.style.setProperty('--deform-height', `${params.height}px`);
+        menu.style.setProperty('--deform-radius', `${params.radius}px`);
+        menu.style.setProperty('--deform-opacity', params.opacity.toString());
+      };
+
+      // 為每個導航項目添加滑鼠事件
+      items.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          const previousIndex = hoveredIndex;
+          hoveredIndex = index;
+          menu.setAttribute('data-hover-index', index);
+          
+          // 計算並應用變形參數
+          const deformParams = calculateDeformParams(previousIndex, index);
+          applyDeformParams(deformParams);
+          
+          // 觸發變形動畫
+          isDeforming = true;
+          menu.setAttribute('data-deforming', 'true');
+          setTimeout(() => {
+            isDeforming = false;
+            menu.removeAttribute('data-deforming');
+          }, 300);
+        });
+
+        item.addEventListener('mouseleave', () => {
+          // 延遲清除，避免快速移動時閃爍
+          setTimeout(() => {
+            if (hoveredIndex === index) {
+              hoveredIndex = null;
+              menu.removeAttribute('data-hover-index');
+              menu.removeAttribute('data-deforming');
+              // 重置變形參數
+              applyDeformParams({ width: 120, height: 40, radius: 30, opacity: 0.15 });
+            }
+          }, 50);
+        });
+      });
+
+      // 導航菜單整體滑鼠離開事件
+      menu.addEventListener('mouseleave', () => {
+        hoveredIndex = null;
+        isDeforming = false;
+        menu.removeAttribute('data-hover-index');
+        menu.removeAttribute('data-deforming');
+        // 重置變形參數
+        applyDeformParams({ width: 120, height: 40, radius: 30, opacity: 0.15 });
+      });
+    });
+  </script>
+</body>
+</html>

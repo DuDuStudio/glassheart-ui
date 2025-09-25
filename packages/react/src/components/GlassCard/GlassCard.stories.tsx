@@ -23,7 +23,7 @@ const meta: Meta<typeof GlassCard> = {
     interactive: {
       control: { type: 'boolean' },
     },
-    liquid: {
+    liquidGlass: {
       control: { type: 'boolean' },
     },
     loading: {
@@ -143,7 +143,7 @@ export const Interactive: Story = {
 
 export const LiquidEffect: Story = {
   args: {
-    liquid: true,
+    liquidGlass: true,
     children: (
       <>
         <GlassCardHeader>
@@ -151,7 +151,7 @@ export const LiquidEffect: Story = {
           <GlassCardDescription>With flowing animation effect</GlassCardDescription>
         </GlassCardHeader>
         <GlassCardContent>
-          <p>This card has a liquid flow animation</p>
+          <p>This card has a liquidGlass flow animation</p>
         </GlassCardContent>
       </>
     ),
@@ -178,13 +178,13 @@ export const Loading: Story = {
 export const ComplexExample: Story = {
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <GlassCard liquid interactive>
+      <GlassCard liquidGlass interactive>
         <GlassCardHeader>
           <GlassCardTitle>Feature 1</GlassCardTitle>
-          <GlassCardDescription>Amazing liquid glass effect</GlassCardDescription>
+          <GlassCardDescription>Amazing liquidGlass glass effect</GlassCardDescription>
         </GlassCardHeader>
         <GlassCardContent>
-          <p>This card demonstrates the full liquid glass experience with interactive hover effects.</p>
+          <p>This card demonstrates the full liquidGlass glass experience with interactive hover effects.</p>
         </GlassCardContent>
         <GlassCardFooter>
           <GlassButton variant="primary" size="sm">Learn More</GlassButton>
@@ -231,7 +231,7 @@ export const GlassEffectShowcase: Story = {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">輕度玻璃效果</h3>
-          <GlassCard liquid size="lg">
+          <GlassCard liquidGlass size="lg">
             <GlassCardHeader>
               <GlassCardTitle>Light Glass</GlassCardTitle>
               <GlassCardDescription>Subtle transparency and blur</GlassCardDescription>
@@ -244,7 +244,7 @@ export const GlassEffectShowcase: Story = {
         
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">中度玻璃效果</h3>
-          <GlassCard liquid size="lg">
+          <GlassCard liquidGlass size="lg">
             <GlassCardHeader>
               <GlassCardTitle>Medium Glass</GlassCardTitle>
               <GlassCardDescription>Balanced transparency and blur</GlassCardDescription>
@@ -257,7 +257,7 @@ export const GlassEffectShowcase: Story = {
         
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">重度玻璃效果</h3>
-          <GlassCard liquid size="lg">
+          <GlassCard liquidGlass size="lg">
             <GlassCardHeader>
               <GlassCardTitle>Heavy Glass</GlassCardTitle>
               <GlassCardDescription>Strong transparency and blur</GlassCardDescription>
@@ -270,7 +270,7 @@ export const GlassEffectShowcase: Story = {
         
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-white">液態流動效果</h3>
-          <GlassCard liquid size="lg">
+          <GlassCard liquidGlass size="lg">
             <GlassCardHeader>
               <GlassCardTitle>Liquid Flow</GlassCardTitle>
               <GlassCardDescription>Dynamic flowing animation</GlassCardDescription>

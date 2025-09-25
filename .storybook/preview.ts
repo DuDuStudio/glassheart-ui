@@ -68,7 +68,6 @@ const preview: Preview = {
         style: { 
           minHeight: '100vh', 
           padding: '2rem',
-          background: 'url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80") center/cover',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',

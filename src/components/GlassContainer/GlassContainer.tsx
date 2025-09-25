@@ -1,5 +1,6 @@
 import React from 'react';
 import './GlassContainer.css';
+import { useLiquidGlass, LiquidGlassOptions } from '../../hooks/useLiquidGlass';
 
 export interface GlassContainerProps {
   children: React.ReactNode;
@@ -8,7 +9,8 @@ export interface GlassContainerProps {
   variant?: 'default' | 'outline' | 'solid' | 'transparent';
   glass?: 'light' | 'medium' | 'heavy';
   interactive?: boolean;
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   animated?: boolean;
   padding?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   margin?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
@@ -32,7 +34,8 @@ const GlassContainer = React.forwardRef<HTMLDivElement, GlassContainerProps>(
       variant = 'default',
       glass = 'medium',
       interactive = false,
-      liquid = false,
+      liquidGlass = false,
+      liquidGlassOptions = {},
       animated = false,
       padding = 'md',
       margin = 'none',
@@ -49,12 +52,21 @@ const GlassContainer = React.forwardRef<HTMLDivElement, GlassContainerProps>(
     },
     ref
   ) => {
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 15,
+      strength: 60,
+      chromaticAberration: 0,
+      blur: 4,
+      ...liquidGlassOptions,
+    });
+
     const baseClasses = 'gh-container';
     const sizeClasses = `gh-container-${size}`;
     const variantClasses = variant !== 'default' ? `gh-container-${variant}` : '';
     const glassClasses = `gh-glass-${glass}`;
     const interactiveClasses = interactive ? 'gh-container-interactive' : '';
-    const liquidClasses = liquid ? 'gh-container-liquid' : '';
+    const liquidGlassClasses = liquidGlass ? 'gh-container-liquid-glass' : '';
     const animatedClasses = animated ? 'gh-container-animated' : '';
     const paddingClasses = padding !== 'none' ? `gh-p-${padding}` : '';
     const marginClasses = margin !== 'none' ? `gh-m-${margin}` : '';
@@ -69,7 +81,7 @@ const GlassContainer = React.forwardRef<HTMLDivElement, GlassContainerProps>(
       variantClasses,
       glassClasses,
       interactiveClasses,
-      liquidClasses,
+      liquidGlassClasses,
       animatedClasses,
       paddingClasses,
       marginClasses,
@@ -82,14 +94,18 @@ const GlassContainer = React.forwardRef<HTMLDivElement, GlassContainerProps>(
       .filter(Boolean)
       .join(' ');
 
+    // Get liquid glass style if enabled
+    const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
     const containerStyle: React.CSSProperties = {
       ...style,
+      ...liquidGlassStyle,
       ...(zIndex !== undefined && { zIndex }),
     };
 
     return (
       <div
-        ref={ref}
+        ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLDivElement> : ref}
         className={classes}
         onClick={onClick}
         onMouseEnter={onMouseEnter}

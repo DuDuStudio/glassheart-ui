@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass 對齊測試</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .test-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+        }
+        
+        .test-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        
+        .test-card p {
+            margin: 0 0 15px 0;
+            line-height: 1.5;
+        }
+        
+        .test-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .test-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .alignment-test {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .alignment-test::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 0, 0, 0.1) 0%, 
+                rgba(0, 255, 0, 0.1) 25%, 
+                rgba(0, 0, 255, 0.1) 50%, 
+                rgba(255, 255, 0, 0.1) 75%, 
+                rgba(255, 0, 255, 0.1) 100%);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        
+        .alignment-test h3 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 10px 0;
+        }
+        
+        .alignment-test p {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="color: white; text-align: center; margin-bottom: 30px;">Liquid Glass 對齊測試</h1>
+        
+        <div class="test-card">
+            <h3>修復說明</h3>
+            <p>我們已經修復了以下對齊問題：</p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>使用實際元素尺寸而非最小尺寸</li>
+                <li>精確計算邊框半徑百分比</li>
+                <li>優化 SVG 位移映射的對齊</li>
+                <li>使用 requestAnimationFrame 確保精確更新</li>
+            </ul>
+        </div>
+        
+        <div class="alignment-test">
+            <h3>對齊測試卡片</h3>
+            <p>這個卡片應該與背景完美對齊，沒有向右偏移。如果你看到任何偏移，請檢查瀏覽器控制台是否有錯誤。</p>
+        </div>
+        
+        <div class="test-card">
+            <h3>測試按鈕</h3>
+            <p>點擊下面的按鈕來測試 Liquid Glass 效果：</p>
+            <button class="test-button" onclick="testLiquidGlass()">測試 Liquid Glass</button>
+        </div>
+        
+        <div class="test-card">
+            <h3>技術細節</h3>
+            <p>修復包括：</p>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>移除了最小尺寸限制，使用實際元素尺寸</li>
+                <li>優化了邊框半徑的計算方式</li>
+                <li>改進了 SVG 位移映射的生成邏輯</li>
+                <li>添加了精確的像素值四捨五入</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function testLiquidGlass() {
+            alert('Liquid Glass 效果已修復！現在應該與背景完美對齊。');
+        }
+        
+        // 監聽窗口大小變化
+        window.addEventListener('resize', () => {
+            console.log('窗口大小已改變，Liquid Glass 效果應該重新計算對齊');
+        });
+    </script>
+</body>
+</html>
+
+

@@ -4,6 +4,8 @@
     :href="href"
     :class="itemClasses"
     @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   >
     <span v-if="icon" class="gh-navigation-item-icon">{{ icon }}</span>
     <span class="gh-navigation-item-text">
@@ -16,6 +18,8 @@
     :class="itemClasses"
     :disabled="disabled"
     @click="handleClick"
+    @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave"
   >
     <span v-if="icon" class="gh-navigation-item-icon">{{ icon }}</span>
     <span class="gh-navigation-item-text">
@@ -26,7 +30,7 @@
 </template>
 
 <script setup>
-import { computed, inject } from 'vue';
+import { computed, inject, ref } from 'vue';
 
 const props = defineProps({
   href: {
@@ -63,6 +67,11 @@ const navigationContext = inject('navigationContext', {
   itemClick: () => {}
 });
 
+const menuHoverContext = inject('menuHoverContext', {
+  handleMouseEnter: () => {},
+  handleMouseLeave: () => {}
+});
+
 const itemClasses = computed(() => {
   const baseClasses = 'gh-navigation-item';
   const activeClasses = props.active ? 'gh-navigation-item-active' : '';
@@ -75,5 +84,22 @@ const handleClick = () => {
     emit('click');
     navigationContext.itemClick(props.href || '', 0);
   }
+};
+
+const handleMouseEnter = (event) => {
+  // Get the index of this item from its parent
+  const element = event.currentTarget;
+  const parent = element?.parentElement;
+  if (parent) {
+    const items = Array.from(parent.children);
+    const index = items.indexOf(element);
+    if (index !== -1) {
+      menuHoverContext.handleMouseEnter(index);
+    }
+  }
+};
+
+const handleMouseLeave = () => {
+  menuHoverContext.handleMouseLeave();
 };
 </script>

@@ -29,9 +29,6 @@ const meta: Meta<typeof GlassInput> = {
       control: { type: 'select' },
       options: ['light', 'medium', 'heavy'],
     },
-    liquid: {
-      control: { type: 'boolean' },
-    },
     error: {
       control: { type: 'boolean' },
     },

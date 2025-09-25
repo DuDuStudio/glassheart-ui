@@ -24,7 +24,7 @@ const meta: Meta<typeof GlassInput> = {
       control: { type: 'select' },
       options: ['light', 'medium', 'heavy'],
     },
-    liquid: {
+    liquidGlass: {
       control: { type: 'boolean' },
     },
     error: {
@@ -176,8 +176,8 @@ export const FloatingLabels: Story = {
 export const LiquidEffect: Story = {
   render: () => (
     <div className="flex flex-col gap-4 w-80">
-      <GlassInput liquid placeholder="Liquid glass input" />
-      <GlassTextarea liquid placeholder="Liquid glass textarea" />
+      <GlassInput liquidGlass placeholder="Liquid glass input" />
+      <GlassTextarea liquidGlass placeholder="Liquid glass textarea" />
     </div>
   ),
 };
@@ -253,8 +253,8 @@ export const GlassEffectShowcase: Story = {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">液態流動效果</h3>
           <div className="space-y-4 w-80">
-            <GlassInput liquid placeholder="Liquid glass input" />
-            <GlassTextarea liquid placeholder="Liquid glass textarea" />
+            <GlassInput liquidGlass placeholder="Liquid glass input" />
+            <GlassTextarea liquidGlass placeholder="Liquid glass textarea" />
           </div>
         </div>
         

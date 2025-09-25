@@ -39,7 +39,7 @@ export class GlassNavigationComponent implements ControlValueAccessor, OnInit, O
   @Input() blur: boolean = true;
   @Input() shadow: ShadowType = 'md';
   @Input() padding: SpacingType = 'md';
-  @Input() rounded: RoundedType = 'none';
+  @Input() rounded: RoundedType = 'full';
   @Input() zIndex: number | undefined = undefined;
   @Input() className: string = '';
 

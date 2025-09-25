@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlassHeartUI - 圓角導航測試</title>
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .demo-container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .demo-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .rounded-test {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .rounded-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .rounded-label {
+      color: white;
+      font-weight: 600;
+      min-width: 100px;
+    }
+
+    .rounded-demo {
+      flex: 1;
+    }
+
+    .code-example {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .code-example pre {
+      color: #e2e8f0;
+      margin: 0;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .highlight {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-section">
+      <h1 class="demo-title">導航圓角屬性測試</h1>
+      <p class="demo-description">
+        測試不同 rounded 屬性的效果，驗證圓角樣式是否正確應用
+      </p>
+
+      <div class="rounded-test">
+        <div class="rounded-item">
+          <div class="rounded-label">none (0px) - 完全無圓角</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-none">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">sm (4px)</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-sm">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">md (8px)</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-md">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">lg (12px)</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-lg">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">xl (16px)</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-xl">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">full (9999px)</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-full">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">default (48px) - 原始預設值</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div class="rounded-item">
+          <div class="rounded-label">full (9999px) - 新的預設值</div>
+          <div class="rounded-demo">
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-top gh-rounded-full">
+              <div class="gh-navigation-container">
+                <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                <div class="gh-navigation-menu">
+                  <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                  <a href="#" class="gh-navigation-item">產品</a>
+                  <a href="#" class="gh-navigation-item">服務</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-example">
+        <pre><code>// React 使用方式
+&lt;GlassNavigation rounded="lg" glass="medium"&gt;
+  &lt;GlassNavigationBrand href="#"&gt;品牌&lt;/GlassNavigationBrand&gt;
+  &lt;GlassNavigationMenu&gt;
+    &lt;GlassNavigationItem href="#" active&gt;首頁&lt;/GlassNavigationItem&gt;
+    &lt;GlassNavigationItem href="#"&gt;產品&lt;/GlassNavigationItem&gt;
+  &lt;/GlassNavigationMenu&gt;
+&lt;/GlassNavigation&gt;
+
+// HTML 使用方式
+&lt;nav class="gh-navigation gh-navigation-default gh-glass-medium gh-rounded-lg"&gt;
+  &lt;div class="gh-navigation-container"&gt;
+    &lt;a href="#" class="gh-navigation-brand"&gt;品牌&lt;/a&gt;
+    &lt;div class="gh-navigation-menu"&gt;
+      &lt;a href="#" class="gh-navigation-item gh-navigation-item-active"&gt;首頁&lt;/a&gt;
+      &lt;a href="#" class="gh-navigation-item"&gt;產品&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

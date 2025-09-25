@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import './GlassTypography.css';
+import { useLiquidGlass, LiquidGlassOptions } from '../../hooks/useLiquidGlass';
 
 export interface GlassTypographyProps {
   children: string;
@@ -7,7 +8,8 @@ export interface GlassTypographyProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
   glass?: 'light' | 'medium' | 'heavy';
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   gradient?: boolean;
   animated?: boolean;
   className?: string;
@@ -33,7 +35,8 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
   size = 'md',
   weight = 'normal',
   glass = 'medium',
-  liquid = false,
+  liquidGlass = false,
+  liquidGlassOptions = {},
   gradient = false,
   animated = false,
   className = '',
@@ -57,6 +60,15 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
   const animationRef = useRef<number>();
+
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 8,
+      strength: 80,
+      chromaticAberration: 0,
+      blur: 3,
+      ...liquidGlassOptions,
+    });
 
   // 計算字體大小
   const getFontSize = useCallback(() => {
@@ -400,7 +412,7 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
     `gh-typography-${size}`,
     `gh-typography-${weight}`,
     `gh-glass-${glass}`,
-    liquid ? 'gh-liquid-flow' : '',
+    liquidGlass ? 'gh-typography-liquid-glass' : '',
     gradient ? 'gh-gradient' : '',
     animated ? 'gh-animated' : '',
     glow ? 'gh-glow' : '',
@@ -408,12 +420,16 @@ export const GlassTypography: React.FC<GlassTypographyProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
+  // Get liquid glass style if enabled
+  const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
   return (
     <div
-      ref={containerRef}
+      ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLDivElement> : containerRef}
       className={componentClasses}
       style={{
         ...style,
+        ...liquidGlassStyle,
         fontFamily,
         letterSpacing: `${letterSpacing}px`,
         lineHeight,

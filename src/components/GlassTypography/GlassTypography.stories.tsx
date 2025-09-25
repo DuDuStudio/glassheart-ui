@@ -39,10 +39,6 @@ const meta: Meta<typeof GlassTypography> = {
       options: ['light', 'medium', 'heavy'],
       description: '玻璃效果強度',
     },
-    liquid: {
-      control: { type: 'boolean' },
-      description: '是否啟用液體流動效果',
-    },
     gradient: {
       control: { type: 'boolean' },
       description: '是否啟用漸變效果',

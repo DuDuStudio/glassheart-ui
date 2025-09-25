@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlassHeartUI - 底部導航測試</title>
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding-bottom: 80px; /* 為底部導航留出空間 */
+    }
+
+    .demo-container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .demo-section {
+      margin-bottom: 3rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-title {
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .demo-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .position-test {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .position-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .position-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .position-btn.active {
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .content-area {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .test-info {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="demo-section">
+      <h1 class="demo-title">底部導航位置測試</h1>
+      <p class="demo-description">
+        測試不同位置的導航組件，特別是底部導航的定位和樣式
+      </p>
+
+      <div class="position-test">
+        <button class="position-btn" onclick="changePosition('top')">頂部</button>
+        <button class="position-btn active" onclick="changePosition('bottom')">底部</button>
+        <button class="position-btn" onclick="changePosition('left')">左側</button>
+        <button class="position-btn" onclick="changePosition('right')">右側</button>
+      </div>
+
+      <div class="test-info">
+        <h3>當前測試：底部導航</h3>
+        <p>• 導航應該固定在頁面底部</p>
+        <p>• 應該有圓角頂部邊框</p>
+        <p>• 滑動效果應該正常工作</p>
+        <p>• 在移動端應該有適當的間距</p>
+      </div>
+
+      <div class="content-area">
+        <div>
+          <h2>頁面內容區域</h2>
+          <p>這裡是頁面的主要內容，底部導航應該固定在視窗底部</p>
+          <p>滾動頁面時，底部導航應該保持可見</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底部導航 -->
+  <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-bottom gh-navigation-md" id="test-navigation">
+    <div class="gh-navigation-container">
+      <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+      <div class="gh-navigation-menu" id="sliding-menu">
+        <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+        <a href="#" class="gh-navigation-item">產品</a>
+        <a href="#" class="gh-navigation-item">服務</a>
+        <a href="#" class="gh-navigation-item">關於</a>
+        <a href="#" class="gh-navigation-item">聯絡</a>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    // 實現滑動效果和變形動畫的 JavaScript 邏輯
+    document.addEventListener('DOMContentLoaded', function() {
+      const menu = document.getElementById('sliding-menu');
+      const items = menu.querySelectorAll('.gh-navigation-item');
+      let hoveredIndex = null;
+      let isDeforming = false;
+
+      // 計算變形參數
+      const calculateDeformParams = (fromIndex, toIndex) => {
+        if (fromIndex === null) return { width: 120, height: 40, radius: 30, opacity: 0.15 };
+        
+        const distance = Math.abs(toIndex - fromIndex);
+        const maxDistance = 5;
+        const intensity = Math.min(distance / maxDistance, 1);
+        
+        return {
+          width: 120 + (intensity * 20),
+          height: 40 - (intensity * 5),
+          radius: 30 - (intensity * 5),
+          opacity: 0.15 + (intensity * 0.05)
+        };
+      };
+
+      // 應用變形參數到 CSS 自定義屬性
+      const applyDeformParams = (params) => {
+        menu.style.setProperty('--deform-width', `${params.width}px`);
+        menu.style.setProperty('--deform-height', `${params.height}px`);
+        menu.style.setProperty('--deform-radius', `${params.radius}px`);
+        menu.style.setProperty('--deform-opacity', params.opacity.toString());
+      };
+
+      // 為每個導航項目添加滑鼠事件
+      items.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+          const previousIndex = hoveredIndex;
+          hoveredIndex = index;
+          menu.setAttribute('data-hover-index', index);
+          
+          const deformParams = calculateDeformParams(previousIndex, index);
+          applyDeformParams(deformParams);
+          
+          isDeforming = true;
+          menu.setAttribute('data-deforming', 'true');
+          setTimeout(() => {
+            isDeforming = false;
+            menu.removeAttribute('data-deforming');
+          }, 300);
+        });
+
+        item.addEventListener('mouseleave', () => {
+          setTimeout(() => {
+            if (hoveredIndex === index) {
+              hoveredIndex = null;
+              menu.removeAttribute('data-hover-index');
+              menu.removeAttribute('data-deforming');
+              applyDeformParams({ width: 120, height: 40, radius: 30, opacity: 0.15 });
+            }
+          }, 50);
+        });
+      });
+
+      menu.addEventListener('mouseleave', () => {
+        hoveredIndex = null;
+        isDeforming = false;
+        menu.removeAttribute('data-hover-index');
+        menu.removeAttribute('data-deforming');
+        applyDeformParams({ width: 120, height: 40, radius: 30, opacity: 0.15 });
+      });
+    });
+
+    // 位置切換功能
+    function changePosition(position) {
+      const nav = document.getElementById('test-navigation');
+      const buttons = document.querySelectorAll('.position-btn');
+      
+      // 移除所有位置類別
+      nav.classList.remove('gh-navigation-top', 'gh-navigation-bottom', 'gh-navigation-left', 'gh-navigation-right');
+      
+      // 添加新的位置類別
+      nav.classList.add(`gh-navigation-${position}`);
+      
+      // 更新按鈕狀態
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      // 更新測試信息
+      const testInfo = document.querySelector('.test-info h3');
+      testInfo.textContent = `當前測試：${getPositionName(position)}導航`;
+    }
+
+    function getPositionName(position) {
+      const names = {
+        'top': '頂部',
+        'bottom': '底部',
+        'left': '左側',
+        'right': '右側'
+      };
+      return names[position] || position;
+    }
+  </script>
+</body>
+</html>

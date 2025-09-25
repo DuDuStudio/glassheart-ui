@@ -1,11 +1,13 @@
 import React from 'react';
 import './GlassInput.css';
+import { useLiquidGlass, LiquidGlassOptions } from '../../hooks/useLiquidGlass';
 
 export interface GlassInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'default' | 'outline' | 'solid';
   glass?: 'light' | 'medium' | 'heavy';
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   error?: boolean;
   className?: string;
   icon?: React.ReactNode;
@@ -17,7 +19,8 @@ export interface GlassTextareaProps extends React.TextareaHTMLAttributes<HTMLTex
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'default' | 'outline' | 'solid';
   glass?: 'light' | 'medium' | 'heavy';
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   error?: boolean;
   className?: string;
 }
@@ -46,7 +49,8 @@ const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
       size = 'md',
       variant = 'default',
       glass = 'medium',
-      liquid = false,
+      liquidGlass = false,
+      liquidGlassOptions = {},
       error = false,
       className = '',
       icon,
@@ -56,11 +60,20 @@ const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
     },
     ref
   ) => {
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 6,
+      strength: 120,
+      chromaticAberration: 0,
+      blur: 2,
+      ...liquidGlassOptions,
+    });
+
     const baseClasses = 'gh-input';
     const sizeClasses = `gh-input-${size}`;
     const variantClasses = variant !== 'default' ? `gh-input-${variant}` : '';
     const glassClasses = `gh-glass-${glass}`;
-    const liquidClasses = liquid ? 'gh-input-liquid' : '';
+    const liquidGlassClasses = liquidGlass ? 'gh-input-liquid-glass' : '';
     const errorClasses = error ? 'border-red-500' : '';
 
     const inputClasses = [
@@ -68,18 +81,21 @@ const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
       sizeClasses,
       variantClasses,
       glassClasses,
-      liquidClasses,
+      liquidGlassClasses,
       errorClasses,
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
+    // Get liquid glass style if enabled
+    const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
     if (icon || button) {
       const containerClasses = [
         icon ? 'gh-input-with-icon' : '',
         button ? 'gh-input-with-button' : '',
-        liquidClasses,
+        liquidGlassClasses,
       ]
         .filter(Boolean)
         .join(' ');
@@ -92,8 +108,9 @@ const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
             </div>
           )}
           <input
-            ref={ref}
+            ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLInputElement> : ref}
             className={inputClasses}
+            style={liquidGlassStyle}
             {...props}
           />
           {button && (
@@ -107,8 +124,9 @@ const GlassInput = React.forwardRef<HTMLInputElement, GlassInputProps>(
 
     return (
       <input
-        ref={ref}
+        ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLInputElement> : ref}
         className={inputClasses}
+        style={liquidGlassStyle}
         {...props}
       />
     );
@@ -123,18 +141,28 @@ const GlassTextarea = React.forwardRef<HTMLTextAreaElement, GlassTextareaProps>(
       size = 'md',
       variant = 'default',
       glass = 'medium',
-      liquid = false,
+      liquidGlass = false,
+      liquidGlassOptions = {},
       error = false,
       className = '',
       ...props
     },
     ref
   ) => {
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 8,
+      strength: 100,
+      chromaticAberration: 0,
+      blur: 3,
+      ...liquidGlassOptions,
+    });
+
     const baseClasses = 'gh-textarea';
     const sizeClasses = `gh-input-${size}`;
     const variantClasses = variant !== 'default' ? `gh-input-${variant}` : '';
     const glassClasses = `gh-glass-${glass}`;
-    const liquidClasses = liquid ? 'gh-input-liquid' : '';
+    const liquidGlassClasses = liquidGlass ? 'gh-input-liquid-glass' : '';
     const errorClasses = error ? 'border-red-500' : '';
 
     const classes = [
@@ -142,17 +170,21 @@ const GlassTextarea = React.forwardRef<HTMLTextAreaElement, GlassTextareaProps>(
       sizeClasses,
       variantClasses,
       glassClasses,
-      liquidClasses,
+      liquidGlassClasses,
       errorClasses,
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
+    // Get liquid glass style if enabled
+    const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
     return (
       <textarea
-        ref={ref}
+        ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLTextAreaElement> : ref}
         className={classes}
+        style={liquidGlassStyle}
         {...props}
       />
     );

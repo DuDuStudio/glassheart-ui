@@ -32,9 +32,6 @@ const meta: Meta<typeof GlassCard> = {
     interactive: {
       control: { type: 'boolean' },
     },
-    liquid: {
-      control: { type: 'boolean' },
-    },
     loading: {
       control: { type: 'boolean' },
     },
@@ -164,7 +161,7 @@ export const Interactive: Story = {
 
 export const LiquidEffect: Story = {
   args: {
-    liquid: true,
+    liquidGlass: true,
     children: (
       <>
         <GlassCardHeader>

@@ -1,7 +1,10 @@
-import { Component, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UseLiquidGlassService, LiquidGlassOptions } from '../../services/useLiquidGlass.service';
+import { Observable } from 'rxjs';
 
 export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'accent' | 'destructive' | 'outline' | 'ghost' | 'link';
+export type ButtonShape = 'default' | 'circle' | 'pill';
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type GlassType = 'light' | 'medium' | 'heavy';
 
@@ -9,7 +12,9 @@ export type GlassType = 'light' | 'medium' | 'heavy';
   selector: 'gh-glass-button',
   template: `
     <button
+      #buttonElement
       [class]="buttonClasses"
+      [style]="liquidGlassStyle | async"
       [disabled]="disabled || loading"
       (click)="onClick.emit($event)"
       (focus)="onFocus.emit($event)"
@@ -29,14 +34,15 @@ export type GlassType = 'light' | 'medium' | 'heavy';
     }
   ]
 })
-export class GlassButtonComponent implements ControlValueAccessor {
+export class GlassButtonComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @Input() variant: ButtonVariant = 'default';
+  @Input() shape: ButtonShape = 'default';
   @Input() size: ButtonSize = 'md';
   @Input() glass: GlassType = 'medium';
-  @Input() liquid: boolean = false;
+  @Input() liquidGlass: boolean = false;
+  @Input() liquidGlassOptions: Partial<LiquidGlassOptions> = {};
   @Input() loading: boolean = false;
   @Input() disabled: boolean = false;
-  @Input() className: string = '';
 
   @Output() onClick = new EventEmitter<MouseEvent>();
   @Output() onFocus = new EventEmitter<FocusEvent>();
@@ -44,54 +50,71 @@ export class GlassButtonComponent implements ControlValueAccessor {
   @Output() onMouseEnter = new EventEmitter<MouseEvent>();
   @Output() onMouseLeave = new EventEmitter<MouseEvent>();
 
+  public liquidGlassStyle: Observable<{ backdropFilter: string }> = new Observable();
+
+  private liquidGlassHook: any;
+
+  constructor(private useLiquidGlassService: UseLiquidGlassService) {}
+
+  ngOnInit() {
+    if (this.liquidGlass) {
+      this.liquidGlassHook = this.useLiquidGlassService.useLiquidGlass({
+        depth: 8,
+        strength: 100,
+        chromaticAberration: 0,
+        blur: 2,
+        ...this.liquidGlassOptions,
+      });
+      
+      this.liquidGlassStyle = this.liquidGlassHook.liquidGlassStyle$;
+    }
+  }
+
+  ngOnDestroy() {
+    // Cleanup is handled by the service
+  }
+
   get buttonClasses(): string {
-    const classes = ['gh-button'];
+    const classes = ['gh-btn'];
     
-    if (this.variant) {
-      classes.push(`gh-button-${this.variant}`);
+    // Variant classes
+    classes.push(`gh-btn-${this.variant}`);
+    
+    // Shape classes
+    if (this.shape !== 'default') {
+      classes.push(`gh-btn-${this.shape}`);
     }
     
-    if (this.size) {
-      classes.push(`gh-button-${this.size}`);
+    // Size classes
+    classes.push(`gh-btn-${this.size}`);
+    
+    // Glass classes
+    classes.push(`gh-glass-${this.glass}`);
+    
+    // Liquid glass classes
+    if (this.liquidGlass) {
+      classes.push('gh-btn-liquid-glass');
     }
     
-    if (this.glass) {
-      classes.push(`gh-glass-${this.glass}`);
-    }
-    
-    if (this.liquid) {
-      classes.push('gh-liquid-flow');
-    }
-    
+    // Loading classes
     if (this.loading) {
-      classes.push('gh-loading');
+      classes.push('gh-btn-loading');
     }
     
-    if (this.disabled) {
-      classes.push('gh-disabled');
-    }
-
-    if (this.className) {
-      classes.push(this.className);
-    }
-
-    return classes.join(' ');
+    return classes.filter(Boolean).join(' ');
   }
 
   // ControlValueAccessor implementation
-  private onChange = (value: any) => {};
-  private onTouched = () => {};
-
   writeValue(value: any): void {
-    // Button doesn't have a value, but we can track disabled state
+    // Not applicable for buttons
   }
 
   registerOnChange(fn: (value: any) => void): void {
-    this.onChange = fn;
+    // Not applicable for buttons
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
+    // Not applicable for buttons
   }
 
   setDisabledState(isDisabled: boolean): void {

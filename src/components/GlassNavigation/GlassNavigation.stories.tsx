@@ -47,10 +47,6 @@ const meta: Meta<typeof GlassNavigation> = {
       control: { type: 'boolean' },
       description: '是否固定定位',
     },
-    liquid: {
-      control: { type: 'boolean' },
-      description: '是否啟用液體流動效果',
-    },
     animated: {
       control: { type: 'boolean' },
       description: '是否啟用動畫效果',
@@ -279,7 +275,7 @@ export const LiquidFlow: Story = {
     glass: 'medium',
     position: 'top',
     size: 'md',
-    liquid: true,
+    liquidGlass: true,
   },
   render: (args) => (
     <div style={{ background: 'transparent', minHeight: '100vh' }}>
@@ -367,7 +363,7 @@ export const ComplexNavigation: Story = {
     position: 'top',
     size: 'lg',
     sticky: true,
-    liquid: true,
+    liquidGlass: true,
   },
   render: (args) => (
     <div style={{ background: 'transparent', minHeight: '200vh' }}>

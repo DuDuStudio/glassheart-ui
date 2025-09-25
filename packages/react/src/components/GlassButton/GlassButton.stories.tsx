@@ -22,7 +22,7 @@ const meta: Meta<typeof GlassButton> = {
       control: { type: 'select' },
       options: ['light', 'medium', 'heavy'],
     },
-    liquid: {
+    liquidGlass: {
       control: { type: 'boolean' },
     },
     loading: {
@@ -83,9 +83,9 @@ export const GlassIntensities: Story = {
 export const LiquidEffect: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <GlassButton liquid>Liquid Button</GlassButton>
-      <GlassButton variant="primary" liquid>Primary Liquid</GlassButton>
-      <GlassButton variant="accent" liquid>Accent Liquid</GlassButton>
+      <GlassButton liquidGlass>Liquid Button</GlassButton>
+      <GlassButton variant="primary" liquidGlass>Primary Liquid</GlassButton>
+      <GlassButton variant="accent" liquidGlass>Accent Liquid</GlassButton>
     </div>
   ),
 };
@@ -147,7 +147,7 @@ export const ComplexExample: Story = {
   render: () => (
     <div className="space-y-6">
       <div className="flex gap-4 flex-wrap">
-        <GlassButton variant="primary" liquid size="lg">
+        <GlassButton variant="primary" liquidGlass size="lg">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
@@ -193,23 +193,23 @@ export const GlassEffectShowcase: Story = {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">液態流動效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <GlassButton variant="primary" liquid size="lg">Primary Liquid</GlassButton>
-            <GlassButton variant="accent" liquid size="lg">Accent Liquid</GlassButton>
-            <GlassButton variant="secondary" liquid size="lg">Secondary Liquid</GlassButton>
+            <GlassButton variant="primary" liquidGlass size="lg">Primary Liquid</GlassButton>
+            <GlassButton variant="accent" liquidGlass size="lg">Accent Liquid</GlassButton>
+            <GlassButton variant="secondary" liquidGlass size="lg">Secondary Liquid</GlassButton>
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">不同變體效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <GlassButton variant="default" liquid>Default</GlassButton>
-            <GlassButton variant="primary" liquid>Primary</GlassButton>
-            <GlassButton variant="secondary" liquid>Secondary</GlassButton>
-            <GlassButton variant="accent" liquid>Accent</GlassButton>
-            <GlassButton variant="destructive" liquid>Destructive</GlassButton>
-            <GlassButton variant="outline" liquid>Outline</GlassButton>
-            <GlassButton variant="ghost" liquid>Ghost</GlassButton>
-            <GlassButton variant="link" liquid>Link</GlassButton>
+            <GlassButton variant="default" liquidGlass>Default</GlassButton>
+            <GlassButton variant="primary" liquidGlass>Primary</GlassButton>
+            <GlassButton variant="secondary" liquidGlass>Secondary</GlassButton>
+            <GlassButton variant="accent" liquidGlass>Accent</GlassButton>
+            <GlassButton variant="destructive" liquidGlass>Destructive</GlassButton>
+            <GlassButton variant="outline" liquidGlass>Outline</GlassButton>
+            <GlassButton variant="ghost" liquidGlass>Ghost</GlassButton>
+            <GlassButton variant="link" liquidGlass>Link</GlassButton>
           </div>
         </div>
       </div>

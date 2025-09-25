@@ -1,18 +1,41 @@
+import { useLiquidGlass, LiquidGlassOptions } from '../utils/useLiquidGlass';
+
+export interface ButtonOptions {
+  variant?: 'default' | 'primary' | 'secondary' | 'accent' | 'destructive' | 'outline' | 'ghost' | 'link';
+  shape?: 'default' | 'circle' | 'pill';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  glass?: 'light' | 'medium' | 'heavy';
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
+  loading?: boolean;
+  disabled?: boolean;
+  text?: string;
+  onClick?: (event: MouseEvent) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
+  onMouseEnter?: (event: MouseEvent) => void;
+  onMouseLeave?: (event: MouseEvent) => void;
+}
+
 export class GlassButton {
   private element: HTMLButtonElement;
   private options: ButtonOptions;
+  private liquidGlassHook?: ReturnType<typeof useLiquidGlass>;
 
   constructor(options: ButtonOptions = {}) {
     this.options = {
       variant: 'default',
+      shape: 'default',
       size: 'md',
       glass: 'medium',
-      liquid: false,
+      liquidGlass: false,
+      liquidGlassOptions: {},
       loading: false,
       disabled: false,
       ...options
     };
     this.element = this.createElement();
+    this.setupLiquidGlass();
   }
 
   private createElement(): HTMLButtonElement {
@@ -30,82 +53,111 @@ export class GlassButton {
     if (this.options.onClick) {
       button.addEventListener('click', this.options.onClick);
     }
-
+    
+    if (this.options.onFocus) {
+      button.addEventListener('focus', this.options.onFocus);
+    }
+    
+    if (this.options.onBlur) {
+      button.addEventListener('blur', this.options.onBlur);
+    }
+    
+    if (this.options.onMouseEnter) {
+      button.addEventListener('mouseenter', this.options.onMouseEnter);
+    }
+    
+    if (this.options.onMouseLeave) {
+      button.addEventListener('mouseleave', this.options.onMouseLeave);
+    }
+    
     return button;
   }
 
+  private setupLiquidGlass() {
+    if (this.options.liquidGlass) {
+      this.liquidGlassHook = useLiquidGlass({
+        depth: 8,
+        strength: 100,
+        chromaticAberration: 0,
+        blur: 2,
+        ...this.options.liquidGlassOptions,
+      });
+      
+      this.liquidGlassHook.elementRef = this.element;
+    }
+  }
+
   private getClassNames(): string {
-    const classes = ['gh-button'];
+    const classes = ['gh-btn'];
     
     // Variant classes
-    if (this.options.variant) {
-      classes.push(`gh-button-${this.options.variant}`);
+    classes.push(`gh-btn-${this.options.variant}`);
+    
+    // Shape classes
+    if (this.options.shape !== 'default') {
+      classes.push(`gh-btn-${this.options.shape}`);
     }
     
     // Size classes
-    if (this.options.size) {
-      classes.push(`gh-button-${this.options.size}`);
+    classes.push(`gh-btn-${this.options.size}`);
+    
+    // Glass classes
+    classes.push(`gh-glass-${this.options.glass}`);
+    
+    // Liquid glass classes
+    if (this.options.liquidGlass) {
+      classes.push('gh-btn-liquid-glass');
     }
     
-    // Glass effect
-    if (this.options.glass) {
-      classes.push(`gh-glass-${this.options.glass}`);
-    }
-    
-    // Liquid effect
-    if (this.options.liquid) {
-      classes.push('gh-liquid-flow');
-    }
-    
-    // Loading state
+    // Loading classes
     if (this.options.loading) {
-      classes.push('gh-loading');
+      classes.push('gh-btn-loading');
     }
     
-    // Disabled state
-    if (this.options.disabled) {
-      classes.push('gh-disabled');
-    }
-
-    return classes.join(' ');
-  }
-
-  public render(container: HTMLElement | string): void {
-    const target = typeof container === 'string' 
-      ? document.querySelector(container) 
-      : container;
-    
-    if (target) {
-      target.appendChild(this.element);
-    }
-  }
-
-  public destroy(): void {
-    if (this.element.parentNode) {
-      this.element.parentNode.removeChild(this.element);
-    }
+    return classes.filter(Boolean).join(' ');
   }
 
   public getElement(): HTMLButtonElement {
     return this.element;
   }
 
-  public setText(text: string): void {
-    this.element.textContent = text;
+  public updateOptions(newOptions: Partial<ButtonOptions>): void {
+    this.options = { ...this.options, ...newOptions };
+    this.element.className = this.getClassNames();
+    this.element.disabled = this.options.disabled || this.options.loading || false;
+    
+    // Update text content
+    if (newOptions.text !== undefined) {
+      this.element.textContent = this.options.text || 'Button';
+    }
+    
+    // Update loading state
+    if (newOptions.loading !== undefined) {
+      const existingSpinner = this.element.querySelector('.gh-loading-spinner');
+      if (this.options.loading && !existingSpinner) {
+        const spinner = document.createElement('span');
+        spinner.className = 'gh-loading-spinner';
+        this.element.appendChild(spinner);
+      } else if (!this.options.loading && existingSpinner) {
+        existingSpinner.remove();
+      }
+    }
+    
+    // Update liquid glass
+    if (newOptions.liquidGlass !== undefined) {
+      if (this.options.liquidGlass && !this.liquidGlassHook) {
+        this.setupLiquidGlass();
+      } else if (!this.options.liquidGlass && this.liquidGlassHook) {
+        this.liquidGlassHook.cleanup();
+        this.liquidGlassHook = undefined;
+      }
+    }
   }
 
-  public setDisabled(disabled: boolean): void {
-    this.element.disabled = disabled;
+  public destroy(): void {
+    if (this.liquidGlassHook) {
+      this.liquidGlassHook.cleanup();
+    }
+    this.element.remove();
   }
-}
-
-export interface ButtonOptions {
-  variant?: 'default' | 'primary' | 'secondary' | 'accent' | 'destructive' | 'outline' | 'ghost' | 'link';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  glass?: 'light' | 'medium' | 'heavy';
-  liquid?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  text?: string;
-  onClick?: (event: MouseEvent) => void;
 }

@@ -13,7 +13,7 @@
   export let blur = true;
   export let shadow = 'md';
   export let padding = 'md';
-  export let rounded = 'none';
+  export let rounded = 'full';
   export let zIndex = undefined;
   export let className = '';
 

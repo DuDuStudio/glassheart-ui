@@ -19,6 +19,10 @@ const meta: Meta<typeof GlassButton> = {
       control: { type: 'select' },
       options: ['default', 'primary', 'secondary', 'accent', 'destructive', 'outline', 'ghost', 'link'],
     },
+    shape: {
+      control: { type: 'select' },
+      options: ['default', 'circle', 'pill'],
+    },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -27,8 +31,11 @@ const meta: Meta<typeof GlassButton> = {
       control: { type: 'select' },
       options: ['light', 'medium', 'heavy'],
     },
-    liquid: {
+    liquidGlass: {
       control: { type: 'boolean' },
+    },
+    liquidGlassOptions: {
+      control: { type: 'object' },
     },
     loading: {
       control: { type: 'boolean' },
@@ -92,9 +99,71 @@ export const GlassIntensities: Story = {
 export const LiquidEffect: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <GlassButton liquid>Liquid Button</GlassButton>
-      <GlassButton variant="primary" liquid>Primary Liquid</GlassButton>
-      <GlassButton variant="accent" liquid>Accent Liquid</GlassButton>
+      <GlassButton liquidGlass>Liquid Glass Button</GlassButton>
+      <GlassButton variant="primary" liquidGlass>Primary Liquid Glass</GlassButton>
+      <GlassButton variant="accent" liquidGlass>Accent Liquid Glass</GlassButton>
+    </div>
+  ),
+};
+
+export const Shapes: Story = {
+  render: () => (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Default Shape</h3>
+        <div className="flex gap-4 flex-wrap">
+          <GlassButton variant="primary">Default</GlassButton>
+          <GlassButton variant="secondary">Default</GlassButton>
+          <GlassButton variant="accent">Default</GlassButton>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Circle Shape (Icon/Image)</h3>
+        <div className="flex gap-4 flex-wrap items-center">
+          <GlassButton variant="primary" shape="circle" size="sm">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+          </GlassButton>
+          <GlassButton variant="secondary" shape="circle" size="md">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </GlassButton>
+          <GlassButton variant="accent" shape="circle" size="lg">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </GlassButton>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Pill Shape (Icon/Text/Image)</h3>
+        <div className="flex gap-4 flex-wrap">
+          <GlassButton variant="primary" shape="pill">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Add Item
+          </GlassButton>
+          <GlassButton variant="secondary" shape="pill">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            View Profile
+          </GlassButton>
+          <GlassButton variant="accent" shape="pill">
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            Like
+          </GlassButton>
+        </div>
+      </div>
     </div>
   ),
 };
@@ -156,7 +225,7 @@ export const ComplexExample: Story = {
   render: () => (
     <div className="space-y-6">
       <div className="flex gap-4 flex-wrap">
-        <GlassButton variant="primary" liquid size="lg">
+        <GlassButton variant="primary" liquidGlass size="lg">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
@@ -202,23 +271,23 @@ export const GlassEffectShowcase: Story = {
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">液態流動效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <GlassButton variant="primary" liquid size="lg">Primary Liquid</GlassButton>
-            <GlassButton variant="accent" liquid size="lg">Accent Liquid</GlassButton>
-            <GlassButton variant="secondary" liquid size="lg">Secondary Liquid</GlassButton>
+            <GlassButton variant="primary" liquidGlass size="lg">Primary Liquid</GlassButton>
+            <GlassButton variant="accent" liquidGlass size="lg">Accent Liquid</GlassButton>
+            <GlassButton variant="secondary" liquidGlass size="lg">Secondary Liquid</GlassButton>
           </div>
         </div>
         
         <div>
           <h3 className="text-xl font-semibold text-white mb-4">不同變體效果</h3>
           <div className="flex gap-4 flex-wrap">
-            <GlassButton variant="default" liquid>Default</GlassButton>
-            <GlassButton variant="primary" liquid>Primary</GlassButton>
-            <GlassButton variant="secondary" liquid>Secondary</GlassButton>
-            <GlassButton variant="accent" liquid>Accent</GlassButton>
-            <GlassButton variant="destructive" liquid>Destructive</GlassButton>
-            <GlassButton variant="outline" liquid>Outline</GlassButton>
-            <GlassButton variant="ghost" liquid>Ghost</GlassButton>
-            <GlassButton variant="link" liquid>Link</GlassButton>
+            <GlassButton variant="default" liquidGlass>Default</GlassButton>
+            <GlassButton variant="primary" liquidGlass>Primary</GlassButton>
+            <GlassButton variant="secondary" liquidGlass>Secondary</GlassButton>
+            <GlassButton variant="accent" liquidGlass>Accent</GlassButton>
+            <GlassButton variant="destructive" liquidGlass>Destructive</GlassButton>
+            <GlassButton variant="outline" liquidGlass>Outline</GlassButton>
+            <GlassButton variant="ghost" liquidGlass>Ghost</GlassButton>
+            <GlassButton variant="link" liquidGlass>Link</GlassButton>
           </div>
         </div>
       </div>
@@ -233,21 +302,21 @@ export const WithInteractions: Story = {
       <div className="flex gap-4 flex-wrap">
         <GlassButton 
           variant="primary" 
-          liquid 
+          liquidGlass 
           onClick={action('primary-clicked')}
         >
           Click Me
         </GlassButton>
         <GlassButton 
           variant="secondary" 
-          liquid 
+          liquidGlass 
           onClick={action('secondary-clicked')}
         >
           Also Clickable
         </GlassButton>
         <GlassButton 
           variant="accent" 
-          liquid 
+          liquidGlass 
           onClick={action('accent-clicked')}
         >
           Interactive
@@ -269,21 +338,21 @@ export const InteractionsDemo: Story = {
       <div className="flex gap-4 flex-wrap">
         <GlassButton 
           variant="primary" 
-          liquid 
+          liquidGlass 
           onClick={action('primary-interaction')}
         >
           Primary Interaction
         </GlassButton>
         <GlassButton 
           variant="secondary" 
-          liquid 
+          liquidGlass 
           onClick={action('secondary-interaction')}
         >
           Secondary Interaction
         </GlassButton>
         <GlassButton 
           variant="accent" 
-          liquid 
+          liquidGlass 
           onClick={action('accent-interaction')}
         >
           Accent Interaction
@@ -309,21 +378,21 @@ export const InteractionsTest: Story = {
       <div className="flex gap-4 flex-wrap">
         <GlassButton 
           variant="primary" 
-          liquid 
+          liquidGlass 
           onClick={action('primary-interaction')}
         >
           Primary Interaction
         </GlassButton>
         <GlassButton 
           variant="secondary" 
-          liquid 
+          liquidGlass 
           onClick={action('secondary-interaction')}
         >
           Secondary Interaction
         </GlassButton>
         <GlassButton 
           variant="accent" 
-          liquid 
+          liquidGlass 
           onClick={action('accent-interaction')}
         >
           Accent Interaction

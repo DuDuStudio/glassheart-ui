@@ -39,7 +39,7 @@ const meta: Meta<typeof GlassTypography> = {
       options: ['light', 'medium', 'heavy'],
       description: '玻璃效果強度',
     },
-    liquid: {
+    liquidGlass: {
       control: { type: 'boolean' },
       description: '是否啟用液體流動效果',
     },
@@ -216,7 +216,7 @@ export const SpecialEffects: Story = {
       </div>
       <div>
         <h3 className="text-white mb-2">Liquid Flow</h3>
-        <GlassTypography liquid size="2xl" weight="bold" glass="heavy">
+        <GlassTypography liquidGlass size="2xl" weight="bold" glass="heavy">
           Liquid Flow Text
         </GlassTypography>
       </div>

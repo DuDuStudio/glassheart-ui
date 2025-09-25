@@ -32,10 +32,6 @@ const meta: Meta<typeof GlassContainer> = {
       control: { type: 'boolean' },
       description: '是否可交互',
     },
-    liquid: {
-      control: { type: 'boolean' },
-      description: '是否啟用液體流動效果',
-    },
     animated: {
       control: { type: 'boolean' },
       description: '是否啟用動畫效果',
@@ -176,7 +172,7 @@ export const LiquidFlow: Story = {
     size: 'md',
     variant: 'default',
     glass: 'medium',
-    liquid: true,
+    liquidGlass: true,
     padding: 'md',
   },
 };
@@ -201,7 +197,7 @@ export const CombinedEffects: Story = {
     variant: 'default',
     glass: 'heavy',
     interactive: true,
-    liquid: true,
+    liquidGlass: true,
     animated: true,
     padding: 'lg',
   },

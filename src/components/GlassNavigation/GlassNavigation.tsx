@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './GlassNavigation.css';
+import { useLiquidGlass, LiquidGlassOptions } from '../../hooks/useLiquidGlass';
 
 export interface GlassNavigationProps {
   children: React.ReactNode;
@@ -10,7 +11,8 @@ export interface GlassNavigationProps {
   size?: 'sm' | 'md' | 'lg';
   sticky?: boolean;
   fixed?: boolean;
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   animated?: boolean;
   blur?: boolean;
   shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
@@ -30,6 +32,8 @@ export interface GlassNavigationItemProps {
   icon?: React.ReactNode;
   badge?: string | number;
   onClick?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   className?: string;
 }
 
@@ -57,12 +61,13 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
       size = 'md',
       sticky = false,
       fixed = false,
-      liquid = false,
+      liquidGlass = false,
+      liquidGlassOptions = {},
       animated = false,
       blur = true,
       shadow = 'md',
       padding = 'md',
-      rounded = 'none',
+      rounded = 'full',
       zIndex,
       onToggle,
       onItemClick,
@@ -73,6 +78,15 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 10,
+      strength: 50,
+      chromaticAberration: 0,
+      blur: 2,
+      ...liquidGlassOptions,
+    });
 
     useEffect(() => {
       if (sticky || fixed) {
@@ -91,7 +105,7 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
     const sizeClasses = `gh-navigation-${size}`;
     const stickyClasses = sticky ? 'gh-navigation-sticky' : '';
     const fixedClasses = fixed ? 'gh-navigation-fixed' : '';
-    const liquidClasses = liquid ? 'gh-navigation-liquid' : '';
+    const liquidGlassClasses = liquidGlass ? 'gh-navigation-liquid-glass' : '';
     const animatedClasses = animated ? 'gh-navigation-animated' : '';
     const blurClasses = blur ? 'gh-navigation-blur' : '';
     const shadowClasses = shadow !== 'none' ? `gh-shadow-${shadow}` : '';
@@ -107,7 +121,7 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
       sizeClasses,
       stickyClasses,
       fixedClasses,
-      liquidClasses,
+      liquidGlassClasses,
       animatedClasses,
       blurClasses,
       shadowClasses,
@@ -119,8 +133,12 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
       .filter(Boolean)
       .join(' ');
 
+    // Get liquid glass style if enabled
+    const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
     const navigationStyle: React.CSSProperties = {
       ...style,
+      ...liquidGlassStyle,
       ...(zIndex !== undefined && { zIndex }),
     };
 
@@ -137,7 +155,7 @@ const GlassNavigation = React.forwardRef<HTMLElement, GlassNavigationProps>(
 
     return (
       <nav
-        ref={ref as React.Ref<HTMLElement>}
+        ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLElement> : ref as React.Ref<HTMLElement>}
         className={classes}
         style={navigationStyle}
         {...props}
@@ -202,12 +220,69 @@ const GlassNavigationMenu = React.forwardRef<HTMLDivElement, {
   onItemClick?: (item: string, index: number) => void;
 }>(
   ({ children, className = '', isOpen = false, onItemClick, ...props }, ref) => {
+    const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
+    const [isDeforming, setIsDeforming] = React.useState(false);
+    const [deformParams, setDeformParams] = React.useState({
+      width: 120,
+      height: 40,
+      radius: 30,
+      opacity: 0.15
+    });
+    
     const classes = `gh-navigation-menu ${isOpen ? 'gh-navigation-menu-open' : ''} ${className}`.trim();
+
+    const calculateDeformParams = (fromIndex: number | null, toIndex: number) => {
+      if (fromIndex === null) return { width: 120, height: 40, radius: 30, opacity: 0.15 };
+      
+      const distance = Math.abs(toIndex - fromIndex);
+      const maxDistance = 5; // Maximum distance for full deformation
+      const intensity = Math.min(distance / maxDistance, 1);
+      
+      return {
+        width: 120 + (intensity * 20), // Expand width by up to 20px
+        height: 40 - (intensity * 5),  // Compress height by up to 5px
+        radius: 30 - (intensity * 5),  // Reduce radius by up to 5px
+        opacity: 0.15 + (intensity * 0.05) // Increase opacity slightly
+      };
+    };
+
+    const handleMouseEnter = (index: number) => {
+      const previousIndex = hoveredIndex;
+      setHoveredIndex(index);
+      
+      // Calculate deformation parameters
+      const newParams = calculateDeformParams(previousIndex, index);
+      setDeformParams(newParams);
+      
+      // Trigger deformation animation
+      setIsDeforming(true);
+      setTimeout(() => setIsDeforming(false), 300);
+    };
+
+    const handleMouseLeave = () => {
+      setHoveredIndex(null);
+      setIsDeforming(false);
+      setDeformParams({ width: 120, height: 40, radius: 30, opacity: 0.15 });
+    };
+
+    // Update CSS custom properties for deformation
+    React.useEffect(() => {
+      if (ref && 'current' in ref && ref.current) {
+        const element = ref.current as HTMLElement;
+        element.style.setProperty('--deform-width', `${deformParams.width}px`);
+        element.style.setProperty('--deform-height', `${deformParams.height}px`);
+        element.style.setProperty('--deform-radius', `${deformParams.radius}px`);
+        element.style.setProperty('--deform-opacity', deformParams.opacity.toString());
+      }
+    }, [deformParams, ref]);
 
     return (
       <div
         ref={ref}
         className={classes}
+        data-hover-index={hoveredIndex}
+        data-deforming={isDeforming}
+        onMouseLeave={handleMouseLeave}
         {...props}
       >
         {React.Children.map(children, (child, index) => {
@@ -215,6 +290,8 @@ const GlassNavigationMenu = React.forwardRef<HTMLDivElement, {
             return React.cloneElement(child, {
               ...child.props,
               onItemClick: (item: string) => onItemClick?.(item, index),
+              onMouseEnter: () => handleMouseEnter(index),
+              onMouseLeave: handleMouseLeave,
             });
           }
           return child;
@@ -236,6 +313,8 @@ const GlassNavigationItem = React.forwardRef<HTMLAnchorElement, GlassNavigationI
       icon,
       badge,
       onClick,
+      onMouseEnter,
+      onMouseLeave,
       className = '',
       ...props
     },
@@ -269,6 +348,8 @@ const GlassNavigationItem = React.forwardRef<HTMLAnchorElement, GlassNavigationI
           href={href}
           className={classes}
           onClick={handleClick}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
           {...props}
         >
           {content}
@@ -281,6 +362,8 @@ const GlassNavigationItem = React.forwardRef<HTMLAnchorElement, GlassNavigationI
         ref={ref as React.Ref<HTMLButtonElement>}
         className={classes}
         onClick={handleClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         disabled={disabled}
         {...props}
       >

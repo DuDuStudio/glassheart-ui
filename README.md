@@ -13,7 +13,32 @@
 - **🔧 多框架支援** - 原生 JS、React、Vue、Svelte、Angular
 - **📝 毛玻璃文字** - 使用 Canvas 渲染的高級文字效果
 
-## 🆕 最新更新 (v1.1.4)
+## 🆕 最新更新 (v1.1.6)
+
+- ✨ **新增 LiquidGlass 效果** - 基於 SVG 位移映射的高級液體玻璃效果
+- 🎭 **互動式深度變化** - 點擊和懸停時動態調整玻璃深度
+- 🎨 **多組件支援** - 所有組件（Button、Card、Container、Input、Navigation、Typography）都支援 LiquidGlass 效果
+- 🔧 **可自定義參數** - 支援強度、色差、模糊程度等參數調整
+- 🐛 **調試模式** - 提供位移映射可視化調試功能
+- ⚡ **性能優化** - GPU 加速和響應式設計支援
+- ♿ **無障礙支援** - 支援 prefers-reduced-motion 媒體查詢
+- 📱 **響應式設計** - 移動端自動禁用複雜動畫以提升性能
+- 📦 **npm 發布** - 所有包已發布到 npm，版本 v1.1.6
+
+## 🆕 歷史更新 (v1.1.5)
+
+- ✨ **新增 iOS 26 風格滑動導航效果** - 橢圓形背景平滑跟隨滑鼠移動
+- 🎭 **動態變形動畫** - 移動時橢圓形產生寬度、高度、圓角變形效果
+- 🎨 **GPU 加速動畫** - 使用 will-change 和 transform3d 優化性能
+- 📱 **響應式滑動效果** - 自動適配不同螢幕尺寸，移動端優化
+- ♿ **無障礙支援** - 支援 prefers-reduced-motion 媒體查詢
+- 🔧 **多框架支援** - React、Vue、Svelte、Angular 全支援滑動效果
+- 🔧 **修復 rounded 屬性** - 修復圓角屬性無法正確應用的問題，rounded="none" 現在完全移除圓角
+- 🔧 **更新預設值** - 將 rounded 預設值從 "none" 改為 "full"，提供更好的預設體驗
+- 🎨 **設計規格調整** - 根據設計規格精確調整三種狀態的陰影和玻璃效果參數
+- 📦 **npm 發布** - 所有包已發布到 npm，版本 v1.1.5
+
+## 🆕 歷史更新 (v1.1.4)
 
 - ✨ **新增 GlassTypography 組件** - 使用 HTML5 Canvas 渲染的高級毛玻璃文字效果
 - 🎨 **增強毛玻璃效果** - 多層渲染、複雜漸變、高級圖像處理
@@ -421,7 +446,19 @@ card.render('#app');
 ### GlassCard 卡片
 
 ```jsx
-<GlassCard size="lg" variant="default" liquid interactive>
+<GlassCard 
+  size="lg" 
+  variant="default" 
+  liquid 
+  liquidGlass 
+  liquidGlassOptions={{
+    strength: 80,
+    chromaticAberration: 0,
+    blur: 3,
+    debug: false
+  }}
+  interactive
+>
   <GlassCardHeader>
     <GlassCardTitle>Card Title</GlassCardTitle>
     <GlassCardDescription>Card description</GlassCardDescription>
@@ -440,6 +477,8 @@ card.render('#app');
 - `variant`: 'default' | 'outline' | 'solid'
 - `interactive`: boolean
 - `liquid`: boolean
+- `liquidGlass`: boolean - 啟用 LiquidGlass 效果
+- `liquidGlassOptions`: object - LiquidGlass 效果參數
 - `loading`: boolean
 
 ### GlassButton 按鈕
@@ -450,6 +489,13 @@ card.render('#app');
   size="md" 
   glass="medium" 
   liquid 
+  liquidGlass 
+  liquidGlassOptions={{
+    strength: 100,
+    chromaticAberration: 0,
+    blur: 2,
+    debug: false
+  }}
   loading={false}
 >
   Click me
@@ -461,6 +507,12 @@ card.render('#app');
 - `size`: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 - `glass`: 'light' | 'medium' | 'heavy'
 - `liquid`: boolean
+- `liquidGlass`: boolean - 啟用 LiquidGlass 效果
+- `liquidGlassOptions`: object - LiquidGlass 效果參數
+  - `strength`: number - 位移強度 (預設: 100)
+  - `chromaticAberration`: number - 色差效果 (預設: 0)
+  - `blur`: number - 模糊程度 (預設: 2)
+  - `debug`: boolean - 調試模式，顯示位移映射 (預設: false)
 - `loading`: boolean
 
 ### GlassInput 輸入框
@@ -553,6 +605,13 @@ card.render('#app');
   <GlassNavigationToggle />
 </GlassNavigation>
 ```
+
+**特色功能：**
+- 🎯 **iOS 26 風格滑動效果** - 橢圓形背景平滑跟隨滑鼠移動
+- 🎭 **動態變形動畫** - 移動時橢圓形產生寬度、高度、圓角變形效果
+- ⚡ **GPU 加速動畫** - 使用 will-change 和 transform3d 優化性能
+- 📱 **響應式設計** - 自動適配不同螢幕尺寸，移動端優化
+- ♿ **無障礙支援** - 支援 prefers-reduced-motion 媒體查詢
 
 **Props:**
 - `variant`: 'default' | 'transparent' | 'solid' | 'floating'
@@ -736,6 +795,76 @@ npm run storybook
 npm run build-storybook
 
 # 靜態文件將生成在 storybook-static/ 目錄
+```
+
+## 🌊 LiquidGlass 效果
+
+LiquidGlass 是我們最新的高級視覺效果，基於 SVG 位移映射技術實現的液體玻璃效果。
+
+### 特色功能
+
+- **🎭 互動式深度變化** - 點擊和懸停時動態調整玻璃深度
+- **🎨 基於 SVG 位移映射** - 使用高級 SVG 濾鏡技術
+- **🔧 可自定義參數** - 支援強度、色差、模糊程度等參數調整
+- **🐛 調試模式** - 提供位移映射可視化調試功能
+- **⚡ 性能優化** - GPU 加速和響應式設計支援
+- **♿ 無障礙支援** - 支援 prefers-reduced-motion 媒體查詢
+
+### 基本用法
+
+```jsx
+// 啟用 LiquidGlass 效果
+<GlassButton liquidGlass>
+  Liquid Glass Button
+</GlassButton>
+
+// 自定義 LiquidGlass 參數
+<GlassCard 
+  liquidGlass 
+  liquidGlassOptions={{
+    strength: 120,           // 位移強度 (0-200)
+    chromaticAberration: 10, // 色差效果 (0-50)
+    blur: 3,                 // 模糊程度 (0-10)
+    debug: false             // 調試模式
+  }}
+>
+  Liquid Glass Card
+</GlassCard>
+```
+
+### 支援的組件
+
+所有主要組件都支援 LiquidGlass 效果：
+
+- **GlassButton** - 按鈕組件
+- **GlassCard** - 卡片組件
+- **GlassContainer** - 容器組件
+- **GlassInput** - 輸入框組件
+- **GlassNavigation** - 導航組件
+- **GlassTypography** - 文字組件
+
+### 參數說明
+
+| 參數 | 類型 | 預設值 | 描述 |
+|------|------|--------|------|
+| `liquidGlass` | `boolean` | `false` | 是否啟用 LiquidGlass 效果 |
+| `liquidGlassOptions` | `object` | `{}` | LiquidGlass 效果參數 |
+| `liquidGlassOptions.strength` | `number` | `100` | 位移強度 (0-200) |
+| `liquidGlassOptions.chromaticAberration` | `number` | `0` | 色差效果 (0-50) |
+| `liquidGlassOptions.blur` | `number` | `2` | 模糊程度 (0-10) |
+| `liquidGlassOptions.debug` | `boolean` | `false` | 調試模式，顯示位移映射 |
+
+### 調試模式
+
+啟用調試模式可以查看位移映射，幫助調整效果參數：
+
+```jsx
+<GlassButton 
+  liquidGlass 
+  liquidGlassOptions={{ debug: true }}
+>
+  Debug Mode
+</GlassButton>
 ```
 
 ## 📝 GlassTypography 組件

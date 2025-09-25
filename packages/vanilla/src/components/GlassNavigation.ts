@@ -47,7 +47,7 @@ export class GlassNavigation {
       blur: true,
       shadow: 'md',
       padding: 'md',
-      rounded: 'none',
+      rounded: 'full',
       className: '',
       ...options,
     };

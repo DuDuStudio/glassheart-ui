@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiquidGlass 效果展示 - GlassHeartUI</title>
+    <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.5/dist/index.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .demo-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .demo-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .control-label {
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .control-input {
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .control-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .demo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .demo-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .demo-typography {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .status-active {
+            background: #10b981;
+        }
+        
+        .status-inactive {
+            background: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <!-- LiquidGlass 按鈕展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 按鈕
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的按鈕組件，支援互動式深度變化。
+            </p>
+            <div class="demo-controls">
+                <div class="control-group">
+                    <label class="control-label">強度</label>
+                    <input type="range" class="control-input" id="btn-strength" min="0" max="200" value="100">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">模糊</label>
+                    <input type="range" class="control-input" id="btn-blur" min="0" max="10" value="2">
+                </div>
+                <div class="control-group">
+                    <label class="control-label">色差</label>
+                    <input type="range" class="control-input" id="btn-chromatic" min="0" max="50" value="0">
+                </div>
+            </div>
+            <div class="demo-buttons">
+                <button class="gh-btn gh-btn-primary gh-btn-md gh-glass-medium gh-btn-liquid-glass" id="liquid-btn">
+                    液體玻璃按鈕
+                </button>
+                <button class="gh-btn gh-btn-secondary gh-btn-md gh-glass-medium gh-btn-liquid-glass">
+                    次要按鈕
+                </button>
+                <button class="gh-btn gh-btn-accent gh-btn-md gh-glass-medium gh-btn-liquid-glass">
+                    強調按鈕
+                </button>
+            </div>
+        </div>
+
+        <!-- LiquidGlass 卡片展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 卡片
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的卡片組件，支援多種尺寸和變體。
+            </p>
+            <div class="demo-cards">
+                <div class="gh-card gh-card-sm gh-glass-medium gh-card-liquid-glass">
+                    <div class="gh-card-header">
+                        <h3 class="gh-card-title">小卡片</h3>
+                    </div>
+                    <div class="gh-card-content">
+                        <p>這是一個小尺寸的液體玻璃卡片。</p>
+                    </div>
+                </div>
+                <div class="gh-card gh-card-md gh-glass-medium gh-card-liquid-glass">
+                    <div class="gh-card-header">
+                        <h3 class="gh-card-title">中卡片</h3>
+                    </div>
+                    <div class="gh-card-content">
+                        <p>這是一個中尺寸的液體玻璃卡片。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LiquidGlass 輸入框展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 輸入框
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的輸入框組件，支援多種尺寸。
+            </p>
+            <div class="demo-inputs">
+                <input class="gh-input gh-input-md gh-glass-medium gh-input-liquid-glass" placeholder="液體玻璃輸入框">
+                <input class="gh-input gh-input-lg gh-glass-medium gh-input-liquid-glass" placeholder="大尺寸輸入框">
+                <textarea class="gh-textarea gh-input-md gh-glass-medium gh-input-liquid-glass" placeholder="液體玻璃文字區域"></textarea>
+            </div>
+        </div>
+
+        <!-- LiquidGlass 文字展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 文字
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的文字組件，支援多種尺寸和效果。
+            </p>
+            <div class="demo-typography">
+                <div class="gh-typography gh-typography-h1 gh-typography-2xl gh-typography-bold gh-glass-medium gh-typography-liquid-glass">
+                    液體玻璃標題
+                </div>
+                <div class="gh-typography gh-typography-p gh-typography-lg gh-glass-medium gh-typography-liquid-glass">
+                    這是一個具有液體玻璃效果的文字段落，展現了先進的視覺效果。
+                </div>
+            </div>
+        </div>
+
+        <!-- 容器展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 容器
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的容器組件，支援多種尺寸和佈局。
+            </p>
+            <div class="gh-container gh-container-lg gh-glass-medium gh-container-liquid-glass gh-p-lg gh-rounded-lg">
+                <h3 style="color: white; margin-bottom: 1rem;">液體玻璃容器</h3>
+                <p style="color: rgba(255, 255, 255, 0.8);">
+                    這是一個具有液體玻璃效果的容器，可以包含任何內容。
+                </p>
+            </div>
+        </div>
+
+        <!-- 導航展示 -->
+        <div class="demo-section">
+            <h2 class="demo-title">
+                <span class="status-indicator status-active"></span>
+                LiquidGlass 導航
+            </h2>
+            <p class="demo-description">
+                具有液體玻璃效果的導航組件，支援響應式設計。
+            </p>
+            <nav class="gh-navigation gh-navigation-default gh-glass-medium gh-navigation-liquid-glass gh-p-md gh-rounded-full">
+                <div class="gh-navigation-container">
+                    <a href="#" class="gh-navigation-brand">GlassHeartUI</a>
+                    <div class="gh-navigation-menu">
+                        <a href="#" class="gh-navigation-item gh-navigation-item-active">首頁</a>
+                        <a href="#" class="gh-navigation-item">產品</a>
+                        <a href="#" class="gh-navigation-item">服務</a>
+                        <a href="#" class="gh-navigation-item">關於</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // 動態更新按鈕的 LiquidGlass 效果參數
+        function updateLiquidGlassEffect() {
+            const strength = document.getElementById('btn-strength').value;
+            const blur = document.getElementById('btn-blur').value;
+            const chromatic = document.getElementById('btn-chromatic').value;
+            
+            const buttons = document.querySelectorAll('.gh-btn-liquid-glass');
+            buttons.forEach(button => {
+                // 這裡可以動態更新按鈕的 LiquidGlass 參數
+                // 實際的實作會通過 React 組件的 props 來控制
+                console.log(`更新 LiquidGlass 效果: strength=${strength}, blur=${blur}, chromatic=${chromatic}`);
+            });
+        }
+
+        // 綁定控制項事件
+        document.getElementById('btn-strength').addEventListener('input', updateLiquidGlassEffect);
+        document.getElementById('btn-blur').addEventListener('input', updateLiquidGlassEffect);
+        document.getElementById('btn-chromatic').addEventListener('input', updateLiquidGlassEffect);
+
+        // 初始化
+        updateLiquidGlassEffect();
+    </script>
+</body>
+</html>
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import './GlassCard.css';
+import { useLiquidGlass, LiquidGlassOptions } from '../../hooks/useLiquidGlass';
 
 export interface GlassCardProps {
   children: React.ReactNode;
@@ -8,7 +9,8 @@ export interface GlassCardProps {
   variant?: 'default' | 'outline' | 'solid';
   glass?: 'light' | 'medium' | 'heavy';
   interactive?: boolean;
-  liquid?: boolean;
+  liquidGlass?: boolean;
+  liquidGlassOptions?: Partial<LiquidGlassOptions>;
   loading?: boolean;
   onClick?: () => void;
   onMouseEnter?: () => void;
@@ -49,7 +51,8 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
       variant = 'default',
       glass = 'medium',
       interactive = false,
-      liquid = false,
+      liquidGlass = false,
+      liquidGlassOptions = {},
       loading = false,
       onClick,
       onMouseEnter,
@@ -58,12 +61,21 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
     },
     ref
   ) => {
+    // Use liquid glass hook if enabled
+    const liquidGlassHook = useLiquidGlass({
+      depth: 12,
+      strength: 80,
+      chromaticAberration: 0,
+      blur: 3,
+      ...liquidGlassOptions,
+    });
+
     const baseClasses = 'gh-card';
     const sizeClasses = `gh-card-${size}`;
     const variantClasses = variant !== 'default' ? `gh-card-${variant}` : '';
     const glassClasses = `gh-glass-${glass}`;
     const interactiveClasses = interactive ? 'gh-card-interactive' : '';
-    const liquidClasses = liquid ? 'gh-card-liquid' : '';
+    const liquidGlassClasses = liquidGlass ? 'gh-card-liquid-glass' : '';
     const loadingClasses = loading ? 'gh-card-loading' : '';
 
     const classes = [
@@ -72,20 +84,24 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
       variantClasses,
       glassClasses,
       interactiveClasses,
-      liquidClasses,
+      liquidGlassClasses,
       loadingClasses,
       className,
     ]
       .filter(Boolean)
       .join(' ');
 
+    // Get liquid glass style if enabled
+    const liquidGlassStyle = liquidGlass ? liquidGlassHook.getLiquidGlassStyle() : {};
+
     return (
       <div
-        ref={ref}
+        ref={liquidGlass ? liquidGlassHook.elementRef as React.Ref<HTMLDivElement> : ref}
         className={classes}
         onClick={onClick}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
+        style={liquidGlassStyle}
         {...props}
       >
         {children}

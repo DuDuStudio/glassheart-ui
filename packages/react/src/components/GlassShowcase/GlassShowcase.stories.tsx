@@ -26,7 +26,7 @@ export const FullShowcase: Story = {
           現代化的 Liquid Glass UI 元件庫，讓您的應用程式擁有令人驚艷的玻璃效果
         </p>
         <div className="flex gap-4 justify-center">
-          <GlassButton variant="primary" size="lg" liquid>
+          <GlassButton variant="primary" size="lg" liquidGlass>
             <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
@@ -40,7 +40,7 @@ export const FullShowcase: Story = {
 
       {/* Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <GlassCard liquid interactive size="lg">
+        <GlassCard liquidGlass interactive size="lg">
           <GlassCardHeader>
             <GlassCardTitle className="flex items-center gap-2">
               <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export const FullShowcase: Story = {
           </GlassCardFooter>
         </GlassCard>
 
-        <GlassCard liquid interactive size="lg">
+        <GlassCard liquidGlass interactive size="lg">
           <GlassCardHeader>
             <GlassCardTitle className="flex items-center gap-2">
               <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ export const FullShowcase: Story = {
           </GlassCardFooter>
         </GlassCard>
 
-        <GlassCard liquid interactive size="lg">
+        <GlassCard liquidGlass interactive size="lg">
           <GlassCardHeader>
             <GlassCardTitle className="flex items-center gap-2">
               <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@ export const FullShowcase: Story = {
 
       {/* Interactive Demo */}
       <div className="max-w-4xl mx-auto">
-        <GlassCard size="xl" liquid>
+        <GlassCard size="xl" liquidGlass>
           <GlassCardHeader>
             <GlassCardTitle className="text-center text-3xl">互動式演示</GlassCardTitle>
             <GlassCardDescription className="text-center text-lg">
@@ -108,7 +108,7 @@ export const FullShowcase: Story = {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">輕度玻璃</h3>
-                <GlassCard liquid size="md">
+                <GlassCard liquidGlass size="md">
                   <GlassCardContent>
                     <p className="text-sm">適合需要保持內容清晰度的場景</p>
                   </GlassCardContent>
@@ -119,7 +119,7 @@ export const FullShowcase: Story = {
               
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">中度玻璃</h3>
-                <GlassCard liquid size="md">
+                <GlassCard liquidGlass size="md">
                   <GlassCardContent>
                     <p className="text-sm">平衡的透明度和模糊效果</p>
                   </GlassCardContent>
@@ -130,7 +130,7 @@ export const FullShowcase: Story = {
               
               <div className="space-y-4">
                 <h3 className="text-xl font-semibold text-center">重度玻璃</h3>
-                <GlassCard liquid size="md">
+                <GlassCard liquidGlass size="md">
                   <GlassCardContent>
                     <p className="text-sm">強烈的視覺衝擊效果</p>
                   </GlassCardContent>
@@ -168,7 +168,7 @@ export const FullShowcase: Story = {
           立即開始使用 GlassHeartUI，為您的專案添加令人驚艷的玻璃效果
         </p>
         <div className="flex gap-4 justify-center">
-          <GlassButton variant="primary" size="xl" liquid>
+          <GlassButton variant="primary" size="xl" liquidGlass>
             <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>

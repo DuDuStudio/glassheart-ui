@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liquid Glass 效能測試</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .test-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .performance-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .performance-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .performance-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+        }
+        
+        .performance-card p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .performance-stats {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        
+        .test-controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .test-controls h2 {
+            margin: 0 0 15px 0;
+            font-size: 20px;
+        }
+        
+        .control-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .control-group label {
+            font-size: 14px;
+            min-width: 100px;
+        }
+        
+        .control-group input, .control-group select {
+            padding: 5px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+        }
+        
+        .control-group input[type="range"] {
+            width: 150px;
+        }
+        
+        .performance-info {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        
+        .stress-test {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+        
+        .stress-test:hover {
+            background: rgba(255, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-controls">
+        <h2>Liquid Glass 效能測試控制台</h2>
+        
+        <div class="control-group">
+            <label>卡片數量:</label>
+            <input type="range" id="cardCount" min="10" max="100" value="20" oninput="updateCardCount()">
+            <span id="cardCountValue">20</span>
+        </div>
+        
+        <div class="control-group">
+            <label>效能模式:</label>
+            <select id="performanceMode" onchange="updatePerformanceMode()">
+                <option value="optimized">優化模式 (推薦)</option>
+                <option value="normal">普通模式</option>
+                <option value="stress">壓力測試</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label>動畫強度:</label>
+            <input type="range" id="animationIntensity" min="0" max="100" value="50" oninput="updateAnimationIntensity()">
+            <span id="animationIntensityValue">50</span>
+        </div>
+        
+        <div class="performance-info" id="performanceInfo">
+            效能指標: 載入中...
+        </div>
+    </div>
+
+    <div class="test-container" id="testContainer">
+        <!-- 動態生成的測試卡片 -->
+    </div>
+
+    <script>
+        let cardCount = 20;
+        let performanceMode = 'optimized';
+        let animationIntensity = 50;
+        let performanceStats = {
+            renderTime: 0,
+            hoverTime: 0,
+            memoryUsage: 0,
+            frameRate: 0
+        };
+
+        // 生成測試卡片
+        function generateTestCards() {
+            const container = document.getElementById('testContainer');
+            container.innerHTML = '';
+            
+            const startTime = performance.now();
+            
+            for (let i = 0; i < cardCount; i++) {
+                const card = document.createElement('div');
+                card.className = `performance-card ${performanceMode === 'stress' ? 'stress-test' : ''}`;
+                
+                const stats = document.createElement('div');
+                stats.className = 'performance-stats';
+                stats.textContent = `#${i + 1}`;
+                
+                const title = document.createElement('h3');
+                title.textContent = `測試卡片 ${i + 1}`;
+                
+                const description = document.createElement('p');
+                description.textContent = `這是第 ${i + 1} 個 Liquid Glass 測試卡片。在 ${performanceMode} 模式下運行，動畫強度為 ${animationIntensity}%。`;
+                
+                card.appendChild(stats);
+                card.appendChild(title);
+                card.appendChild(description);
+                
+                // 添加 hover 事件監聽器
+                card.addEventListener('mouseenter', () => {
+                    const hoverStart = performance.now();
+                    card.style.transform = 'translateY(-2px) scale(1.02)';
+                    card.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+                    
+                    requestAnimationFrame(() => {
+                        performanceStats.hoverTime = performance.now() - hoverStart;
+                        updatePerformanceInfo();
+                    });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                container.appendChild(card);
+            }
+            
+            const endTime = performance.now();
+            performanceStats.renderTime = endTime - startTime;
+            updatePerformanceInfo();
+        }
+
+        // 更新效能資訊
+        function updatePerformanceInfo() {
+            const info = document.getElementById('performanceInfo');
+            const memory = performance.memory ? (performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2) : 'N/A';
+            
+            info.innerHTML = `
+                渲染時間: ${performanceStats.renderTime.toFixed(2)}ms | 
+                Hover 響應: ${performanceStats.hoverTime.toFixed(2)}ms | 
+                記憶體使用: ${memory}MB | 
+                卡片數量: ${cardCount} | 
+                模式: ${performanceMode}
+            `;
+        }
+
+        // 更新卡片數量
+        function updateCardCount() {
+            cardCount = parseInt(document.getElementById('cardCount').value);
+            document.getElementById('cardCountValue').textContent = cardCount;
+            generateTestCards();
+        }
+
+        // 更新效能模式
+        function updatePerformanceMode() {
+            performanceMode = document.getElementById('performanceMode').value;
+            generateTestCards();
+        }
+
+        // 更新動畫強度
+        function updateAnimationIntensity() {
+            animationIntensity = parseInt(document.getElementById('animationIntensity').value);
+            document.getElementById('animationIntensityValue').textContent = animationIntensity;
+            
+            // 應用動畫強度到所有卡片
+            const cards = document.querySelectorAll('.performance-card');
+            cards.forEach(card => {
+                card.style.transition = `all ${0.1 + (animationIntensity / 100) * 0.4}s ease`;
+            });
+        }
+
+        // 監聽效能指標
+        function monitorPerformance() {
+            if (performance.memory) {
+                performanceStats.memoryUsage = performance.memory.usedJSHeapSize / 1024 / 1024;
+            }
+            
+            // 計算 FPS
+            let lastTime = performance.now();
+            let frameCount = 0;
+            
+            function countFrames() {
+                frameCount++;
+                const currentTime = performance.now();
+                
+                if (currentTime - lastTime >= 1000) {
+                    performanceStats.frameRate = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                    frameCount = 0;
+                    lastTime = currentTime;
+                    updatePerformanceInfo();
+                }
+                
+                requestAnimationFrame(countFrames);
+            }
+            
+            countFrames();
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            generateTestCards();
+            monitorPerformance();
+            
+            // 添加鍵盤快捷鍵
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case '1':
+                        document.getElementById('performanceMode').value = 'optimized';
+                        updatePerformanceMode();
+                        break;
+                    case '2':
+                        document.getElementById('performanceMode').value = 'normal';
+                        updatePerformanceMode();
+                        break;
+                    case '3':
+                        document.getElementById('performanceMode').value = 'stress';
+                        updatePerformanceMode();
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        document.getElementById('cardCount').value = Math.min(100, cardCount + 10);
+                        updateCardCount();
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        document.getElementById('cardCount').value = Math.max(10, cardCount - 10);
+                        updateCardCount();
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+

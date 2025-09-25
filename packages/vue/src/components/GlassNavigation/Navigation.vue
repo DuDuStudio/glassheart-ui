@@ -65,7 +65,7 @@ const props = defineProps({
   },
   rounded: {
     type: String,
-    default: 'none',
+    default: 'full',
     validator: (value) => ['none', 'sm', 'md', 'lg', 'xl', 'full'].includes(value)
   },
   zIndex: {

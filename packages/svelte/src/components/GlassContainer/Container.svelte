@@ -37,9 +37,9 @@
     .filter(Boolean)
     .join(' ');
 
-  $: containerStyle = {
+  $: containerStyle = Object.entries({
     ...(zIndex !== undefined && { zIndex }),
-  };
+  }).map(([key, value]) => `${key}: ${value}`).join('; ');
 
   function handleClick() {
     dispatch('click');
