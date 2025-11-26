@@ -53,12 +53,12 @@ GlassHeartUI 提供多個框架的獨立套件：
 
 | 套件 | 描述 | 安裝 | CDN |
 |------|------|------|------|
-| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` | `https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css` |
-| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` | `https://unpkg.com/glassheart-ui-react@1.1.4/dist/index.js` |
-| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` | `https://unpkg.com/glassheart-ui-vue@1.1.4/dist/index.js` |
-| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` | `https://unpkg.com/glassheart-ui-svelte@1.1.4/dist/index.js` |
-| `glassheart-ui-angular` | Angular 元件 | `npm install glassheart-ui-angular` | - |
-| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` | `https://unpkg.com/glassheart-ui@1.1.3/dist/index.js` |
+| `glassheart-ui-core` | 核心 CSS 樣式 | `npm install glassheart-ui-core` | `https://unpkg.com/glassheart-ui-core@1.1.6/dist/index.css` |
+| `glassheart-ui-react` | React 元件 | `npm install glassheart-ui-react` | `https://unpkg.com/glassheart-ui-react@1.1.6/dist/index.js` |
+| `glassheart-ui-vue` | Vue 元件 | `npm install glassheart-ui-vue` | `https://unpkg.com/glassheart-ui-vue@1.1.6/dist/index.js` |
+| `glassheart-ui-svelte` | Svelte 元件 | `npm install glassheart-ui-svelte` | `https://unpkg.com/glassheart-ui-svelte@1.1.6/dist/index.js` |
+| `glassheart-ui-angular` | Angular 元件 | `npm install glassheart-ui-angular` | `https://unpkg.com/glassheart-ui-angular@1.1.6/dist/index.js` |
+| `glassheart-ui` | 原生 JavaScript | `npm install glassheart-ui` | `https://unpkg.com/glassheart-ui@1.1.6/dist/index.js` |
 
 ## 🚀 快速開始
 
@@ -71,9 +71,9 @@ GlassHeartUI 提供多個框架的獨立套件：
 <html>
 <head>
   <!-- 引入核心樣式 -->
-  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.6/dist/index.css">
   <!-- 引入 JavaScript 組件 -->
-  <script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
+  <script src="https://unpkg.com/glassheart-ui@1.1.6/dist/index.js"></script>
 </head>
 <body>
   <div id="app"></div>
@@ -353,8 +353,8 @@ card.render('#app');
 ### CDN 使用
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.4/dist/index.css">
-<script src="https://unpkg.com/glassheart-ui@1.1.3/dist/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/glassheart-ui-core@1.1.6/dist/index.css">
+<script src="https://unpkg.com/glassheart-ui@1.1.6/dist/index.js"></script>
 
 <script>
   const { 
@@ -772,7 +772,7 @@ applyTheme('dark');
 
 ## 📚 文檔
 
-完整的元件文檔和範例請查看 [Storybook](http://localhost:8080)
+完整的元件文檔和範例請查看 [Storybook](https://glassheart-ui-storybook.dudustudio.monster/)
 
 ### 本地運行 Storybook
 
