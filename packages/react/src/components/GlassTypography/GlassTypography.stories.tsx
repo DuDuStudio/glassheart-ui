@@ -174,31 +174,6 @@ export const Sizes: Story = {
   ),
 };
 
-export const GlassEffects: Story = {
-  render: () => (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-white mb-2">Light Glass</h3>
-        <GlassTypography glass="light" size="xl">
-          Light Glass Effect
-        </GlassTypography>
-      </div>
-      <div>
-        <h3 className="text-white mb-2">Medium Glass</h3>
-        <GlassTypography glass="medium" size="xl">
-          Medium Glass Effect
-        </GlassTypography>
-      </div>
-      <div>
-        <h3 className="text-white mb-2">Heavy Glass</h3>
-        <GlassTypography glass="heavy" size="xl">
-          Heavy Glass Effect
-        </GlassTypography>
-      </div>
-    </div>
-  ),
-};
-
 export const SpecialEffects: Story = {
   render: () => (
     <div className="space-y-6">
